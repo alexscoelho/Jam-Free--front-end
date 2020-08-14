@@ -12,6 +12,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
+			],
+			teacher: [
+				{
+					name: "John",
+					instrument: "guitar",
+					level: "intermediate"
+				}
 			]
 		},
 		actions: {
