@@ -16,3 +16,8 @@ ReactDOM.render(<Layout />, document.querySelector("#app"));
 
 
 //comment
+
+
+export default function MusicRoomStudent() {
+	
+    }
