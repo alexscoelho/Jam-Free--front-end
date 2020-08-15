@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+
+// react-bootstrap
 import Nav from "react-bootstrap/Nav";
+import Modal from "react-bootstrap/Modal";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
+	<footer className="footer mt-auto py-3 text-center ml-4 mr-4">
 		<Nav.Link eventKey="link-2">About</Nav.Link>
 		<Nav className="justify-content-center" activeKey="/home">
 			<Nav.Item>
@@ -23,7 +26,7 @@ export const Footer = () => (
 			<Nav.Item />
 		</Nav>
 		<Nav.Link eventKey="link-2">
-			<i className="far fa-copyright" />
+			<p>© 2020 Online Music School</p>
 		</Nav.Link>
 	</footer>
 );
