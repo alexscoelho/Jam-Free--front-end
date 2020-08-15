@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// views
+
 export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
-			<a className="navbar-brand" href="#">
-				Music School
-			</a>
+			<Link to="/">
+				<a className="navbar-brand" href="#">
+					Music School
+				</a>
+			</Link>
 			<button
 				className="navbar-toggler"
 				type="button"
@@ -25,9 +29,11 @@ export const Navbar = () => {
 						</a>
 					</li>
 					<li className="nav-item">
-						<a className="nav-link" href="#">
-							Login
-						</a>
+						<Link to="/login">
+							<a className="nav-link" href="#">
+								Login
+							</a>
+						</Link>
 					</li>
 					<li className="nav-item">
 						<a className="nav-link" href="#">

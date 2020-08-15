@@ -1,15 +1,30 @@
-//import react into the bundle
 import React from "react";
-import ReactDOM from "react-dom";
+import rigoImage from "../../img/rigo-baby.jpg";
+import "../../styles/home.scss";
 
-//include bootstrap npm library into the bundle
-import "bootstrap/dist/css/bootstrap.css";
+// react-components
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
-//include your index.scss file into the bundle
-import "../styles/index.scss";
+export const Login = () => (
+	<div className="container">
+		<Form>
+			<Form.Group controlId="formBasicEmail">
+				<Form.Label>Email address</Form.Label>
+				<Form.Control type="email" placeholder="Enter email" />
+				<Form.Text className="text-muted">We wil never share your email with anyone else.</Form.Text>
+			</Form.Group>
 
-//import your own components
-import Layout from "./layout";
-
-//render your react application
-ReactDOM.render(<Layout />, document.querySelector("#app"));
+			<Form.Group controlId="formBasicPassword">
+				<Form.Label>Password</Form.Label>
+				<Form.Control type="password" placeholder="Password" />
+			</Form.Group>
+			<Form.Group controlId="formBasicCheckbox">
+				<Form.Check type="checkbox" label="Check me out" />
+			</Form.Group>
+			<Button variant="primary" type="submit">
+				Submit
+			</Button>
+		</Form>
+	</div>
+);

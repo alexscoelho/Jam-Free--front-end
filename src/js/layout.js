@@ -9,6 +9,7 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Login } from "./views/login";
 
 //create your first component
 const Layout = () => {
@@ -24,6 +25,9 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/">
 							<Landing />
+						</Route>
+						<Route exact path="/login">
+							<Login />
 						</Route>
 						<Route exact path="/demo">
 							<Demo />

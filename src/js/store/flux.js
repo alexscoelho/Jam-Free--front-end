@@ -18,6 +18,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					name: "John",
 					instrument: "guitar",
 					level: "intermediate"
+				},
+				{
+					name: "jose",
+					instrument: "drums",
+					level: "intermediate"
+				},
+				{
+					name: "alex",
+					instrument: "piano",
+					level: "intermediate"
 				}
 			]
 		},
