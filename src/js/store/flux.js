@@ -29,6 +29,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					instrument: "piano",
 					level: "intermediate"
 				}
+			],
+			profiles: [
+				{
+					name: "John",
+					lastName: "Doe",
+					userName: "Jdoe",
+					instrument: "Guitar",
+					level: "intermediate",
+					language: "english",
+					timeZone: "EST"
+				}
 			]
 		},
 		actions: {

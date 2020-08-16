@@ -1,6 +1,7 @@
 import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
+import { Link } from "react-router-dom";
 
 // react-components
 import Form from "react-bootstrap/Form";
@@ -12,10 +13,12 @@ export const Login = () => (
 			<h2>Login</h2>
 			<div className="d-flex">
 				<p>Dont have an account?</p>
-				<a className="ml-2" href="#">
-					{" "}
-					Signup
-				</a>
+				<Link to="/signup">
+					<a className="ml-2" href="#">
+						{" "}
+						Sign up
+					</a>
+				</Link>
 			</div>
 		</div>
 		<div className="w-50 form-wrapper m-auto">
@@ -34,7 +37,7 @@ export const Login = () => (
 					<Form.Check type="checkbox" label="Check me out" />
 				</Form.Group>
 				<Button variant="primary" type="submit">
-					Submit
+					Login
 				</Button>
 			</Form>
 		</div>
