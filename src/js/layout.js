@@ -12,6 +12,8 @@ import { Footer } from "./component/footer";
 import { Login } from "./views/login";
 import { SignUp } from "./views/signup";
 import { Profile } from "./views/profile";
+import { Schedule } from "./views/schedule";
+import { About } from "./views/about";
 
 //create your first component
 const Layout = () => {
@@ -36,6 +38,12 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/profile">
 							<Profile />
+						</Route>
+						<Route exact path="/schedule">
+							<Schedule />
+						</Route>
+						<Route exact path="/about">
+							<About />
 						</Route>
 						<Route exact path="/demo">
 							<Demo />
