@@ -24,7 +24,7 @@ export const SignUp = () => (
 		</div>
 		<div className=" w-50 form-wrapper m-auto">
 			<Form>
-				<Form.Row>
+				<Form.Row className="d-block d-lg-flex">
 					<Form.Group as={Col} controlId="formGridEmail">
 						<Form.Label>First Name</Form.Label>
 						<Form.Control type="text" placeholder="Enter First Name" />
@@ -56,7 +56,7 @@ export const SignUp = () => (
 					</Form.Group>
 				</Form.Row>
 
-				<Form.Row>
+				<Form.Row className="d-block d-lg-flex">
 					<Form.Group as={Col} controlId="formGridCity">
 						<Form.Label>Password</Form.Label>
 						<Form.Control type="password" />

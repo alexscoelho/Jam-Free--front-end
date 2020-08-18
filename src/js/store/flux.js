@@ -40,17 +40,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					language: "english",
 					timeZone: "EST"
 				}
-			]
+			],
+			contacts: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			loadSomeContacts: () => {
+				const baseUrl = "/apis/fake/contact/agenda/";
+				fetch(`${baseUrl}`)
+					.then()
+					.then(data => setStore({ foo: data.bar }));
 			},
 			changeColor: (index, color) => {
 				//get the store

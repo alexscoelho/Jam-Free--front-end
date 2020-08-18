@@ -10,7 +10,7 @@ export const Cards = () => {
 	const makeCards = () => {
 		return store.teacher.map((item, index) => {
 			return (
-				<div key={index} className="col-4">
+				<div key={index} className="col-12 col-sm-4 m-auto pb-2 info-col ">
 					<div className="card">
 						<img src="https://via.placeholder.com/200" className="card-img-top" alt="..." />
 						<div className="card-body">
@@ -23,11 +23,11 @@ export const Cards = () => {
 		});
 	};
 	return (
-		<div className="container d-flex flex-column h-75 align-items-center mt-5 mb-5">
-			<div className="d-flex justify-content-center ">
-				<div className="row ">{makeCards()}</div>
-			</div>
-			<a className="mt-2" href="#">
+		<div className="container h-75 align-items-center  mb-3 overflow-auto cards-wrapper">
+			{/* <div className="d-flex justify-content-center "> */}
+			<div className="row d-md-flex">{makeCards()}</div>
+			{/* </div> */}
+			<a className="mt-2 d-block text-center" href="#">
 				View all lessons
 			</a>
 		</div>

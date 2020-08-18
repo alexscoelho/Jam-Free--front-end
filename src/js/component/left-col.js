@@ -10,22 +10,27 @@ export const LeftCol = () => {
 	return (
 		<div className="col-6 profile-left ">
 			<div className=" profile-wrapper">
-				<h3 className="pl-3">Your Profile</h3>
+				<h4 className="pl-3">John Doe</h4>
 				<Col xs={6} md={4}>
 					<Image src="https://via.placeholder.com/150/0000FF/808080" roundedCircle />
 				</Col>
-				<h5 className="pl-5 mt-2">John Doe</h5>
 			</div>
-			<div className="navs-wrapper">
-				<Nav defaultActiveKey="/home" className="flex-column">
+			{/* <div className="navs-wrapper"> */}
+			<Nav variant="pills mt-2">
+				<Nav.Item>
 					<Nav.Link href="/profile">Edit Profile</Nav.Link>
-					<Nav.Link href="/schedule" eventKey="link-1">
-						My Shedulle
-					</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link href="/schedule">My Shedulle</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
 					<Nav.Link eventKey="link-2">Music Room</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
 					<Nav.Link eventKey="link-3">Chat Room</Nav.Link>
-				</Nav>
-			</div>
+				</Nav.Item>
+			</Nav>
+			{/* </div> */}
 		</div>
 	);
 };

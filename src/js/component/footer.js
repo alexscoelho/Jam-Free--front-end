@@ -6,9 +6,6 @@ import Modal from "react-bootstrap/Modal";
 
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center ml-4 mr-4">
-		<Nav.Link href="/about" eventKey="link-2">
-			About
-		</Nav.Link>
 		<Nav className="justify-content-center" activeKey="/home">
 			<Nav.Item>
 				<Nav.Link href="/home">
@@ -25,10 +22,9 @@ export const Footer = () => (
 					<i className="fab fa-twitter" />
 				</Nav.Link>
 			</Nav.Item>
-			<Nav.Item />
+			<Nav.Link href="/about" eventKey="link-2">
+				About
+			</Nav.Link>
 		</Nav>
-		<Nav.Link eventKey="link-2">
-			<p>© 2020 Online Music School</p>
-		</Nav.Link>
 	</footer>
 );

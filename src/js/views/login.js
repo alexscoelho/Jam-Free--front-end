@@ -13,7 +13,7 @@ export const Login = () => (
 			<h2>Login</h2>
 			<div className="d-flex">
 				<p>Dont have an account?</p>
-				<Link to="/signup">
+				<Link to="/signup" className="login-link">
 					<a className="ml-2" href="#">
 						{" "}
 						Sign up
@@ -21,7 +21,7 @@ export const Login = () => (
 				</Link>
 			</div>
 		</div>
-		<div className="w-50 form-wrapper m-auto">
+		<div className="w-50 form-wrapper m-auto pb-2">
 			<Form>
 				<Form.Group controlId="formBasicEmail">
 					<Form.Label>Email address</Form.Label>
