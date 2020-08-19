@@ -3,29 +3,31 @@ import React from "react";
 import ReactDOM from "react-dom";
 //include bootstrap npm library into the bundle
 import "bootstrap/dist/css/bootstrap.css";
-//include your index.scss file into the bundle
-// import "../styles/index.scss";
-//import your own components
-import { Layout } from "./js/layout";
+import "../../styles/musicRoomTeacherUpFile.scss";
 
-//render your react application
-ReactDOM.render(<Layout />, document.querySelector("#app"));
-
-export default function MusicRoomTeacher() {
+export default function MusicRoomTeacherUpFile() {
 	return (
 		<div>
 			<h1>Music Room</h1>
-			<form className="md-form">
-				<div className="file-field">
-					<div className="btn btn-primary btn-sm float-left">
-						<span>Choose file</span>
-						<input type="file" />
+			<br />
+			<div className="containter d-flex justify-content-center">
+				<h3>File Upload</h3>
+			</div>
+			<div className="containter d-flex justify-content-center">
+				<form className="md-form">
+					<div className="file-field-file">
+						<div className="btn btn-primary btn-sm float-left">
+							<span>File: </span>
+							<input type="file" />
+						</div>
+						<div className="file-path-wrapper">
+							<input className="comments-box file-path validate" type="text" placeholder="Comments..." />
+						</div>
+						<button className="cancel-button">Cancel</button>
+						<button className="upload-button">Upload</button>
 					</div>
-					<div className="file-path-wrapper">
-						<input className="file-path validate" type="text" placeholder="Upload your file" />
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	);
 }

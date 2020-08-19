@@ -3,12 +3,15 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Landing } from "./views/landing";
+
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import MusicRoomTeacher from "./views/musicRoomTeacherUpVideo";
+import MusicRoomTeacherUpFile from "./views/musicRoomTeacherUpFile";
 
 //create your first component
 const Layout = () => {
@@ -30,6 +33,12 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />
+						</Route>
+						<Route exact path="/musicRoomTeacherUpVideo">
+							<MusicRoomTeacher />
+						</Route>
+						<Route exact path="/musicRoomTeacherUpFile">
+							<MusicRoomTeacherUpFile />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
