@@ -12,6 +12,11 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import MusicRoomTeacher from "./views/musicRoomTeacherUpVideo";
 import MusicRoomTeacherUpFile from "./views/musicRoomTeacherUpFile";
+import { Login } from "./views/login";
+import { SignUp } from "./views/signup";
+import { Dashboard } from "./views/dashboard";
+// import { Schedule } from "./views/schedule";
+import { About } from "./views/about";
 
 //create your first component
 const Layout = () => {
@@ -27,6 +32,18 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/">
 							<Landing />
+						</Route>
+						<Route exact path="/login">
+							<Login />
+						</Route>
+						<Route exact path="/signup">
+							<SignUp />
+						</Route>
+						<Route path="/main">
+							<Dashboard />
+						</Route>
+						<Route exact path="/about">
+							<About />
 						</Route>
 						<Route exact path="/demo">
 							<Demo />

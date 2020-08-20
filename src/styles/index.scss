@@ -1,3 +1,27 @@
-/* 
-    General Styles
-*/
+footer.footer.mt-auto.py-3.text-center{ 
+    border-top: 1px solid
+}
+
+.profile-left {
+    @media screen and (min-width: 767px){
+        border-right: 1px solid; 
+    }
+    
+    img{
+        max-width: 220px;
+        width: 100%;
+    }
+}
+// .profile-right {margin:20px}
+
+.info-col{
+    max-width: 100%;
+}
+
+.login-link {
+    width: 100px;
+}
+
+.cards-wrapper{
+    margin-top: 10vh
+}
