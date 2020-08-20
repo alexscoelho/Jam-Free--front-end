@@ -22,10 +22,13 @@ export const Dashboard = () => {
 	let location = useLocation();
 	let { path, url } = useRouteMatch();
 
+	// reusable navs
 	const renderNav = () => {
 		return (
+			// use fragment when you want to use a div that does not affect
 			<React.Fragment>
 				<Nav.Item>
+					{/* useRouteMatch path is taken from layout*/}
 					<Nav.Link as={Link} to={`${path}/profile`} eventKey={`${path}/profile`}>
 						Edit Profile
 					</Nav.Link>
@@ -64,6 +67,7 @@ export const Dashboard = () => {
 					</Nav>
 				</Col>
 
+				{/* add here the paths for music room and others */}
 				<Col xs={12} md={6} className="profile-right">
 					<Switch>
 						<Route exact path={`${path}/profile`}>
