@@ -57,6 +57,9 @@ const Layout = () => {
 						<Route exact path="/musicRoomTeacherUpFile">
 							<MusicRoomTeacherUpFile />
 						</Route>
+                        <Route exact path="/musicRoomStudent">
+							<MusicRoomStudent />
+						</Route>
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
