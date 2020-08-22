@@ -21,7 +21,7 @@ export default function MusicRoomStudent() {
 				
 			</div> */}
 
-			<div className="container d-flex justify-content-center flex-column">
+			<div className="container d-flex justify-content-center flex-column flex">
 				<h2>Files</h2>
 				<h6>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
