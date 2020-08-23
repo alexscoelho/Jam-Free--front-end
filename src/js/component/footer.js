@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Modal from "react-bootstrap/Modal";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center ml-4 mr-4">
+	<footer className="footer mt-auto py-3 text-center ml-4 mr-4 ">
 		<Nav className="justify-content-center" activeKey="/home">
 			<Nav.Item>
 				<Nav.Link href="/home">

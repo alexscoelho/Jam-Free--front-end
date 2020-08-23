@@ -28,6 +28,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					name: "alex",
 					instrument: "piano",
 					level: "intermediate"
+				},
+				{
+					name: "pedro",
+					instrument: "maracas",
+					level: "intermediate"
+				},
+				{
+					name: "farruco",
+					instrument: "pandereta",
+					level: "intermediate"
 				}
 			],
 			profiles: [

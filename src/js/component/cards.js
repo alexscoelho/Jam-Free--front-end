@@ -23,10 +23,9 @@ export const Cards = () => {
 		});
 	};
 	return (
-		<div className="container h-75 align-items-center  mb-3 overflow-auto cards-wrapper">
-			{/* <div className="d-flex justify-content-center "> */}
-			<div className="row d-md-flex">{makeCards()}</div>
-			{/* </div> */}
+		<div className="container h-75 align-items-center mb-3 overflow-auto cards-wrapper ">
+			{/* delete scrolling-wrapper row flex-row wrapper flex-nowrap pb-4 */}
+			<div className="row d-md-flex scrolling-wrapper row flex-row wrapper flex-nowrap pb-4">{makeCards()}</div>
 			<a className="mt-2 d-block text-center" href="#">
 				View all lessons
 			</a>
