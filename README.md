@@ -29,7 +29,7 @@ You can update the `styles/index.scss` or create new `.scss` files inside `style
 ### Components
 Add more files into your `./src/js/components` or styles folder as you need them and import them into your current files as needed.
 
-**Note (New changes)**: Components have been converted into functions to support the use of hooks:
+**Note 11(New changes)**: Components have been converted into functions to support the use of hooks:
 * Instead of a class component, we're using a `const` function.
 * Class `constructor` and `state` have been replaced by `useState()` hooks.
 * `componentDidMount()` was replaced by `useEffect({}, [])` - It runs at mount thanks to the second parameter (`[]`).
