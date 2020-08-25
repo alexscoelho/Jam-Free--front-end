@@ -55,11 +55,11 @@ export const Dashboard = () => {
 	return (
 		// user main page, use LeftCol
 		<Container fluid>
-			<Row>
+			<Row className="pt-3 pb-3">
 				<Col xs={12} md={3} className="profile-left w-100 align-items-center">
 					<div className="profile-wrapper d-flex flex-column align-items-center">
 						<Image src="https://via.placeholder.com/150/0000FF/808080" roundedCircle />
-						<h4>John Doe</h4>
+						<h4 className="mt-2">John Doe</h4>
 					</div>
 
 					<Nav variant="pills" defaultActiveKey={location.pathname} className="mt-2 d-none d-md-block">

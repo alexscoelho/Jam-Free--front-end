@@ -25,8 +25,9 @@ export const Cards = () => {
 	return (
 		<div className="container h-75 align-items-center mb-3 overflow-auto cards-wrapper ">
 			{/* delete scrolling-wrapper row flex-row wrapper flex-nowrap pb-4 */}
-			<div className="row d-md-flex scrolling-wrapper row flex-row wrapper flex-nowrap pb-4">{makeCards()}</div>
-			<a className="mt-2 d-block text-center" href="#">
+			<h3 className="text-center pb-2">Meet the instructors</h3>
+			<div className="row d-md-flex scrolling-wrapper row flex-row wrapper flex-nowrap ">{makeCards()}</div>
+			<a className="mt-2 d-block text-center text-dark" href="#">
 				View all lessons
 			</a>
 		</div>

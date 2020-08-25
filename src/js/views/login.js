@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export const Login = () => (
-	<div className="container">
+	<div className="container pb-4 pt-4">
 		<div className="login-question w-50 m-auto">
 			<h2>Login</h2>
 			<div className="d-flex">

@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-dark">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			<Link to="/">
-				<a className="navbar-brand text-white" href="#">
+				<a className="navbar-brand" href="#">
 					Music School
 				</a>
 			</Link>
@@ -25,20 +25,20 @@ export const Navbar = () => {
 				<ul className="navbar-nav ml-auto ">
 					<li className="nav-item">
 						<Link to="/signup">
-							<a className="nav-link text-white" href="#">
+							<a className="nav-link " href="#">
 								Sign up <span className="sr-only">(current)</span>
 							</a>
 						</Link>
 					</li>
 					<li className="nav-item">
 						<Link to="/login">
-							<a className="nav-link text-white" href="#">
+							<a className="nav-link " href="#">
 								Login
 							</a>
 						</Link>
 					</li>
 					<li className="nav-item">
-						<a className="nav-link text-white" href="#">
+						<a className="nav-link " href="#">
 							Donate
 						</a>
 					</li>

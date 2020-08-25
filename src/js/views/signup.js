@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 
 export const SignUp = () => (
-	<div className="container pb-4">
+	<div className="container pb-4 pt-4">
 		<div className=" w-50 m-auto">
 			<h2>Sign up</h2>
 			<div className="d-flex">
