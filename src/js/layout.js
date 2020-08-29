@@ -13,6 +13,7 @@ import { Navigation } from "./component/navigation";
 import { Footer } from "./component/footer";
 import MusicRoomTeacher from "./views/musicRoomTeacherUpVideo";
 import MusicRoomTeacherUpFile from "./views/musicRoomTeacherUpFile";
+import MusicRoomStudent from "./views/musicRoomStudent";
 import { Login } from "./views/login";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
@@ -57,6 +58,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/musicRoomTeacherUpFile">
 							<MusicRoomTeacherUpFile />
+						</Route>
+						<Route exact path="/musicRoomStudent">
+							<MusicRoomStudent />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
