@@ -12,14 +12,14 @@ import "bootstrap/dist/css/bootstrap.css";
 
 //comment
 
-export default function MusicRoomStudent() {
+export const MusicRoomStudent = () => {
 	return (
 		<div>
 			<h1>Music Room</h1>
 			<br />
 			{/* <div className="container d-flex justify-content-center">
-				
-			</div> */}
+                
+            </div> */}
 
 			<div className="container d-flex justify-content-center flex-column flex">
 				<h2>Files</h2>
@@ -47,4 +47,4 @@ export default function MusicRoomStudent() {
 			</div>
 		</div>
 	);
-}
+};

@@ -11,9 +11,11 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Navigation } from "./component/navigation";
 import { Footer } from "./component/footer";
-import MusicRoomTeacher from "./views/musicRoomTeacherUpVideo";
-import MusicRoomTeacherUpFile from "./views/musicRoomTeacherUpFile";
-import MusicRoomStudent from "./views/musicRoomStudent";
+
+import MusicRoomTeacher from "./component/musicRoomTeacherUpVideo";
+// import { MusicRoomTeacherUpFile } from "./component/musicRoomTeacherUpFile";
+import { MusicRoomStudent } from "./component/musicRoomStudent";
+
 import { Login } from "./views/login";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
@@ -53,13 +55,13 @@ const Layout = () => {
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>
-						<Route exact path="/musicRoomTeacherUpVideo">
+						<Route exact path="/music-room/teacher">
 							<MusicRoomTeacher />
 						</Route>
-						<Route exact path="/musicRoomTeacherUpFile">
+						{/* <Route exact path="/musicRoomTeacherUpFile">
 							<MusicRoomTeacherUpFile />
-						</Route>
-						<Route exact path="/musicRoomStudent">
+						</Route> */}
+						<Route exact path="main/music-room/student">
 							<MusicRoomStudent />
 						</Route>
 						<Route>

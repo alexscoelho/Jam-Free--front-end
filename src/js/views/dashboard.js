@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Link, useLocation, Route, Switch, useRouteMatch } from "react-router-dom";
@@ -6,6 +6,8 @@ import { Context } from "../store/appContext";
 
 import { Profile } from "../views/profile";
 import { Schedule } from "../views/schedule";
+import { MusicRoom } from "../views/music-room";
+import { MusicRoomStudent } from "../component/musicRoomStudent";
 // components
 import { LeftCol } from "../component/left-col";
 
@@ -19,8 +21,14 @@ import Nav from "react-bootstrap/Nav";
 import Image from "react-bootstrap/Image";
 
 export const Dashboard = () => {
+	const [showLeftProfile, setShowLeftProfile] = useState(true);
 	let location = useLocation();
 	let { path, url } = useRouteMatch();
+
+	// close left profile bar
+	const handleClick = () => {
+		setShowLeftProfile(!showLeftProfile);
+	};
 
 	// reusable navs
 	const renderNav = () => {
@@ -56,17 +64,19 @@ export const Dashboard = () => {
 		// user main page, use LeftCol
 		<Container fluid>
 			<Row className="pt-3 pb-3">
-				<Col xs={12} md={3} className="profile-left w-100 align-items-center">
-					<div className="profile-wrapper d-flex flex-column align-items-center">
-						<Image src="https://via.placeholder.com/150/0000FF/808080" roundedCircle />
-						<h4 className="mt-2">John Doe</h4>
-					</div>
+				{/* conditionally show left profile */}
+				{showLeftProfile && (
+					<Col xs={12} md={3} className="profile-left w-100 align-items-center">
+						<div className="profile-wrapper d-flex flex-column align-items-center">
+							<Image src="https://via.placeholder.com/150/0000FF/808080" roundedCircle />
+							<h4 className="mt-2">John Doe</h4>
+						</div>
 
-					<Nav variant="pills" defaultActiveKey={location.pathname} className="mt-2 d-none d-md-block">
-						{renderNav()}
-					</Nav>
-				</Col>
-
+						<Nav variant="pills" defaultActiveKey={location.pathname} className="mt-2 d-none d-md-block">
+							{renderNav()}
+						</Nav>
+					</Col>
+				)}
 				{/* add here the paths for music room and others */}
 				<Col xs={12} md={6} className="profile-right">
 					<Switch>
@@ -76,14 +86,20 @@ export const Dashboard = () => {
 						<Route exact path={`${path}/schedule`}>
 							<Schedule />
 						</Route>
+						<Route exact path={`${path}/music-room`}>
+							<MusicRoom />
+						</Route>
 					</Switch>
 				</Col>
-
 				{/* only visible on mobile */}
 				<Nav variant="pills" defaultActiveKey={location.pathname} className="col-12 mt-2 d-block d-md-none">
 					{renderNav()}
 				</Nav>
 			</Row>
+
+			<Button variant="link" className="hide-leftprofile" onClick={handleClick}>
+				<i className={showLeftProfile ? "fas fa-arrow-left" : "fas fa-arrow-right"} />
+			</Button>
 		</Container>
 	);
 };

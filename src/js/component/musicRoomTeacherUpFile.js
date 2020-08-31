@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/musicRoomTeacherUpFile.scss";
 
-export default function MusicRoomTeacherUpFile() {
+export const MusicRoomTeacherUpFile = () => {
 	return (
 		<div>
 			<h1>Music Room</h1>
@@ -30,4 +30,4 @@ export default function MusicRoomTeacherUpFile() {
 			</div>
 		</div>
 	);
-}
+};
