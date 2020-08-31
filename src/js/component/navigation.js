@@ -31,7 +31,7 @@ export const Navigation = () => {
 							Logout
 						</Nav.Link>
 					) : null}
-					<Nav.Link as={Link} to="#">
+					<Nav.Link as={Link} to="/donations">
 						Donate
 					</Nav.Link>
 				</Nav>
