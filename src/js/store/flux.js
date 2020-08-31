@@ -1,6 +1,11 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			user: {
+				loggedIn: true,
+				userType: "student",
+				username: "bobG"
+			},
 			demo: [
 				{
 					title: "FIRST",
@@ -57,6 +62,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			},
+			setLogin: value => {
+				let store = getStore();
+				store.user.loggedIn = value;
+				setStore(store);
 			},
 			loadSomeContacts: () => {
 				const baseUrl = "/apis/fake/contact/agenda/";

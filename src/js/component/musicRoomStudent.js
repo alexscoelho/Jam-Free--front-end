@@ -17,9 +17,6 @@ export const MusicRoomStudent = () => {
 		<div>
 			<h1>Music Room</h1>
 			<br />
-			{/* <div className="container d-flex justify-content-center">
-                
-            </div> */}
 
 			<div className="container d-flex justify-content-center flex-column flex">
 				<h2>Files</h2>

@@ -22,6 +22,8 @@ import Image from "react-bootstrap/Image";
 
 export const Dashboard = () => {
 	const [showLeftProfile, setShowLeftProfile] = useState(true);
+	const { store, actions } = useContext(Context);
+	let { userType, username, loggedIn } = store.user;
 	let location = useLocation();
 	let { path, url } = useRouteMatch();
 
@@ -47,7 +49,10 @@ export const Dashboard = () => {
 					</Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Nav.Link as={Link} to={`${path}/music-room`} eventKey={`${path}/music-room`}>
+					<Nav.Link
+						as={Link}
+						to={`${path}/music-room/${userType}`}
+						eventKey={`${path}/music-room/${userType}`}>
 						Music Room
 					</Nav.Link>
 				</Nav.Item>
@@ -86,7 +91,7 @@ export const Dashboard = () => {
 						<Route exact path={`${path}/schedule`}>
 							<Schedule />
 						</Route>
-						<Route exact path={`${path}/music-room`}>
+						<Route path={`${path}/music-room/:userType`}>
 							<MusicRoom />
 						</Route>
 					</Switch>
@@ -96,8 +101,7 @@ export const Dashboard = () => {
 					{renderNav()}
 				</Nav>
 			</Row>
-
-			<Button variant="link" className="hide-leftprofile" onClick={handleClick}>
+			<Button variant="link" className="mb-2 d-none d-md-block" onClick={handleClick}>
 				<i className={showLeftProfile ? "fas fa-arrow-left" : "fas fa-arrow-right"} />
 			</Button>
 		</Container>
