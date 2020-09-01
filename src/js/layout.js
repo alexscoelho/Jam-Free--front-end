@@ -15,6 +15,7 @@ import { Footer } from "./component/footer";
 import { Login } from "./views/login";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
+import { Donations } from "./views/donations";
 // import { Schedule } from "./views/schedule";
 import { About } from "./views/about";
 
@@ -50,6 +51,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />
+						</Route>
+						<Route exact path="/donations">
+							<Donations />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
