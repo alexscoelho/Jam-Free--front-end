@@ -91,6 +91,7 @@ export const Dashboard = () => {
 						<Route exact path={`${path}/schedule`}>
 							<Schedule />
 						</Route>
+						{/* usertype is variable, from store depending on user */}
 						<Route path={`${path}/music-room/:userType`}>
 							<MusicRoom />
 						</Route>

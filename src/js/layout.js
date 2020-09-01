@@ -8,7 +8,7 @@ import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+// import { Navbar } from "./component/navbar";
 import { Navigation } from "./component/navigation";
 import { Footer } from "./component/footer";
 

@@ -27,6 +27,11 @@ export const Navigation = () => {
 						</Nav.Link>
 					) : null}
 					{loggedIn ? (
+						<Nav.Link as={Link} to="/main" onClick={e => actions.setLogin(false)}>
+							Profile <i className="far fa-user" />
+						</Nav.Link>
+					) : null}
+					{loggedIn ? (
 						<Nav.Link as={Link} to="/" onClick={e => actions.setLogin(false)}>
 							Logout
 						</Nav.Link>

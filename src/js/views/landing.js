@@ -17,9 +17,14 @@ export const Landing = () => {
 				<h3 className="text-center pb-2">Meet the instructors</h3>
 				<Cards />
 				{/* <Link to="/main/music-room">View all lessons</Link> */}
-				<a className=" mb-3 d-block text-center text-dark" href="#">
+				{/* <a className=" mb-3 d-block text-center text-dark" href="#">
 					View all lessons
-				</a>
+				</a> */}
+				<Nav className="mb-3 d-block text-center text-dark">
+					<Nav.Link as={Link} to="/main/music-room/teacher" className="text-dark">
+						View all lessons
+					</Nav.Link>
+				</Nav>
 			</div>
 		</div>
 	);

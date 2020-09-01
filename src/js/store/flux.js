@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			user: {
 				loggedIn: true,
-				userType: "student",
+				userType: "teacher",
 				username: "bobG"
 			},
 			demo: [

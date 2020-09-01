@@ -22,6 +22,7 @@ import { MusicRoomTeacherUpFile } from "../component/musicRoomTeacherUpFile";
 
 export const MusicRoom = () => {
 	const { store, actions } = useContext(Context);
+	// to fill the variable in link, value comes from store
 	let { userType } = useParams();
 	let { user } = store;
 	const noAccess = (
@@ -38,6 +39,7 @@ export const MusicRoom = () => {
 	);
 
 	const getContent = () => {
+		// validation, type must come from store caanot be faked
 		if (userType.toLowerCase() === "student" && user.userType.toLowerCase() === "student") {
 			return <MusicRoomStudent />;
 		} else if (userType.toLowerCase() === "student" && user.userType.toLowerCase() !== "student") {
