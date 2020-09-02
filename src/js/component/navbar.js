@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// views
+// react-bootstrap
 
 export const Navbar = () => {
 	return (

@@ -9,9 +9,11 @@ import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
+import { Navigation } from "./component/navigation";
 import { Footer } from "./component/footer";
 import MusicRoomTeacher from "./views/musicRoomTeacherUpVideo";
 import MusicRoomTeacherUpFile from "./views/musicRoomTeacherUpFile";
+import MusicRoomStudent from "./views/musicRoomStudent";
 import { Login } from "./views/login";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
@@ -28,7 +30,7 @@ const Layout = () => {
 		<div className="d-flex flex-column h-100">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					<Navigation />
 					<Switch>
 						<Route exact path="/">
 							<Landing />
@@ -56,6 +58,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/musicRoomTeacherUpFile">
 							<MusicRoomTeacherUpFile />
+						</Route>
+						<Route exact path="/musicRoomStudent">
+							<MusicRoomStudent />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
