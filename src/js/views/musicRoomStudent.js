@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 // import ReactDOM from "react-dom";
 //include bootstrap npm library into the bundle
 import "bootstrap/dist/css/bootstrap.css";
+import "../../styles/musicRoomStudent.scss";
 
 //include your index.scss file into the bundle
 // import "../styles/index.scss";
@@ -15,10 +16,24 @@ const MusicRoomStudent = () => {
 	const { store, actions } = useContext(Context); //
 	let contacts = [
 		{
-			full_name: "Johan",
-			address: "Pembroke",
-			phone: "123456",
-			email: "johan@gmail.com"
+			subject: "How to tune Guitar",
+			type: "Type: Video",
+			filter: "Guitar"
+		},
+		{
+			subject: "String notes on Guitar",
+			type: "Type: Video",
+			filter: "Guitar"
+		},
+		{
+			subject: "Notes on Piano",
+			type: "Type: Article",
+			filter: "Piano"
+		},
+		{
+			subject: "The Staff, Clefs and Ledger Lines",
+			type: "Type: Article",
+			filter: "Music Theory"
 		}
 	];
 	return (
@@ -37,9 +52,9 @@ const MusicRoomStudent = () => {
 				</h6>
 				<div className="video-container">
 					<form className="md-form">
-						<button className="cancel-button">Filter by Topic</button>
-						<button className="upload-button">Filter by Level</button>
-						<button className="upload-button">Filter by Language</button>
+						<button className="topic-button">Filter by Topic</button>
+						<button className="topic-button">Filter by Level</button>
+						<button className="language-button">Filter by Language</button>
 
 						<div>
 							{contacts.map((e, index) => {
@@ -47,11 +62,11 @@ const MusicRoomStudent = () => {
 									<li key={index} className="list-group-item">
 										<div className="row w-100">
 											<div className="col-12 col-sm-6 col-md-3 px-0">
-												{/* <img
-													src={MikePhoto}
-													alt="Mike Anamendolla"
+												<img
+													src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fsimple-acoustic-guitar-silhouette-symbol-design-vector-20936710&psig=AOvVaw21JKsG_oQszpqDCW6LFaNc&ust=1599218053894000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNCfldLtzOsCFQAAAAAdAAAAABAL"
+													alt="Guitar"
 													className="rounded-circle mx-auto d-block img-fluid"
-												/> */}
+												/>
 											</div>
 											<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 												<div className=" float-right">
@@ -77,30 +92,22 @@ const MusicRoomStudent = () => {
 														<i className="fas fa-trash-alt" />
 													</button>
 												</div>
-												<label className="name lead">{e.full_name}</label>{" "}
+												<label className="name lead">{e.subject}</label>{" "}
 												{/*name, how is labeled at API*/}
 												<br />
-												<i className="fas fa-map-marker-alt text-muted mr-3" />
-												<span className="text-muted">{e.address}</span>{" "}
-												{/*address, how is labeled at API*/}
+												<i className="text-muted mr-3" />
+												<span className="text-muted">{e.type}</span>{" "}
+												{/*type, how is labeled at API*/}
 												<br />
 												<span
-													className="fa fa-phone fa-fw text-muted mr-3"
+													className="text-muted mr-3"
 													data-toggle="tooltip"
 													title=""
 													data-original-title="(870) 288-4149"
 												/>
-												<span className="text-muted small">{e.phone}</span>{" "}
+												<span className="text-muted small">{e.filter}</span>{" "}
 												{/*phone, how is labeled at API*/}
 												<br />
-												<span
-													className="fa fa-envelope fa-fw text-muted mr-3"
-													data-toggle="tooltip"
-													data-original-title=""
-													title=""
-												/>
-												<span className="text-muted small text-truncate">{e.email}</span>{" "}
-												{/*email, how is labeled at API*/}
 											</div>
 										</div>
 									</li>
