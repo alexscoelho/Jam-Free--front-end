@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 // import ReactDOM from "react-dom";
 //include bootstrap npm library into the bundle
 import "bootstrap/dist/css/bootstrap.css";
+import "../../styles/musicRoomStudent.scss";
 
 //include your index.scss file into the bundle
 // import "../styles/index.scss";
@@ -52,7 +53,7 @@ const MusicRoomStudent = () => {
 				<div className="video-container">
 					<form className="md-form">
 						<button className="topic-button">Filter by Topic</button>
-						<button className="level-button">Filter by Level</button>
+						<button className="topic-button">Filter by Level</button>
 						<button className="language-button">Filter by Language</button>
 
 						<div>
