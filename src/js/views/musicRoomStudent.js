@@ -94,7 +94,7 @@ const MusicRoomStudent = () => {
 												<label className="name lead">{e.subject}</label>{" "}
 												{/*name, how is labeled at API*/}
 												<br />
-												<i className="fas fa-map-marker-alt text-muted mr-3" />
+												<i className="text-muted mr-3" />
 												<span className="text-muted">{e.type}</span>{" "}
 												{/*type, how is labeled at API*/}
 												<br />
