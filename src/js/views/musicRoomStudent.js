@@ -16,9 +16,9 @@ const MusicRoomStudent = () => {
 	let contacts = [
 		{
 			subject: "How to tune Guitar",
-			type: "Guitar",
-			phone: "123456",
-			email: "johan@gmail.com"
+			type: "Video",
+			filter: "Guitar",
+			
 		}
 	];
 	return (
@@ -90,7 +90,7 @@ const MusicRoomStudent = () => {
 													title=""
 													data-original-title="(870) 288-4149"
 												/>
-												<span className="text-muted small">{e.phone}</span>{" "}
+												<span className="text-muted small">{e.filter}</span>{" "}
 												{/*phone, how is labeled at API*/}
 												<br />
 												<span
@@ -99,8 +99,7 @@ const MusicRoomStudent = () => {
 													data-original-title=""
 													title=""
 												/>
-												<span className="text-muted small text-truncate">{e.email}</span>{" "}
-												{/*email, how is labeled at API*/}
+												
 											</div>
 										</div>
 									</li>
