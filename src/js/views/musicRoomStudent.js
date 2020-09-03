@@ -17,8 +17,22 @@ const MusicRoomStudent = () => {
 		{
 			subject: "How to tune Guitar",
 			type: "Video",
-			filter: "Guitar",
-			
+			filter: "Guitar"
+		},
+		{
+			subject: "String notes on Guitar",
+			type: "Video",
+			filter: "Guitar"
+		},
+		{
+			subject: "Notes on Piano",
+			type: "Article",
+			filter: "Piano"
+		},
+		{
+			subject: "The Staff, Clefs and Ledger Lines",
+			type: "Article",
+			filter: "Music Theory"
 		}
 	];
 	return (
@@ -99,7 +113,6 @@ const MusicRoomStudent = () => {
 													data-original-title=""
 													title=""
 												/>
-												
 											</div>
 										</div>
 									</li>
