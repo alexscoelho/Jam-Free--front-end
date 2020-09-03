@@ -15,8 +15,8 @@ const MusicRoomStudent = () => {
 	const { store, actions } = useContext(Context); //
 	let contacts = [
 		{
-			full_name: "Johan",
-			address: "Pembroke",
+			subject: "How to tune Guitar",
+			type: "Guitar",
 			phone: "123456",
 			email: "johan@gmail.com"
 		}
@@ -77,12 +77,12 @@ const MusicRoomStudent = () => {
 														<i className="fas fa-trash-alt" />
 													</button>
 												</div>
-												<label className="name lead">{e.full_name}</label>{" "}
+												<label className="name lead">{e.subject}</label>{" "}
 												{/*name, how is labeled at API*/}
 												<br />
 												<i className="fas fa-map-marker-alt text-muted mr-3" />
-												<span className="text-muted">{e.address}</span>{" "}
-												{/*address, how is labeled at API*/}
+												<span className="text-muted">{e.type}</span>{" "}
+												{/*type, how is labeled at API*/}
 												<br />
 												<span
 													className="fa fa-phone fa-fw text-muted mr-3"
