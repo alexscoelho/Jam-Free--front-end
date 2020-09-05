@@ -8,19 +8,38 @@ import { Context } from "../store/appContext";
 import { LeftCol } from "../component/left-col";
 
 // react bootstrap
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Nav from "react-bootstrap/Nav";
+import ListGroup from "react-bootstrap/ListGroup";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export const Schedule = () => {
+	const { store, actions } = useContext(Context);
 	let location = useLocation();
-	return (
-		// user main page, use LeftCol
-		<Col xs={12} md={6} className="profile-right">
-			calendar goes here
-		</Col>
-	);
+	// const timeAvailable = () => {
+	// 	return store.teacher.availability.map((item, index) => {
+	// 		return (
+	// 			<Dropdown.Item key={index} href="#/action-1">
+	// 				{item}
+	// 			</Dropdown.Item>
+	// 		);
+	// 	});
+	const scheduler = () => {
+		return store.teacher.map((item, index) => {
+			return (
+				<ListGroup.Item key={index}>
+					<Dropdown>
+						<Dropdown.Toggle variant="success" id="dropdown-basic">
+							{item.name} - {item.instrument}
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							{/* {timeAvailable()} */}
+							<Dropdown.Item href="#/action-1">{item.availability}</Dropdown.Item>
+							<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+							<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+				</ListGroup.Item>
+			);
+		});
+	};
+	return <ListGroup variant="flush">{scheduler()}</ListGroup>;
 };

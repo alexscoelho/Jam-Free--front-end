@@ -30,6 +30,7 @@ export const Cards = () => {
 						<Card.Body>
 							<Card.Title>{item.name}</Card.Title>
 							<Card.Text>{item.instrument}</Card.Text>
+							<Card.Text>{item.level}</Card.Text>
 						</Card.Body>
 					</Card>
 				</CardDeck>

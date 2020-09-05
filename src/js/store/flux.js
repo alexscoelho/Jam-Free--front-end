@@ -21,27 +21,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 			teacher: [
 				{
 					name: "John",
-					instrument: "guitar",
+					instrument: "Guitar",
+					level: "intermediate",
+					availability: ["2020-09-05 15:27", "2020-09-06 9:27", "2020-09-07 11:27"]
+				},
+				{
+					name: "Jose",
+					instrument: "Drums",
+					level: "intermediate",
+					availability: ["2020-09-05 15:27", "2020-09-06 9:27", "2020-09-07 11:27"]
+				},
+				{
+					name: "Alex",
+					instrument: "Piano",
+					level: "intermediate",
+					availability: ["2020-09-05 15:27", "2020-09-06 9:27", "2020-09-07 11:27"]
+				},
+				{
+					name: "Pedro",
+					instrument: "Maracas",
 					level: "intermediate"
 				},
 				{
-					name: "jose",
-					instrument: "drums",
-					level: "intermediate"
-				},
-				{
-					name: "alex",
-					instrument: "piano",
-					level: "intermediate"
-				},
-				{
-					name: "pedro",
-					instrument: "maracas",
-					level: "intermediate"
-				},
-				{
-					name: "farruco",
-					instrument: "pandereta",
+					name: "Farruco",
+					instrument: "Pandereta",
 					level: "intermediate"
 				}
 			],
