@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			user: {
 				loggedIn: true,
-				userType: "teacher",
+				userType: "student",
 				username: "bobG"
 			},
 			demo: [
@@ -23,29 +23,71 @@ const getState = ({ getStore, getActions, setStore }) => {
 					name: "John",
 					instrument: "Guitar",
 					level: "intermediate",
-					availability: ["2020-09-05 15:27", "2020-09-06 9:27", "2020-09-07 11:27"]
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				},
 				{
 					name: "Jose",
 					instrument: "Drums",
 					level: "intermediate",
-					availability: ["2020-09-05 15:27", "2020-09-06 9:27", "2020-09-07 11:27"]
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				},
 				{
 					name: "Alex",
 					instrument: "Piano",
 					level: "intermediate",
-					availability: ["2020-09-05 15:27", "2020-09-06 9:27", "2020-09-07 11:27"]
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				},
 				{
 					name: "Pedro",
 					instrument: "Maracas",
-					level: "intermediate"
+					level: "intermediate",
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				},
 				{
 					name: "Farruco",
 					instrument: "Pandereta",
-					level: "intermediate"
+					level: "intermediate",
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				}
 			],
 			profiles: [
