@@ -27,5 +27,8 @@ export const Footer = () => (
 				About
 			</Nav.Link>
 		</Nav>
+		{/* <Nav.Link className="text-dark" href="/about" eventKey="link-2">
+			Contact
+		</Nav.Link> */}
 	</footer>
 );

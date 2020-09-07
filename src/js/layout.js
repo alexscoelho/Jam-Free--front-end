@@ -8,15 +8,14 @@ import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+// import { Navbar } from "./component/navbar";
 import { Navigation } from "./component/navigation";
 import { Footer } from "./component/footer";
-import MusicRoomTeacher from "./views/musicRoomTeacherUpVideo";
-import MusicRoomTeacherUpFile from "./views/musicRoomTeacherUpFile";
-import MusicRoomStudent from "./views/musicRoomStudent";
+
 import { Login } from "./views/login";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
+import { Donations } from "./views/donations";
 // import { Schedule } from "./views/schedule";
 import { About } from "./views/about";
 
@@ -53,14 +52,8 @@ const Layout = () => {
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>
-						<Route exact path="/musicRoomTeacherUpVideo">
-							<MusicRoomTeacher />
-						</Route>
-						<Route exact path="/musicRoomTeacherUpFile">
-							<MusicRoomTeacherUpFile />
-						</Route>
-						<Route exact path="/musicRoomStudent">
-							<MusicRoomStudent />
+						<Route exact path="/donations">
+							<Donations />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

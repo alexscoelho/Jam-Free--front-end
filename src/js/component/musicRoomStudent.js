@@ -1,18 +1,10 @@
 //import react into the bundle
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-// import ReactDOM from "react-dom";
-//include bootstrap npm library into the bundle
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/musicRoomStudent.scss";
 
-//include your index.scss file into the bundle
-// import "../styles/index.scss";
-//render your react application
-// ReactDOM.render(<Layout />, document.querySelector("#app"));
-//comment
-
-const MusicRoomStudent = () => {
+export const MusicRoomStudent = () => {
 	const { store, actions } = useContext(Context); //
 	let contacts = [
 		{
@@ -40,9 +32,6 @@ const MusicRoomStudent = () => {
 		<div>
 			<h1>Music Room</h1>
 			<br />
-			{/* <div className="container d-flex justify-content-center">
-				
-			</div> */}
 
 			<div className="container d-flex justify-content-center flex-column flex">
 				<h2>Files</h2>
@@ -130,5 +119,3 @@ const MusicRoomStudent = () => {
 		</div>
 	);
 };
-
-export default MusicRoomStudent;

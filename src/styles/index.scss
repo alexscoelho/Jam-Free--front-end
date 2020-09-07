@@ -11,7 +11,10 @@ footer.footer.mt-auto.py-3.text-center{
         max-width: 160px;
         width: 100%;
     }
+
+    
 }
+
 // .profile-right {margin:20px}
 
 .info-col{
@@ -24,4 +27,25 @@ footer.footer.mt-auto.py-3.text-center{
 
 .cards-wrapper{
     margin-top: 3vh
+}
+
+.card-deck{
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.card-img, .card-img-top {
+    padding-top: 15px
+}
+
+// .profile-info {
+//     
+// }
+
+.profile-field {
+    margin-bottom: 0px;
+}
+
+.link-profile:hover {
+    text-decoration: none
 }

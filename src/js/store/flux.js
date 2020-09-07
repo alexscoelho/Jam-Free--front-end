@@ -1,6 +1,11 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			user: {
+				loggedIn: true,
+				userType: "student",
+				username: "bobG"
+			},
 			demo: [
 				{
 					title: "FIRST",
@@ -16,28 +21,73 @@ const getState = ({ getStore, getActions, setStore }) => {
 			teacher: [
 				{
 					name: "John",
-					instrument: "guitar",
-					level: "intermediate"
+					instrument: "Guitar",
+					level: "intermediate",
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				},
 				{
-					name: "jose",
-					instrument: "drums",
-					level: "intermediate"
+					name: "Jose",
+					instrument: "Drums",
+					level: "intermediate",
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				},
 				{
-					name: "alex",
-					instrument: "piano",
-					level: "intermediate"
+					name: "Alex",
+					instrument: "Piano",
+					level: "intermediate",
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				},
 				{
-					name: "pedro",
-					instrument: "maracas",
-					level: "intermediate"
+					name: "Pedro",
+					instrument: "Maracas",
+					level: "intermediate",
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				},
 				{
-					name: "farruco",
-					instrument: "pandereta",
-					level: "intermediate"
+					name: "Farruco",
+					instrument: "Pandereta",
+					level: "intermediate",
+					availability: [
+						"2020-09-05 15:27",
+						"2020-09-06 9:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27",
+						"2020-09-07 11:27"
+					],
+					email: "eljohn@email.com",
+					language: "english"
 				}
 			],
 			profiles: [
@@ -57,6 +107,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			},
+			setLogin: value => {
+				let store = getStore();
+				store.user.loggedIn = value;
+				setStore(store);
 			},
 			loadSomeContacts: () => {
 				const baseUrl = "/apis/fake/contact/agenda/";
