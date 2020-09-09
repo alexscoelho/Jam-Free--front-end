@@ -50,7 +50,7 @@ export const MainProfile = () => {
 					</div>
 				</Col>
 			</Row>
-			<Row className="pt-2">
+			<Row>
 				<Col>
 					<div className="profile-info">
 						<h5 className="profile-field">About Me</h5>

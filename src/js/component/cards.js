@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import profileImage from "../../img/profile.jpg";
 
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
@@ -24,9 +25,9 @@ export const Cards = () => {
 					<Card
 						className="col-12 col-sm-4 m-auto pb-2 info-col"
 						style={{ width: "18rem" }}
-						bg="secondary"
-						text="white">
-						<Card.Img variant="top" src="https://via.placeholder.com/214x160" />
+						bg="light"
+						text="dark">
+						<Card.Img variant="top" src={profileImage} />
 						<Card.Body>
 							<Card.Title>{item.name}</Card.Title>
 							<Card.Text>{item.instrument}</Card.Text>

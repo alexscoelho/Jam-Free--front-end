@@ -23,13 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					name: "John",
 					instrument: "Guitar",
 					level: "intermediate",
-					availability: [
-						"2020-09-05 15:27",
-						"2020-09-06 9:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27"
-					],
+					availability: [],
 					email: "eljohn@email.com",
 					language: "english"
 				},
@@ -37,13 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					name: "Jose",
 					instrument: "Drums",
 					level: "intermediate",
-					availability: [
-						"2020-09-05 15:27",
-						"2020-09-06 9:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27"
-					],
+					availability: [],
 					email: "eljohn@email.com",
 					language: "english"
 				},
@@ -51,13 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					name: "Alex",
 					instrument: "Piano",
 					level: "intermediate",
-					availability: [
-						"2020-09-05 15:27",
-						"2020-09-06 9:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27"
-					],
+					availability: [],
 					email: "eljohn@email.com",
 					language: "english"
 				},
@@ -65,13 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					name: "Pedro",
 					instrument: "Maracas",
 					level: "intermediate",
-					availability: [
-						"2020-09-05 15:27",
-						"2020-09-06 9:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27"
-					],
+					availability: [],
 					email: "eljohn@email.com",
 					language: "english"
 				},
@@ -79,13 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					name: "Farruco",
 					instrument: "Pandereta",
 					level: "intermediate",
-					availability: [
-						"2020-09-05 15:27",
-						"2020-09-06 9:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27",
-						"2020-09-07 11:27"
-					],
+					availability: [],
 					email: "eljohn@email.com",
 					language: "english"
 				}
@@ -118,6 +88,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${baseUrl}`)
 					.then()
 					.then(data => setStore({ foo: data.bar }));
+			},
+			// check availability
+			checkAvailabity: date => {
+				let store = getStore();
+				store.teacher.availability[0].includes(date);
 			},
 			changeColor: (index, color) => {
 				//get the store

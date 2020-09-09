@@ -33,6 +33,7 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/">
 							<Landing />
+							<Footer />
 						</Route>
 						<Route exact path="/login">
 							<Login />
@@ -59,7 +60,7 @@ const Layout = () => {
 							<h1>Not found!</h1>
 						</Route>
 					</Switch>
-					<Footer />
+					{/* <Footer /> */}
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>

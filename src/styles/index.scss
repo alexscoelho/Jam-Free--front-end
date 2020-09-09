@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 footer.footer.mt-auto.py-3.text-center{ 
     border-top: 2px solid
 }
@@ -12,7 +16,10 @@ footer.footer.mt-auto.py-3.text-center{
         width: 100%;
     }
 
-    
+}
+
+footer i {
+    font-size: 1.25rem;
 }
 
 // .profile-right {margin:20px}
@@ -48,4 +55,14 @@ footer.footer.mt-auto.py-3.text-center{
 
 .link-profile:hover {
     text-decoration: none
+}
+
+.profile-image-footer {
+    padding: 0.5rem 1rem;
+}
+
+.video-wrapper video {
+    width: 100%;
+    z-index: 10;
+    object-fit: cover;
 }

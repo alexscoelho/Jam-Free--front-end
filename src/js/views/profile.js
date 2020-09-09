@@ -21,36 +21,52 @@ export const Profile = () => {
 	const fillProfile = () => {
 		return store.profiles.map((item, index) => {
 			return (
-				<div key={index}>
-					<Form.Group controlId="formGridEmail">
-						<Form.Label>First Name</Form.Label>
-						<Form.Control type="text" value={item.name} />
-					</Form.Group>
-					<Form.Group controlId="formGridEmail">
-						<Form.Label>Last Name</Form.Label>
-						<Form.Control type="text" value={item.lastName} />
-					</Form.Group>
-					<Form.Group controlId="formGridEmail">
-						<Form.Label>Username</Form.Label>
-						<Form.Control type="text" value={item.userName} />
-					</Form.Group>
-					<Form.Group controlId="formGridEmail">
-						<Form.Label>Instrument</Form.Label>
-						<Form.Control type="text" value={item.instrument} />
-					</Form.Group>
-					<Form.Group controlId="formGridEmail">
-						<Form.Label>Level</Form.Label>
-						<Form.Control type="text" value={item.level} />
-					</Form.Group>
-					<Form.Group controlId="formGridEmail">
-						<Form.Label>Language</Form.Label>
-						<Form.Control type="text" value={item.language} />
-					</Form.Group>
-					<Form.Group controlId="formGridEmail">
-						<Form.Label>Timezone</Form.Label>
-						<Form.Control type="text" value={item.timeZone} />
-					</Form.Group>
-				</div>
+				<Form key={index}>
+					<Form.Row>
+						<Col xs="auto">
+							<Form.Group controlId="formGridEmail">
+								<Form.Label>First Name</Form.Label>
+								<Form.Control type="text" value={item.name} />
+							</Form.Group>
+						</Col>
+						<Col xs="auto">
+							<Form.Group controlId="formGridEmail">
+								<Form.Label>Last Name</Form.Label>
+								<Form.Control type="text" value={item.lastName} />
+							</Form.Group>
+						</Col>
+						<Col xs="auto">
+							<Form.Group controlId="formGridEmail">
+								<Form.Label>Username</Form.Label>
+								<Form.Control type="text" value={item.userName} />
+							</Form.Group>
+						</Col>
+						<Col xs="auto">
+							<Form.Group controlId="formGridEmail">
+								<Form.Label>Instrument</Form.Label>
+								<Form.Control type="text" value={item.instrument} />
+							</Form.Group>
+						</Col>
+						<Col xs="auto">
+							<Form.Group controlId="formGridEmail">
+								<Form.Label>Level</Form.Label>
+								<Form.Control type="text" value={item.level} />
+							</Form.Group>
+						</Col>
+						<Col xs="auto">
+							<Form.Group controlId="formGridEmail">
+								<Form.Label>Language</Form.Label>
+								<Form.Control type="text" value={item.language} />
+							</Form.Group>
+						</Col>
+						<Col xs="auto">
+							<Form.Group controlId="formGridEmail">
+								<Form.Label>Timezone</Form.Label>
+								<Form.Control type="text" value={item.timeZone} />
+							</Form.Group>
+						</Col>
+					</Form.Row>
+				</Form>
 			);
 		});
 	};

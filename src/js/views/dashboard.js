@@ -3,6 +3,7 @@ import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Link, useLocation, Route, Switch, useRouteMatch } from "react-router-dom";
 import { Context } from "../store/appContext";
+import profileImage from "../../img/profile.jpg";
 
 import { MainProfile } from "../component/main-profile";
 import { Profile } from "../views/profile";
@@ -46,7 +47,7 @@ export const Dashboard = () => {
 				</Nav.Item>
 				<Nav.Item>
 					<Nav.Link as={Link} to={`${path}/schedule`} eventKey={`${path}/schedule`}>
-						My Shedulle
+						My Shedule
 					</Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
@@ -74,15 +75,8 @@ export const Dashboard = () => {
 				{showLeftProfile && (
 					<Col xs={12} md={3} className="profile-left w-100 align-items-center">
 						<div className="profile-wrapper d-flex flex-column align-items-center">
-							<Image src="https://via.placeholder.com/150/0000FF/808080" roundedCircle />
-							<div className="profile-image-footer mt-2">
-								{/* <Nav>
-									<Nav.Item>
-										<Nav.Link as={Link} to={`${path}`} eventKey={`${path}`}>
-											John Doe
-										</Nav.Link>
-									</Nav.Item>
-								</Nav> */}
+							<Image src={profileImage} roundedCircle />
+							<div className="profile-image-footer mt-2 mr-auto">
 								<Link className="link-profile" to={`${path}`}>
 									<h5 className="profile-field text-dark">John Doe</h5>
 								</Link>

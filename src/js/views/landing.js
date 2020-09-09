@@ -8,11 +8,19 @@ import { Link } from "react-router-dom";
 import { Cards } from "../component/cards";
 import Image from "react-bootstrap/Image";
 import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
 
 export const Landing = () => {
 	return (
 		<div className="landing-wrapper">
-			<Image src={hero} fluid />
+			<div className="video-wrapper">
+				<video loop muted autoPlay playsinline>
+					<source
+						src="https://e51ed9df-f474-46bf-bf1a-0382fc297159.ws-us02.gitpod.io/files/download/?id=5ec9539a-4c0e-47e1-ad52-39fc5b0dd7c7"
+						type="video/mp4"
+					/>
+				</video>
+			</div>
 			<div className="cards-wrapper">
 				<h3 className="text-center pb-2">Meet the instructors</h3>
 				<Cards />
