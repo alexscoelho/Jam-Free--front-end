@@ -1,6 +1,6 @@
 import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
-// import video from "../../video.mp4";
+import video from "../../img/video.mp4";
 import hero from "../../img/hero.jpg";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
@@ -17,8 +17,9 @@ export const Landing = () => {
 			<div className="video-wrapper">
 				<video loop muted autoPlay playsinline>
 					<source
-						src="https://e51ed9df-f474-46bf-bf1a-0382fc297159.ws-us02.gitpod.io/files/download/?id=0b3207bc-9912-4256-bd42-ad94b0092dc9"
-						type="video/mp4"
+						// src="https://e51ed9df-f474-46bf-bf1a-0382fc297159.ws-us02.gitpod.io/files/download/?id=0b3207bc-9912-4256-bd42-ad94b0092dc9"
+						// type="video/mp4"
+						src={video}
 					/>
 				</video>
 			</div>

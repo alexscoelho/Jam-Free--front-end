@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 // react-components
 import Form from "react-bootstrap/Form";
@@ -9,6 +10,8 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 
 export const SignUp = () => {
+	const { store, actions } = useContext(Context);
+
 	const [firstName, setFirstName] = useState("");
 	const [lasttName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
@@ -16,11 +19,18 @@ export const SignUp = () => {
 	const [accountType, setAccountType] = useState("");
 	const [language, setLanguage] = useState("");
 
-	// const handleSubmit = e => {
-	//     e.preventDefault();
-	//     setFirstName()
-
-	// }
+	const handleSubmit = e => {
+		e.preventDefault();
+		let user = {
+			first_name: firstName,
+			last_name: lasttName,
+			email: email,
+			password: password,
+			account_type: accountType,
+			language: language
+		};
+		actions.createUser(user);
+	};
 
 	return (
 		<div className="container pb-4 pt-4">
@@ -37,32 +47,47 @@ export const SignUp = () => {
 				</div>
 			</div>
 			<div className=" w-50 form-wrapper m-auto">
-				<Form>
+				<Form onSubmit={e => handleSubmit(e)}>
 					<Form.Row className="d-block d-lg-flex">
 						<Form.Group as={Col} controlId="formGridEmail">
 							<Form.Label>First Name</Form.Label>
-							<Form.Control type="text" placeholder="Enter First Name" />
+							<Form.Control
+								onChange={e => setFirstName(e.target.value)}
+								type="text"
+								placeholder="Enter First Name"
+							/>
 						</Form.Group>
 
 						<Form.Group as={Col} controlId="formGridPassword">
 							<Form.Label>Last Name</Form.Label>
-							<Form.Control type="text" placeholder="Enter Last Name" />
+							<Form.Control
+								onChange={e => setLastName(e.target.value)}
+								type="text"
+								placeholder="Enter Last Name"
+							/>
 						</Form.Group>
 					</Form.Row>
 
 					<Form.Group controlId="formGridAddress1">
 						<Form.Label>Email</Form.Label>
-						<Form.Control type="email" placeholder="Email" />
+						<Form.Control onChange={e => setEmail(e.target.value)} type="email" placeholder="Email" />
 					</Form.Group>
 
 					<Form.Row>
 						<Form.Group as={Col} controlId="formGridEmail">
-							<Form.Label>Username</Form.Label>
-							<Form.Control type="text" placeholder="Username" />
+							<Form.Label>Language</Form.Label>
+							<Form.Control
+								onChange={e => setLanguage(e.target.value)}
+								type="text"
+								placeholder="Username"
+							/>
 						</Form.Group>
 						<Form.Group as={Col} controlId="formGridState">
-							<Form.Label>Membership</Form.Label>
-							<Form.Control as="select" defaultValue="Choose...">
+							<Form.Label>Account Type</Form.Label>
+							<Form.Control
+								onChange={e => setAccountType(e.target.value)}
+								as="select"
+								defaultValue="Choose...">
 								<option>Choose...</option>
 								<option>Teacher</option>
 								<option>Student</option>
@@ -73,7 +98,7 @@ export const SignUp = () => {
 					<Form.Row className="d-block d-lg-flex">
 						<Form.Group as={Col} controlId="formGridCity">
 							<Form.Label>Password</Form.Label>
-							<Form.Control type="password" />
+							<Form.Control onChange={e => setPassword(e.target.value)} type="password" />
 						</Form.Group>
 
 						<Form.Group as={Col} controlId="formGridZip">
