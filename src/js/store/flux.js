@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io";
 	return {
 		store: {
 			user: {
@@ -83,16 +84,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.user.loggedIn = value;
 				setStore(store);
 			},
-			loadSomeContacts: () => {
-				const baseUrl = "/apis/fake/contact/agenda/";
-				fetch(`${baseUrl}`)
-					.then()
-					.then(data => setStore({ foo: data.bar }));
-			},
+			// loadSomeContacts: () => {
+			// 	const baseUrl = "/apis/fake/contact/agenda/";
+			// 	fetch(`${baseUrl}`)
+			// 		.then()
+			// 		.then(data => setStore({ foo: data.bar }));
+			// },
 			// check availability
 			checkAvailabity: date => {
 				let store = getStore();
 				store.teacher.availability[0].includes(date);
+			},
+			createUser: user => {
+				return fetch(`${baseUrl}/user`, {
+					method: "POST",
+					headers: {
+						"content-type": "application/json"
+					},
+					body: JSON.stringify(user)
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp);
+						}
+						return resp.json();
+					})
+					.then(resp => {
+						if (resp.status_code === 400) throw new Error("there was a 400 error");
+						return resp;
+					})
+					.catch(err => {
+						// console.log("err", err);
+						// if (err.status_code === 400) return "there was a 400 error";
+						return err;
+					});
 			},
 			changeColor: (index, color) => {
 				//get the store

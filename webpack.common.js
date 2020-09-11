@@ -20,6 +20,11 @@ module.exports = {
           use: ['babel-loader', 'eslint-loader']
         },
         {
+            test: /\.mp4$/,
+            use: 'file-loader',
+            // use: 'file-loader?name=videos/[name].[ext]',
+        },
+        {
           test: /\.(css|scss)$/, use: [{
               loader: "style-loader" // creates style nodes from JS strings
           }, {
