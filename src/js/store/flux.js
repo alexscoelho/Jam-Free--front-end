@@ -105,9 +105,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => {
 						if (!resp.ok) {
-							throw new Error(resp);
-							console.log(resp);
+							throw new Error(resp.statusText);
 						}
+						console.log("resp:", resp);
 						return resp.json();
 					})
 					.then(resp => {
@@ -115,8 +115,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return resp;
 					})
 					.catch(err => {
-						// console.log("err", err);
-						// if (err.status_code === 400) return "there was a 400 error";
+						console.log("err", err);
+						// alert("err", err);
+						if (err.status_code === 400) return "there was a 400 error";
 						return err;
 					});
 			},

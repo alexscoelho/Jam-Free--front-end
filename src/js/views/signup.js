@@ -8,9 +8,15 @@ import { Context } from "../store/appContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import Modal from "react-bootstrap/Modal";
 
 export const SignUp = () => {
 	const { store, actions } = useContext(Context);
+
+	// for modal
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 	const [firstName, setFirstName] = useState("");
 	const [lasttName, setLastName] = useState("");
@@ -35,6 +41,21 @@ export const SignUp = () => {
 	return (
 		<div className="container pb-4 pt-4">
 			<div className=" w-50 m-auto">
+				{/* modal to display message to user */}
+				<Modal show={show} onHide={handleClose}>
+					<Modal.Header closeButton>
+						<Modal.Title>Modal heading</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>Woohoo, youre reading this text in a modal!</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={handleClose}>
+							Close
+						</Button>
+						<Button variant="primary" onClick={handleClose}>
+							Save Changes
+						</Button>
+					</Modal.Footer>
+				</Modal>
 				<h2>Sign up</h2>
 				<div className="d-flex">
 					<p>Already have an account?</p>
@@ -111,7 +132,7 @@ export const SignUp = () => {
 					<Form.Check type="checkbox" label="Check me out" />
 				</Form.Group> */}
 
-					<Button variant="primary" type="submit">
+					<Button variant="primary" type="submit" onClick={handleShow}>
 						Sign Up
 					</Button>
 				</Form>
