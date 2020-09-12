@@ -8,15 +8,12 @@ import { Context } from "../store/appContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Modal from "react-bootstrap/Modal";
+// import Modal from "react-bootstrap/Modal";
 
-export const SignUp = () => {
+// import { ShowModal } from "../component/modal";
+
+export const SignUp = props => {
 	const { store, actions } = useContext(Context);
-
-	// for modal
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
 
 	const [firstName, setFirstName] = useState("");
 	const [lasttName, setLastName] = useState("");
@@ -25,7 +22,7 @@ export const SignUp = () => {
 	const [accountType, setAccountType] = useState("");
 	const [language, setLanguage] = useState("");
 
-	const handleSubmit = e => {
+	async function handleSubmit(e) {
 		e.preventDefault();
 		let user = {
 			first_name: firstName,
@@ -35,27 +32,29 @@ export const SignUp = () => {
 			account_type: accountType,
 			language: language
 		};
-		actions.createUser(user);
-	};
+		let req = await actions.createUser(user);
+		// call the message buffer
+		console.log("req", req);
+		if (req.status_code === 200) {
+			actions.setMessage({
+				visible: true,
+				type: "success",
+				heading: "Success!",
+				errorMessage: req[0]
+			});
+		} else {
+			actions.setMessage({
+				visible: true,
+				type: "danger",
+				heading: "Oops!",
+				errorMessage: req.message
+			});
+		}
+	}
 
 	return (
 		<div className="container pb-4 pt-4">
 			<div className=" w-50 m-auto">
-				{/* modal to display message to user */}
-				<Modal show={show} onHide={handleClose}>
-					<Modal.Header closeButton>
-						<Modal.Title>Modal heading</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>Woohoo, youre reading this text in a modal!</Modal.Body>
-					<Modal.Footer>
-						<Button variant="secondary" onClick={handleClose}>
-							Close
-						</Button>
-						<Button variant="primary" onClick={handleClose}>
-							Save Changes
-						</Button>
-					</Modal.Footer>
-				</Modal>
 				<h2>Sign up</h2>
 				<div className="d-flex">
 					<p>Already have an account?</p>
@@ -132,11 +131,15 @@ export const SignUp = () => {
 					<Form.Check type="checkbox" label="Check me out" />
 				</Form.Group> */}
 
-					<Button variant="primary" type="submit" onClick={handleShow}>
+					<Button variant="primary" type="submit">
 						Sign Up
 					</Button>
 				</Form>
 			</div>
 		</div>
 	);
+	SignUp.propTypes = {
+		successMessage: PropTypes.string,
+		errorMessage: PropTypes.string
+	};
 };

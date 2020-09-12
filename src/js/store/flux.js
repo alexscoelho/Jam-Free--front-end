@@ -72,9 +72,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					timeZone: "EST"
 				}
 			],
-			contacts: []
+			contacts: [],
+			alertMessages: {
+				visible: false,
+				type: "",
+				heading: "",
+				errorMessage: ""
+			}
 		},
 		actions: {
+			setMessage: data => {
+				let store = getStore();
+				store.alertMessages = data;
+				setStore(store);
+			},
+			resetMessage: () => {
+				let store = getStore();
+				store.alertMessages = {
+					visible: false,
+					type: "",
+					heading: "",
+					errorMessage: ""
+				};
+				setStore(store);
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
@@ -107,20 +128,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (!resp.ok) {
 							throw new Error(resp.statusText);
 						}
-						console.log("resp:", resp);
 						return resp.json();
 					})
 					.then(resp => {
-						if (resp.status_code === 400) throw new Error("there was a 400 error");
+						if (resp.status_code === 400) throw resp;
 						return resp;
 					})
 					.catch(err => {
-						console.log("err", err);
-						// alert("err", err);
-						if (err.status_code === 400) return "there was a 400 error";
 						return err;
 					});
 			},
+			handleAlert: () => {},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

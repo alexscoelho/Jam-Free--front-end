@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -6,12 +6,12 @@ import { Landing } from "./views/landing";
 
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
-import injectContext from "./store/appContext";
+import injectContext, { Context } from "./store/appContext";
 
 // import { Navbar } from "./component/navbar";
 import { Navigation } from "./component/navigation";
 import { Footer } from "./component/footer";
-
+import Alert from "react-bootstrap/Alert";
 import { Login } from "./views/login";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
@@ -21,12 +21,33 @@ import { About } from "./views/about";
 
 //create your first component
 const Layout = () => {
+	const { store, actions } = useContext(Context);
+	let { alertMessages } = store;
+	// for alerts
+	const [showAlert, setShowAlert] = useState(false);
+
+	useEffect(() => {
+		if (alertMessages.visible) setShowAlert(true);
+	});
+
+	const resetAlert = () => {
+		actions.resetMessage();
+		setShowAlert(false);
+	};
+
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
 
 	return (
 		<div className="d-flex flex-column h-100">
+			{/* alert to inform user */}
+			{showAlert ? (
+				<Alert variant={alertMessages.type} onClose={resetAlert} dismissible>
+					<Alert.Heading>{alertMessages.heading}</Alert.Heading>
+					<p>{alertMessages.errorMessage}</p>
+				</Alert>
+			) : null}
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navigation />
