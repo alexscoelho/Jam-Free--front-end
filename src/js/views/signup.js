@@ -22,33 +22,41 @@ export const SignUp = props => {
 	const [accountType, setAccountType] = useState("");
 	const [language, setLanguage] = useState("");
 
+	// form validation
+	// const [validated, setValidated] = useState(false);
+
 	async function handleSubmit(e) {
-		e.preventDefault();
-		let user = {
-			first_name: firstName,
-			last_name: lasttName,
-			email: email,
-			password: password,
-			account_type: accountType,
-			language: language
-		};
-		let req = await actions.createUser(user);
-		// call the message buffer
-		console.log("req", req);
-		if (req.status_code === 200) {
-			actions.setMessage({
-				visible: true,
-				type: "success",
-				heading: "Success!",
-				errorMessage: req[0]
-			});
-		} else {
-			actions.setMessage({
-				visible: true,
-				type: "danger",
-				heading: "Oops!",
-				errorMessage: req.message
-			});
+		// Validation
+		const form = e.currentTarget;
+		if (form.checkValidity() === true) {
+			e.preventDefault();
+			let user = {
+				first_name: firstName,
+				last_name: lasttName,
+				email: email,
+				password: password,
+				account_type: accountType,
+				language: language
+			};
+			let req = await actions.createUser(user); // the is asynchronous, the fetch is in store
+			// call the message buffer
+			console.log("req", req);
+			//to set message according to fetch
+			if (req[0] === "Success") {
+				actions.setMessage({
+					visible: true,
+					type: "success",
+					heading: "Success!",
+					errorMessage: "User Created, now you can login"
+				});
+			} else {
+				actions.setMessage({
+					visible: true,
+					type: "danger",
+					heading: "Oops!",
+					errorMessage: req.message
+				});
+			}
 		}
 	}
 
@@ -72,6 +80,7 @@ export const SignUp = props => {
 						<Form.Group as={Col} controlId="formGridEmail">
 							<Form.Label>First Name</Form.Label>
 							<Form.Control
+								required
 								onChange={e => setFirstName(e.target.value)}
 								type="text"
 								placeholder="Enter First Name"
@@ -81,6 +90,7 @@ export const SignUp = props => {
 						<Form.Group as={Col} controlId="formGridPassword">
 							<Form.Label>Last Name</Form.Label>
 							<Form.Control
+								required
 								onChange={e => setLastName(e.target.value)}
 								type="text"
 								placeholder="Enter Last Name"
@@ -90,13 +100,19 @@ export const SignUp = props => {
 
 					<Form.Group controlId="formGridAddress1">
 						<Form.Label>Email</Form.Label>
-						<Form.Control onChange={e => setEmail(e.target.value)} type="email" placeholder="Email" />
+						<Form.Control
+							required
+							onChange={e => setEmail(e.target.value)}
+							type="email"
+							placeholder="Email"
+						/>
 					</Form.Group>
 
 					<Form.Row>
 						<Form.Group as={Col} controlId="formGridEmail">
 							<Form.Label>Language</Form.Label>
 							<Form.Control
+								required
 								onChange={e => setLanguage(e.target.value)}
 								type="text"
 								placeholder="Username"
@@ -105,10 +121,11 @@ export const SignUp = props => {
 						<Form.Group as={Col} controlId="formGridState">
 							<Form.Label>Account Type</Form.Label>
 							<Form.Control
+								required
 								onChange={e => setAccountType(e.target.value)}
 								as="select"
 								defaultValue="Choose...">
-								<option>Choose...</option>
+								<option />
 								<option>Teacher</option>
 								<option>Student</option>
 							</Form.Control>
@@ -118,12 +135,12 @@ export const SignUp = props => {
 					<Form.Row className="d-block d-lg-flex">
 						<Form.Group as={Col} controlId="formGridCity">
 							<Form.Label>Password</Form.Label>
-							<Form.Control onChange={e => setPassword(e.target.value)} type="password" />
+							<Form.Control required onChange={e => setPassword(e.target.value)} type="password" />
 						</Form.Group>
 
 						<Form.Group as={Col} controlId="formGridZip">
 							<Form.Label> Confirm Password</Form.Label>
-							<Form.Control type="password" />
+							<Form.Control required type="password" />
 						</Form.Group>
 					</Form.Row>
 

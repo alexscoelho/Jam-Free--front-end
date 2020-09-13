@@ -30,6 +30,7 @@ const Layout = () => {
 		if (alertMessages.visible) setShowAlert(true);
 	});
 
+	// this uses funtionality that is on the store and is trigger with onClose here
 	const resetAlert = () => {
 		actions.resetMessage();
 		setShowAlert(false);

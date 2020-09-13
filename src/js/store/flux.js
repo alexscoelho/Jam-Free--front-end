@@ -84,8 +84,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setMessage: data => {
 				let store = getStore();
 				store.alertMessages = data;
-				setStore(store);
+				setStore(store); //insert data into the alert messages object
 			},
+			// go back to original value and close the alert
 			resetMessage: () => {
 				let store = getStore();
 				store.alertMessages = {
