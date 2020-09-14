@@ -26,7 +26,7 @@ export const SignUp = props => {
 	// const [validated, setValidated] = useState(false);
 
 	async function handleSubmit(e) {
-		// Validation
+		// form Validation for all fields
 		const form = e.currentTarget;
 		if (form.checkValidity() === true) {
 			e.preventDefault();
@@ -115,7 +115,7 @@ export const SignUp = props => {
 								required
 								onChange={e => setLanguage(e.target.value)}
 								type="text"
-								placeholder="Username"
+								placeholder="Enter Language"
 							/>
 						</Form.Group>
 						<Form.Group as={Col} controlId="formGridState">

@@ -1,5 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io";
+	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io/";
+
 	return {
 		store: {
 			user: {
@@ -117,6 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 				store.teacher.availability[0].includes(date);
 			},
+			// sign in
 			createUser: user => {
 				return fetch(`${baseUrl}/user`, {
 					method: "POST",
@@ -140,6 +142,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			handleAlert: () => {},
+			// edit profile
+			modifyUser: (target_user, userId) => {
+				return fetch(`${baseUrl}/user/${userId}`, {
+					method: "PUT",
+					headers: {
+						"Content-type": "application/json"
+					},
+					body: JSON.stringify(target_user)
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(response => {
+						if (response.status_code === 400) throw response;
+						return response;
+						console.log("Success:", response);
+					})
+					.catch(err => {
+						return err;
+					});
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
