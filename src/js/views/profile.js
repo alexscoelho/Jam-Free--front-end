@@ -157,7 +157,7 @@ export const Profile = () => {
 								<Form.Label>User ID</Form.Label>
 								<Form.Control
 									required
-									type="password"
+									type="number"
 									onChange={e => setUserId(e.target.value)}
 									placeholder="Enter your user ID"
 								/>

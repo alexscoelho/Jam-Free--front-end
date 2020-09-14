@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 
 export const Login = () => {
 	let history = useHistory();
+	console.log(history);
 	const { store, actions } = useContext(Context);
 	const handleSubmit = e => {
 		e.preventDefault();

@@ -151,16 +151,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify(target_user)
 				})
-					.then(resp => {
-						if (!resp.ok) {
-							throw new Error(resp.statusText);
+					.then(async resp => {
+						if (resp.status >= 500) {
+							throw new Error("there was an error");
 						}
-						return resp.json();
+
+						const data = await resp.json();
+						if (resp.status >= 400) {
+							throw new Error(data.message);
+						}
+						return data;
 					})
-					.then(response => {
-						if (response.status_code === 400) throw response;
-						return response;
-						console.log("Success:", response);
+					.then(data => {
+						return data;
+						console.log("Success:", data);
 					})
 					.catch(err => {
 						return err;
