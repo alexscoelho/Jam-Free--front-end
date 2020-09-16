@@ -74,6 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			contacts: [],
+			users: [],
 			alertMessages: {
 				visible: false,
 				type: "",
@@ -98,26 +99,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				setStore(store);
 			},
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			setLogin: value => {
-				let store = getStore();
-				store.user.loggedIn = value;
-				setStore(store);
-			},
-			// loadSomeContacts: () => {
-			// 	const baseUrl = "/apis/fake/contact/agenda/";
-			// 	fetch(`${baseUrl}`)
-			// 		.then()
-			// 		.then(data => setStore({ foo: data.bar }));
+			// setLogin: value => {
+			// 	let store = getStore();
+			// 	store.user.loggedIn = value;
+			// 	setStore(store);
 			// },
+			// // load users
+			// loadSomeUsers: () => {
+			// 	fetch(`${baseUrl}/users`)
+			// 		.then(resp => {
+			// 			if (!resp.ok) {
+			// 				throw Error(response.statusText);
+			// 			}
+			// 			return resp.json();
+			// 		})
+			// 		.then(data => setStore({ users: data }));
+			// },
+
 			// check availability
 			checkAvailabity: date => {
 				let store = getStore();
 				store.teacher.availability[0].includes(date);
 			},
+
 			// sign in
 			createUser: user => {
 				return fetch(`${baseUrl}/user`, {
@@ -141,7 +150,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return err;
 					});
 			},
+
 			handleAlert: () => {},
+
+			// Login
+			loginUser: login_user => {
+				fetch(`${baseUrl}/login`, {
+					method: "POST",
+					headers: {
+						"Content-type": "application/json"
+					},
+					body: JSON.stringify(login_user)
+				})
+					.then(response => {
+						if (response.status >= 400) {
+							throw new Error("Email or password incorrect");
+							console.log("response:", response.statusText);
+						}
+						return response.json();
+					})
+					.then(data => {
+						return data;
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
 			// edit profile
 			modifyUser: (target_user, userId) => {
 				return fetch(`${baseUrl}/user/${userId}`, {
@@ -170,6 +205,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return err;
 					});
 			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

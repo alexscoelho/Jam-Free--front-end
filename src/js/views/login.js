@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
@@ -8,14 +8,30 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export const Login = () => {
-	let history = useHistory();
-	console.log(history);
 	const { store, actions } = useContext(Context);
+
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
 	const handleSubmit = e => {
 		e.preventDefault();
-		actions.setLogin(true);
-		history.push("/main");
+		console.log("test");
+		let login_user = {
+			email: email,
+			password: password
+		};
+		actions.loginUser(login_user);
 	};
+
+	// let history = useHistory();
+	console.log(history);
+
+	// const handleSubmit = e => {
+	// 	e.preventDefault();
+	// 	actions.setLogin(true);
+	// 	history.push("/main");
+	// };
+
 	return (
 		<div className="container pb-4 pt-4">
 			<div className="login-question w-50 m-auto">
@@ -34,13 +50,17 @@ export const Login = () => {
 				<Form onSubmit={handleSubmit}>
 					<Form.Group controlId="formBasicEmail">
 						<Form.Label>Email address</Form.Label>
-						<Form.Control type="email" placeholder="Enter email" />
+						<Form.Control onChange={e => setEmail(e.target.value)} type="email" placeholder="Enter email" />
 						<Form.Text className="text-muted">We wil never share your email with anyone else.</Form.Text>
 					</Form.Group>
 
 					<Form.Group controlId="formBasicPassword">
 						<Form.Label>Password</Form.Label>
-						<Form.Control type="password" placeholder="Password" />
+						<Form.Control
+							onChange={e => setPassword(e.target.value)}
+							type="password"
+							placeholder="Password"
+						/>
 					</Form.Group>
 					<Form.Group controlId="formBasicCheckbox">
 						<Form.Check type="checkbox" label="Check me out" />

@@ -30,6 +30,7 @@ export const SignUp = props => {
 		const form = e.currentTarget;
 		if (form.checkValidity() === true) {
 			e.preventDefault();
+			// e.stopPropagation();
 			let user = {
 				first_name: firstName,
 				last_name: lasttName,
@@ -38,6 +39,7 @@ export const SignUp = props => {
 				account_type: accountType,
 				language: language
 			};
+
 			let req = await actions.createUser(user); // the is asynchronous, the fetch is in store
 			// call the message buffer
 			console.log("req", req);
@@ -58,6 +60,7 @@ export const SignUp = props => {
 				});
 			}
 		}
+		// setValidated(true);
 	}
 
 	return (
@@ -85,6 +88,7 @@ export const SignUp = props => {
 								type="text"
 								placeholder="Enter First Name"
 							/>
+							<Form.Control.Feedback type="invalid">Please provide a name.</Form.Control.Feedback>
 						</Form.Group>
 
 						<Form.Group as={Col} controlId="formGridPassword">
