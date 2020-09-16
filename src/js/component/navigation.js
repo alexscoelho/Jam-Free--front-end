@@ -8,7 +8,7 @@ import Navbar from "react-bootstrap/Navbar";
 
 export const Navigation = () => {
 	const { store, actions } = useContext(Context);
-	let { username, userType, loggedIn } = store.user;
+	let { username, userType, loggedIn, token } = store.user;
 
 	return (
 		<Navbar bg="light" expand="lg">
@@ -27,12 +27,12 @@ export const Navigation = () => {
 						</Nav.Link>
 					) : null}
 					{loggedIn ? (
-						<Nav.Link as={Link} to="/main" onClick={e => actions.setLogin(false)}>
+						<Nav.Link as={Link} to="/main">
 							Profile <i className="far fa-user" />
 						</Nav.Link>
 					) : null}
 					{loggedIn ? (
-						<Nav.Link as={Link} to="/" onClick={e => actions.setLogin(false)}>
+						<Nav.Link as={Link} to="/" onClick={e => actions.setLogout()}>
 							Logout
 						</Nav.Link>
 					) : null}

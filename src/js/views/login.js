@@ -15,7 +15,6 @@ export const Login = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		console.log("test");
 		let login_user = {
 			email: email,
 			password: password
@@ -24,7 +23,7 @@ export const Login = () => {
 	};
 
 	// let history = useHistory();
-	console.log(history);
+	// console.log(history);
 
 	// const handleSubmit = e => {
 	// 	e.preventDefault();

@@ -4,9 +4,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			user: {
-				loggedIn: true,
+				loggedIn: false,
 				userType: "student",
-				username: "bobG"
+				username: "bobG",
+				token: ""
 			},
 			demo: [
 				{
@@ -73,8 +74,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					timeZone: "EST"
 				}
 			],
-			contacts: [],
-			users: [],
 			alertMessages: {
 				visible: false,
 				type: "",
@@ -88,6 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.alertMessages = data;
 				setStore(store); //insert data into the alert messages object
 			},
+
 			// go back to original value and close the alert
 			resetMessage: () => {
 				let store = getStore();
@@ -104,22 +104,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
 			// setLogin: value => {
 			// 	let store = getStore();
 			// 	store.user.loggedIn = value;
 			// 	setStore(store);
 			// },
-			// // load users
-			// loadSomeUsers: () => {
-			// 	fetch(`${baseUrl}/users`)
-			// 		.then(resp => {
-			// 			if (!resp.ok) {
-			// 				throw Error(response.statusText);
-			// 			}
-			// 			return resp.json();
-			// 		})
-			// 		.then(data => setStore({ users: data }));
-			// },
+
+			setLogout: () => {
+				let store = getStore();
+				store.user.loggedIn = false;
+				setStore(store);
+			},
 
 			// check availability
 			checkAvailabity: date => {
@@ -160,17 +156,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: {
 						"Content-type": "application/json"
 					},
-					body: JSON.stringify(login_user)
+					body: JSON.stringify(login_user) // converting in string to be sent to backend
 				})
 					.then(response => {
+						//first promise, ask for status
 						if (response.status >= 400) {
-							throw new Error("Email or password incorrect");
-							console.log("response:", response.statusText);
+							throw new Error(response.statusText);
 						}
+
 						return response.json();
 					})
 					.then(data => {
-						return data;
+						// already with data and insert it in store
+						let store = getStore();
+						store.user = {
+							loggedIn: true,
+							userType: "student",
+							username: "bobG",
+							token: data
+						};
+						setStore(store);
+						localStorage.setItem("yourApp-userData", JSON.stringify(store.user));
 					})
 					.catch(err => {
 						return err;
