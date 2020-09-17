@@ -13,23 +13,16 @@ export const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	let history = useHistory();
+
 	const handleSubmit = e => {
 		e.preventDefault();
 		let login_user = {
 			email: email,
 			password: password
 		};
-		actions.loginUser(login_user);
+		actions.loginUser(login_user, history);
 	};
-
-	// let history = useHistory();
-	// console.log(history);
-
-	// const handleSubmit = e => {
-	// 	e.preventDefault();
-	// 	actions.setLogin(true);
-	// 	history.push("/main");
-	// };
 
 	return (
 		<div className="container pb-4 pt-4">

@@ -30,6 +30,8 @@ export const Profile = () => {
 	const [userId, setUserId] = useState("");
 
 	async function handleSubmit(e) {
+		actions.checkToken();
+
 		// validation
 		const form = e.currentTarget;
 		if (form.checkValidity() === true) {

@@ -5,8 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			user: {
 				loggedIn: false,
-				userType: "student",
-				username: "bobG",
+				userType: null,
+				username: null,
 				token: ""
 			},
 			demo: [
@@ -114,7 +114,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setLogout: () => {
 				let store = getStore();
 				store.user.loggedIn = false;
+				store.user.token = "";
 				setStore(store);
+				localStorage.setItem("jammfree-userData", JSON.stringify(store.user));
 			},
 
 			// check availability
@@ -150,7 +152,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			handleAlert: () => {},
 
 			// Login
-			loginUser: login_user => {
+			loginUser: (login_user, history) => {
 				fetch(`${baseUrl}/login`, {
 					method: "POST",
 					headers: {
@@ -158,16 +160,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify(login_user) // converting in string to be sent to backend
 				})
-					.then(response => {
+					.then(resp => {
 						//first promise, ask for status
-						if (response.status >= 400) {
-							throw new Error(response.statusText);
+						if (resp.status >= 500) {
+							throw new Error("there was en error");
+						} else if (resp.status >= 400) {
+							throw new Error(data.message);
 						}
-
-						return response.json();
+						return resp.json();
 					})
 					.then(data => {
-						// already with data and insert it in store
+						// already with data and insert it in token property
 						let store = getStore();
 						store.user = {
 							loggedIn: true,
@@ -176,11 +179,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 							token: data
 						};
 						setStore(store);
-						localStorage.setItem("yourApp-userData", JSON.stringify(store.user));
+						// success alert
+						getActions().setMessage({
+							visible: true,
+							type: "success",
+							heading: "Success",
+							errorMessage: `Welcome ${store.user.username}`
+						});
+						localStorage.setItem("jammfree-userData", JSON.stringify(store.user));
+						history.push("/main");
 					})
 					.catch(err => {
+						getActions().setMessage({
+							visible: true,
+							type: "danger",
+							heading: "Oops!",
+							errorMessage: "Email or password incorrect"
+						});
+						console.log(err);
 						return err;
 					});
+			},
+
+			// check Token
+			checkToken: () => {
+				let tokenCheck = JSON.parse(localStorage.getItem("jammfree-userData"));
+
+				if (tokenCheck !== null) {
+					// set current user data to store
+					setStore({ user: tokenCheck });
+				} else {
+					let store = getStore();
+					store.user = {
+						loggedIn: false,
+						userType: null,
+						username: null,
+						token: ""
+					};
+					setStore(store);
+					getActions().setMessage({
+						visible: true,
+						type: "danger",
+						heading: "Sorry",
+						errorMessage: "You need to login"
+					});
+				}
 			},
 
 			// edit profile
@@ -188,7 +231,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return fetch(`${baseUrl}/user/${userId}`, {
 					method: "PUT",
 					headers: {
-						"Content-type": "application/json"
+						"Content-type": "application/json",
+						Authorization: `Bearer ${getStore().user.token.jwt}`
 					},
 					body: JSON.stringify(target_user)
 				})
