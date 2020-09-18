@@ -114,7 +114,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setLogout: () => {
 				let store = getStore();
 				store.user.loggedIn = false;
-				store.user.token = "";
 				setStore(store);
 				localStorage.setItem("jammfree-userData", JSON.stringify(store.user));
 			},
@@ -141,7 +140,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return resp.json();
 					})
 					.then(resp => {
-						if (resp.status_code === 400) throw resp;
+						if (resp.status_code !== 200) throw resp;
 						return resp;
 					})
 					.catch(err => {
@@ -151,9 +150,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			handleAlert: () => {},
 
-			// Login
+			// Login, generate token
 			loginUser: (login_user, history) => {
-				fetch(`${baseUrl}/login`, {
+				return fetch(`${baseUrl}/login`, {
 					method: "POST",
 					headers: {
 						"Content-type": "application/json"
@@ -162,14 +161,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => {
 						//first promise, ask for status
-						if (resp.status >= 500) {
-							throw new Error("there was en error");
-						} else if (resp.status >= 400) {
-							throw new Error(data.message);
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
 						}
 						return resp.json();
 					})
 					.then(data => {
+						// if (data.status_code !== 200) throw data;
+						//data is the token
 						// already with data and insert it in token property
 						let store = getStore();
 						store.user = {
@@ -179,6 +178,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							token: data
 						};
 						setStore(store);
+
 						// success alert
 						getActions().setMessage({
 							visible: true,
@@ -194,9 +194,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 							visible: true,
 							type: "danger",
 							heading: "Oops!",
-							errorMessage: "Email or password incorrect"
+							errorMessage: "Bad Email or Password"
 						});
-						console.log(err);
+						console.log("err:", err);
 						return err;
 					});
 			},
@@ -223,6 +223,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						heading: "Sorry",
 						errorMessage: "You need to login"
 					});
+					// history.push("/login");
 				}
 			},
 

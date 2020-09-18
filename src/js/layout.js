@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Landing } from "./views/landing";
@@ -23,6 +23,7 @@ import { About } from "./views/about";
 const Layout = () => {
 	const { store, actions } = useContext(Context);
 	let { alertMessages } = store;
+	let { username, userType, loggedIn, token } = store.user;
 	// for alerts
 	const [showAlert, setShowAlert] = useState(false);
 
@@ -35,6 +36,14 @@ const Layout = () => {
 		actions.resetMessage();
 		setShowAlert(false);
 	};
+
+	// if user is not login show this
+	const noAccess = (
+		<div>
+			<h2>Cannot Access</h2>
+			<p>Please Login</p>
+		</div>
+	);
 
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
@@ -63,9 +72,7 @@ const Layout = () => {
 						<Route exact path="/signup">
 							<SignUp />
 						</Route>
-						<Route path="/main">
-							<Dashboard />
-						</Route>
+						<Route path="/main">{loggedIn ? <Dashboard /> : <Redirect to="/login" />} </Route>
 						<Route exact path="/about">
 							<About />
 						</Route>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 
 import "../../styles/home.scss";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 // components
@@ -19,18 +19,20 @@ export const Profile = () => {
 	const { store, actions } = useContext(Context);
 	let location = useLocation();
 
-	const [firstName, setFirstName] = useState("");
-	const [lasttName, setLastName] = useState("");
-	const [username, setUsername] = useState("");
+	const [firstName, setFirstName] = useState(store.profiles[0].name);
+	const [lastName, setLastName] = useState(store.profiles[0].lastName);
+	const [username, setUsername] = useState(store.profiles[0].username);
 	const [password, setPassword] = useState("");
-	const [instrument, setInstrument] = useState("");
-	const [language, setLanguage] = useState("");
-	const [level, setLevel] = useState("");
-	const [description, setDescription] = useState("");
+	const [instrument, setInstrument] = useState(store.profiles[0].instrument);
+	const [language, setLanguage] = useState(store.profiles[0].language);
+	const [level, setLevel] = useState(store.profiles[0].level);
+	const [description, setDescription] = useState(store.profiles[0].description);
 	const [userId, setUserId] = useState("");
 
+	// let history = useHistory();
+
 	async function handleSubmit(e) {
-		actions.checkToken();
+		// actions.checkToken();
 
 		// validation
 		const form = e.currentTarget;
@@ -38,7 +40,7 @@ export const Profile = () => {
 			e.preventDefault();
 			let target_user = {
 				first_name: firstName,
-				last_name: lasttName,
+				last_name: lastName,
 				username: username,
 				password: password,
 				instrument: instrument,
@@ -66,126 +68,133 @@ export const Profile = () => {
 		}
 	}
 
-	const fillProfile = () => {
-		return store.profiles.map((item, index) => {
-			return (
-				<Form key={index}>
-					<Form.Row>
-						<Col xs="6">
-							<Form.Group controlId="formFirstName">
-								<Form.Label>First Name</Form.Label>
-								<Form.Control
-									required
-									type="text"
-									onChange={e => setFirstName(e.target.value)}
-									placeholder="Enter first name"
-								/>
-							</Form.Group>
-						</Col>
-						<Col xs="6">
-							<Form.Group controlId="formLastName">
-								<Form.Label>Last Name</Form.Label>
-								<Form.Control
-									required
-									type="text"
-									onChange={e => setLastName(e.target.value)}
-									placeholder="Enter last name"
-								/>
-							</Form.Group>
-						</Col>
-						<Col xs="6">
-							<Form.Group controlId="formUsername">
-								<Form.Label>Username</Form.Label>
-								<Form.Control
-									required
-									type="text"
-									onChange={e => setUsername(e.target.value)}
-									placeholder="Enter username"
-								/>
-							</Form.Group>
-						</Col>
-						<Col xs="6">
-							<Form.Group controlId="formInstrument">
-								<Form.Label>Instrument</Form.Label>
-								<Form.Control
-									required
-									type="text"
-									onChange={e => setInstrument(e.target.value)}
-									placeholder="Enter instrument you play"
-								/>
-							</Form.Group>
-						</Col>
-						<Col xs="6">
-							<Form.Group controlId="formLevel">
-								<Form.Label>Level</Form.Label>
-								<Form.Control
-									required
-									type="text"
-									onChange={e => setLevel(e.target.value)}
-									placeholder="enter your level"
-								/>
-							</Form.Group>
-						</Col>
-						<Col xs="6">
-							<Form.Group controlId="formLanguage">
-								<Form.Label>Language</Form.Label>
-								<Form.Control
-									required
-									type="text"
-									onChange={e => setLanguage(e.target.value)}
-									placeholder="Enter your language"
-								/>
-							</Form.Group>
-						</Col>
-						{/* <Col xs="6">
-							<Form.Group controlId="formProfile">
-								<Form.Label>Timezone</Form.Label>
-								<Form.Control type="text" value={item.timeZone} />
-							</Form.Group>
-						</Col> */}
-						<Col xs="6">
-							<Form.Group controlId="formPassword">
-								<Form.Label>Password</Form.Label>
-								<Form.Control
-									required
-									type="password"
-									onChange={e => setPassword(e.target.value)}
-									placeholder="Enter your password"
-								/>
-							</Form.Group>
-						</Col>
-						<Col xs="6">
-							<Form.Group controlId="formUserId">
-								<Form.Label>User ID</Form.Label>
-								<Form.Control
-									required
-									type="number"
-									onChange={e => setUserId(e.target.value)}
-									placeholder="Enter your user ID"
-								/>
-							</Form.Group>
-						</Col>
-						<Col xs="12">
-							<Form.Group controlId="formProfile">
-								<Form.Label>About me</Form.Label>
-								<Form.Control
-									required
-									as="textarea"
-									rows="3"
-									placeholder="Brief description"
-									onChange={e => setDescription(e.target.value)}
-								/>
-							</Form.Group>
-						</Col>
-					</Form.Row>
-				</Form>
-			);
-		});
-	};
+	// const fillProfile = () => {
+	// 	return store.profiles.map((item, index) => {
+	// 		return (
+
+	// 		);
+	// 	});
+	// };
 	return (
 		// user main page, use LeftCol
 		<Form onSubmit={e => handleSubmit(e)}>
-			{fillProfile()}
+			<Form.Row>
+				<Col xs="6">
+					<Form.Group controlId="formFirstName">
+						<Form.Label>First Name</Form.Label>
+						<Form.Control
+							value={firstName}
+							required
+							type="text"
+							onChange={e => setFirstName(e.target.value)}
+							placeholder="Enter first name"
+						/>
+					</Form.Group>
+				</Col>
+				<Col xs="6">
+					<Form.Group controlId="formLastName">
+						<Form.Label>Last Name</Form.Label>
+						<Form.Control
+							value={lastName}
+							required
+							type="text"
+							onChange={e => setLastName(e.target.value)}
+							placeholder="Enter last name"
+						/>
+					</Form.Group>
+				</Col>
+				<Col xs="6">
+					<Form.Group controlId="formUsername">
+						<Form.Label>Username</Form.Label>
+						<Form.Control
+							value={username}
+							required
+							type="text"
+							onChange={e => setUsername(e.target.value)}
+							placeholder="Enter username"
+						/>
+					</Form.Group>
+				</Col>
+				<Col xs="6">
+					<Form.Group controlId="formInstrument">
+						<Form.Label>Instrument</Form.Label>
+						<Form.Control
+							value={instrument}
+							required
+							type="text"
+							onChange={e => setInstrument(e.target.value)}
+							placeholder="Enter instrument you play"
+						/>
+					</Form.Group>
+				</Col>
+				<Col xs="6">
+					<Form.Group controlId="formLevel">
+						<Form.Label>Level</Form.Label>
+						<Form.Control
+							value={level}
+							required
+							type="text"
+							onChange={e => setLevel(e.target.value)}
+							placeholder="enter your level"
+						/>
+					</Form.Group>
+				</Col>
+				<Col xs="6">
+					<Form.Group controlId="formLanguage">
+						<Form.Label>Language</Form.Label>
+						<Form.Control
+							value={language}
+							required
+							type="text"
+							onChange={e => setLanguage(e.target.value)}
+							placeholder="Enter your language"
+						/>
+					</Form.Group>
+				</Col>
+				{/* <Col xs="6">
+                    <Form.Group controlId="formProfile">
+                        <Form.Label>Timezone</Form.Label>
+                        <Form.Control type="text" value={item.timeZone} />
+                    </Form.Group>
+                </Col> */}
+				<Col xs="6">
+					<Form.Group controlId="formPassword">
+						<Form.Label>Password</Form.Label>
+						<Form.Control
+							value={password}
+							required
+							type="password"
+							onChange={e => setPassword(e.target.value)}
+							placeholder="Enter your password"
+						/>
+					</Form.Group>
+				</Col>
+				<Col xs="6">
+					<Form.Group controlId="formUserId">
+						<Form.Label>User ID</Form.Label>
+						<Form.Control
+							value={userId}
+							required
+							type="number"
+							onChange={e => setUserId(e.target.value)}
+							placeholder="Enter your user ID"
+						/>
+					</Form.Group>
+				</Col>
+				<Col xs="12">
+					<Form.Group controlId="formProfile">
+						<Form.Label>About me</Form.Label>
+						<Form.Control
+							value={description}
+							required
+							as="textarea"
+							rows="3"
+							placeholder="Brief description"
+							onChange={e => setDescription(e.target.value)}
+						/>
+					</Form.Group>
+				</Col>
+			</Form.Row>
 			<Button type="submit" variant="primary">
 				Save
 			</Button>{" "}
