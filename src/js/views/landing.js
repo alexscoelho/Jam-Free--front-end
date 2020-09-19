@@ -1,9 +1,10 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useContext } from "react";
+
 import video from "../../img/video.mp4";
 import hero from "../../img/hero.jpg";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 // components
 import { Cards } from "../component/cards";
@@ -12,6 +13,8 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 
 export const Landing = () => {
+	const { store, actions } = useContext(Context);
+	console.log("user:", store.user);
 	return (
 		<div className="landing-wrapper">
 			<div className="video-wrapper">

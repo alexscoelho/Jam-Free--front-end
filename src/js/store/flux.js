@@ -194,14 +194,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 							visible: true,
 							type: "danger",
 							heading: "Oops!",
-							errorMessage: "Bad Email or Password"
+							errorMessage: "Something went wrong, check email and password"
 						});
-						console.log("err:", err);
 						return err;
+						console.log("err:", err);
 					});
 			},
 
-			// check Token
+			// check Token, calling this in useEffect
 			checkToken: () => {
 				let tokenCheck = JSON.parse(localStorage.getItem("jammfree-userData"));
 
