@@ -18,15 +18,16 @@ import Nav from "react-bootstrap/Nav";
 export const Profile = () => {
 	const { store, actions } = useContext(Context);
 	let location = useLocation();
+	console.log(store.profile);
 
-	const [firstName, setFirstName] = useState(store.profiles[0].name);
-	const [lastName, setLastName] = useState(store.profiles[0].lastName);
-	const [username, setUsername] = useState(store.profiles[0].username);
+	const [firstName, setFirstName] = useState(store.profile.first_name);
+	const [lastName, setLastName] = useState(store.profile.last_name);
+	const [username, setUsername] = useState(store.profile.username);
 	const [password, setPassword] = useState("");
-	const [instrument, setInstrument] = useState(store.profiles[0].instrument);
-	const [language, setLanguage] = useState(store.profiles[0].language);
-	const [level, setLevel] = useState(store.profiles[0].level);
-	const [description, setDescription] = useState(store.profiles[0].description);
+	const [instrument, setInstrument] = useState(store.profile.instrument);
+	const [language, setLanguage] = useState(store.profile.language);
+	const [level, setLevel] = useState(store.profile.level);
+	const [description, setDescription] = useState(store.profile.description);
 	const [userId, setUserId] = useState("");
 
 	// let history = useHistory();
@@ -48,7 +49,7 @@ export const Profile = () => {
 				level: level,
 				description: description
 			};
-			let req = await actions.modifyUser(target_user, userId);
+			let req = await actions.modifyUser(target_user);
 			console.log("req:", req);
 			if (req[0] === "Success") {
 				actions.setMessage({
@@ -157,7 +158,7 @@ export const Profile = () => {
                         <Form.Control type="text" value={item.timeZone} />
                     </Form.Group>
                 </Col> */}
-				<Col xs="6">
+				{/* <Col xs="6">
 					<Form.Group controlId="formPassword">
 						<Form.Label>Password</Form.Label>
 						<Form.Control
@@ -180,7 +181,7 @@ export const Profile = () => {
 							placeholder="Enter your user ID"
 						/>
 					</Form.Group>
-				</Col>
+				</Col> */}
 				<Col xs="12">
 					<Form.Group controlId="formProfile">
 						<Form.Label>About me</Form.Label>

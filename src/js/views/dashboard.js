@@ -26,6 +26,7 @@ export const Dashboard = () => {
 	const [showLeftProfile, setShowLeftProfile] = useState(true);
 	const { store, actions } = useContext(Context);
 	let { userType, username, loggedIn } = store.user;
+	// let { account_type, username, level } = store.profile;
 	let location = useLocation();
 	let { path, url } = useRouteMatch();
 
@@ -78,10 +79,10 @@ export const Dashboard = () => {
 							<Image src={profileImage} roundedCircle />
 							<div className="profile-image-footer mt-2 mr-auto">
 								<Link className="link-profile" to={`${path}`}>
-									<h5 className="profile-field text-dark">John Doe</h5>
+									<h5 className="profile-field text-dark">{store.profile.first_name}</h5>
 								</Link>
-								<p className="profile-field">Pembroke Pines, FL</p>
-								<p className="profile-field">954 123 4567</p>
+								<p className="profile-field">{store.profile.language}</p>
+								<p className="profile-field">{store.profile.level}</p>
 							</div>
 						</div>
 

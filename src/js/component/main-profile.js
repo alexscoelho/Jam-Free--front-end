@@ -18,44 +18,44 @@ import Nav from "react-bootstrap/Nav";
 export const MainProfile = () => {
 	const { store, actions } = useContext(Context);
 	let location = useLocation();
-	console.log("user:", store.user);
+
 	return (
 		<Container className="pt-3 bg-light">
 			<Row>
 				<Col>
 					<div className="profile-info">
 						<h5 className="profile-field">Username</h5>
-						<p>Jon Doe</p>
+						<p>{store.profile.first_name}</p>
 					</div>
 					<div className="profile-info">
 						<h5 className="profile-field">Instrument</h5>
-						<p>Guitar</p>
+						<p>{store.profile.instrument}</p>
 					</div>
 					<div className="profile-info">
 						<h5 className="profile-field">Language</h5>
-						<p>English/Spanish</p>
+						<p>{store.profile.language}</p>
 					</div>
 				</Col>
 				<Col>
 					<div className="profile-info">
 						<h5 className="profile-field">Email</h5>
-						<p>jondoe@email.com</p>
+						<p>{store.profile.email}</p>
 					</div>
 					<div className="profile-info">
 						<h5 className="profile-field">Level</h5>
-						<p>Intermediate</p>
+						<p>{store.profile.level}</p>
 					</div>
-					<div className="profile-info">
+					{/* <div className="profile-info">
 						<h5 className="profile-field">Timezone</h5>
 						<p>East</p>
-					</div>
+					</div> */}
 				</Col>
 			</Row>
 			<Row>
 				<Col>
 					<div className="profile-info">
 						<h5 className="profile-field">About Me</h5>
-						<p>Besides music I like drawing, workout, travel and painting.</p>
+						<p>{store.profile.description}</p>
 					</div>
 				</Col>
 			</Row>

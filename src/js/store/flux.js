@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io/";
+	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io";
 
 	return {
 		store: {
@@ -7,7 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				loggedIn: false,
 				userType: null,
 				username: null,
-				token: ""
+				token: "",
+				userId: ""
 			},
 			demo: [
 				{
@@ -63,17 +64,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					language: "english"
 				}
 			],
-			profiles: [
-				{
-					name: "John",
-					lastName: "Doe",
-					userName: "Jdoe",
-					instrument: "Guitar",
-					level: "intermediate",
-					language: "english",
-					timeZone: "EST"
-				}
-			],
+			profile: {
+				// name: "John",
+				// lastName: "Doe",
+				// userName: "Jdoe",
+				// instrument: "Guitar",
+				// level: "intermediate",
+				// language: "english",
+				// timeZone: "EST"
+			},
+
 			alertMessages: {
 				visible: false,
 				type: "",
@@ -166,25 +166,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 						return resp.json();
 					})
-					.then(data => {
+					.then(async data => {
 						// if (data.status_code !== 200) throw data;
 						//data is the token
 						// already with data and insert it in token property
 						let store = getStore();
 						store.user = {
+							userId: data.userId,
 							loggedIn: true,
-							userType: "student",
-							username: "bobG",
-							token: data
+							token: data.jwt
 						};
-						setStore(store);
-
+						let login = await setStore(store);
+						await getActions().getProfile();
 						// success alert
 						getActions().setMessage({
 							visible: true,
 							type: "success",
 							heading: "Success",
-							errorMessage: `Welcome ${store.user.username}`
+							errorMessage: `Welcome ${getStore().profile.username}!`
 						});
 						localStorage.setItem("jammfree-userData", JSON.stringify(store.user));
 						history.push("/main");
@@ -196,8 +195,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							heading: "Oops!",
 							errorMessage: "Something went wrong, check email and password"
 						});
+						console.error(err);
 						return err;
-						console.log("err:", err);
 					});
 			},
 
@@ -228,12 +227,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			// edit profile
-			modifyUser: (target_user, userId) => {
-				return fetch(`${baseUrl}/user/${userId}`, {
+			modifyUser: target_user => {
+				return fetch(`${baseUrl}/user/${getStore().user.userId}`, {
 					method: "PUT",
 					headers: {
 						"Content-type": "application/json",
-						Authorization: `Bearer ${getStore().user.token.jwt}`
+						Authorization: `Bearer ${getStore().user.token}`
 					},
 					body: JSON.stringify(target_user)
 				})
@@ -251,6 +250,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						return data;
 						console.log("Success:", data);
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+			//get profile user
+			getProfile: () => {
+				console.log("token: ", getStore().user.token);
+				return fetch(`${baseUrl}/user/${getStore().user.userId}`, {
+					method: "GET",
+					headers: {
+						Authorization: `Bearer ${getStore().user.token}`
+					}
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => {
+						let store = getStore();
+						store.profile = data[0];
+						setStore(store);
 					})
 					.catch(err => {
 						return err;
