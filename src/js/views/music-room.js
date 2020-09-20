@@ -23,8 +23,11 @@ import { MusicRoomTeacherUpFile } from "../component/musicRoomTeacherUpFile";
 export const MusicRoom = () => {
 	const { store, actions } = useContext(Context);
 	// to fill the variable in link, value comes from store
-	let { userType } = useParams();
-	let { user } = store;
+	let { role } = useParams();
+	let { profile } = store;
+
+	console.log(role, profile.account_type);
+
 	const noAccess = (
 		<div>
 			<h2>Cannot Access Route</h2>
@@ -40,13 +43,13 @@ export const MusicRoom = () => {
 
 	const getContent = () => {
 		// validation, type must come from store caanot be faked
-		if (userType.toLowerCase() === "student" && user.userType.toLowerCase() === "student") {
+		if (account_type.toLowerCase() === "student" && profile.account_type.toLowerCase() === "student") {
 			return <MusicRoomStudent />;
-		} else if (userType.toLowerCase() === "student" && user.userType.toLowerCase() !== "student") {
+		} else if (account_type.toLowerCase() === "student" && profile.account_type.toLowerCase() !== "student") {
 			return noAccess;
-		} else if (userType.toLowerCase() === "teacher" && user.userType.toLowerCase() === "teacher") {
+		} else if (account_type.toLowerCase() === "teacher" && profile.account_type.toLowerCase() === "teacher") {
 			return <MusicRoomTeacherUpFile />;
-		} else if (userType.toLowerCase() === "teacher" && user.userType.toLowerCase() !== "teacher") {
+		} else if (account_type.toLowerCase() === "teacher" && profile.account_type.toLowerCase() !== "teacher") {
 			return noAccess;
 		}
 

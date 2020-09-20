@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io";
 
 	return {
+		// loggedIn: false,
 		store: {
 			user: {
 				loggedIn: false,
@@ -114,6 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setLogout: () => {
 				let store = getStore();
 				store.user.loggedIn = false;
+				// store.loggedIn = false;
 				setStore(store);
 				localStorage.setItem("jammfree-userData", JSON.stringify(store.user));
 			},
@@ -171,11 +173,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//data is the token
 						// already with data and insert it in token property
 						let store = getStore();
+						// store.loggedIn = true;
 						store.user = {
 							userId: data.userId,
 							loggedIn: true,
 							token: data.jwt
 						};
+
 						let login = await setStore(store);
 						await getActions().getProfile();
 						// success alert
@@ -200,13 +204,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			// check Token, calling this in useEffect
+			// verify Token, calling this in useEffect
 			checkToken: () => {
 				let tokenCheck = JSON.parse(localStorage.getItem("jammfree-userData"));
 
 				if (tokenCheck !== null) {
 					// set current user data to store
 					setStore({ user: tokenCheck });
+					// setStore({ loggedIn: true });
+
+					getActions().getProfile();
 				} else {
 					let store = getStore();
 					store.user = {
@@ -222,7 +229,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						heading: "Sorry",
 						errorMessage: "You need to login"
 					});
-					// history.push("/login");
 				}
 			},
 
@@ -257,7 +263,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			//get profile user
 			getProfile: () => {
-				console.log("token: ", getStore().user.token);
 				return fetch(`${baseUrl}/user/${getStore().user.userId}`, {
 					method: "GET",
 					headers: {

@@ -54,8 +54,14 @@ export const Login = () => {
 							placeholder="Password"
 						/>
 					</Form.Group>
-					<Form.Group controlId="formBasicCheckbox">
-						<Form.Check type="checkbox" label="Check me out" />
+					<Form.Group>
+						<Link to="/signup" className="login-link">
+							<a className="ml-2" href="#">
+								{" "}
+								Reset password
+							</a>
+						</Link>
+						{/* <Form.Check type="checkbox" label="Check me out" /> */}
 					</Form.Group>
 					<Button variant="primary" type="submit">
 						Login

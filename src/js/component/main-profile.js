@@ -18,6 +18,8 @@ import Nav from "react-bootstrap/Nav";
 export const MainProfile = () => {
 	const { store, actions } = useContext(Context);
 	let location = useLocation();
+	// console.log("profile:", store.profile);
+	// console.log("user:", store.user);
 
 	return (
 		<Container className="pt-3 bg-light">

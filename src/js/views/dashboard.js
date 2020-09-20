@@ -25,10 +25,14 @@ import Image from "react-bootstrap/Image";
 export const Dashboard = () => {
 	const [showLeftProfile, setShowLeftProfile] = useState(true);
 	const { store, actions } = useContext(Context);
-	let { userType, username, loggedIn } = store.user;
-	// let { account_type, username, level } = store.profile;
+	let { loggedIn } = store.user;
+	let { account_type, username, level } = store.profile;
 	let location = useLocation();
 	let { path, url } = useRouteMatch();
+
+	let role = account_type.toLowerCase();
+
+	console.log("account_type:", account_type);
 
 	// close left profile bar
 	const handleClick = () => {
@@ -52,10 +56,7 @@ export const Dashboard = () => {
 					</Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Nav.Link
-						as={Link}
-						to={`${path}/music-room/${userType}`}
-						eventKey={`${path}/music-room/${userType}`}>
+					<Nav.Link as={Link} to={`${path}/music-room/${role}`} eventKey={`${path}/music-room/${role}`}>
 						Music Room
 					</Nav.Link>
 				</Nav.Item>
@@ -81,8 +82,8 @@ export const Dashboard = () => {
 								<Link className="link-profile" to={`${path}`}>
 									<h5 className="profile-field text-dark">{store.profile.first_name}</h5>
 								</Link>
-								<p className="profile-field">{store.profile.language}</p>
-								<p className="profile-field">{store.profile.level}</p>
+								<p className="profile-field">{store.profile.account_type}</p>
+								{/* <p className="profile-field">{store.profile.level}</p> */}
 							</div>
 						</div>
 

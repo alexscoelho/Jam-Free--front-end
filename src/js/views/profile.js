@@ -18,7 +18,6 @@ import Nav from "react-bootstrap/Nav";
 export const Profile = () => {
 	const { store, actions } = useContext(Context);
 	let location = useLocation();
-	console.log(store.profile);
 
 	const [firstName, setFirstName] = useState(store.profile.first_name);
 	const [lastName, setLastName] = useState(store.profile.last_name);
