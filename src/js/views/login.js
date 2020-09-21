@@ -6,12 +6,21 @@ import "../../styles/home.scss";
 // react-components
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Nav from "react-bootstrap/Nav";
+
+// Own components
+import { ResetPassword } from "../component/ResetPassword";
 
 export const Login = () => {
 	const { store, actions } = useContext(Context);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	// // for the modal
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 	let history = useHistory();
 
@@ -26,6 +35,7 @@ export const Login = () => {
 
 	return (
 		<div className="container pb-4 pt-4">
+			<ResetPassword show={show} closeModal={handleClose} />
 			<div className="login-question w-50 m-auto">
 				<h2>Login</h2>
 				<div className="d-flex">
@@ -55,12 +65,10 @@ export const Login = () => {
 						/>
 					</Form.Group>
 					<Form.Group>
-						<Link to="/signup" className="login-link">
-							<a className="ml-2" href="#">
-								{" "}
-								Reset password
-							</a>
-						</Link>
+						<Nav.Link className="reset-password" onClick={handleShow}>
+							{" "}
+							Reset password
+						</Nav.Link>
 						{/* <Form.Check type="checkbox" label="Check me out" /> */}
 					</Form.Group>
 					<Button variant="primary" type="submit">
