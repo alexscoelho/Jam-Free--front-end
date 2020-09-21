@@ -261,7 +261,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return err;
 					});
 			},
-			//get profile user
+			//get user profile
 			getProfile: () => {
 				return fetch(`${baseUrl}/user/${getStore().user.userId}`, {
 					method: "GET",
@@ -284,6 +284,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return err;
 					});
 			},
+
+			// // Reset Password
+			// resetPassword: () => {
+			//     return fetch()
+			// },
 
 			changeColor: (index, color) => {
 				//get the store

@@ -22,7 +22,7 @@ export const MainProfile = () => {
 	// console.log("user:", store.user);
 
 	return (
-		<Container className="pt-3 bg-light">
+		<Container className="pt-3 bg-light ">
 			<Row>
 				<Col>
 					<div className="profile-info">

@@ -43,13 +43,13 @@ export const MusicRoom = () => {
 
 	const getContent = () => {
 		// validation, type must come from store caanot be faked
-		if (account_type.toLowerCase() === "student" && profile.account_type.toLowerCase() === "student") {
+		if (role === "student" && profile.account_type.toLowerCase() === "student") {
 			return <MusicRoomStudent />;
-		} else if (account_type.toLowerCase() === "student" && profile.account_type.toLowerCase() !== "student") {
+		} else if (role === "student" && profile.account_type.toLowerCase() !== "student") {
 			return noAccess;
-		} else if (account_type.toLowerCase() === "teacher" && profile.account_type.toLowerCase() === "teacher") {
+		} else if (role === "teacher" && profile.account_type.toLowerCase() === "teacher") {
 			return <MusicRoomTeacherUpFile />;
-		} else if (account_type.toLowerCase() === "teacher" && profile.account_type.toLowerCase() !== "teacher") {
+		} else if (role === "teacher" && profile.account_type.toLowerCase() !== "teacher") {
 			return noAccess;
 		}
 
