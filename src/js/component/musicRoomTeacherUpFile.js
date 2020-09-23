@@ -7,7 +7,7 @@ import "../../styles/musicRoomTeacherUpFile.scss";
 import { Context } from "../store/appContext";
 
 // react boostatrap
-import { Form, Button, Nav } from "react-bootstrap";
+import { Form, Button, Nav, Col } from "react-bootstrap";
 
 export const MusicRoomTeacherUpFile = () => {
 	const { store, actions } = useContext(Context);
@@ -19,9 +19,31 @@ export const MusicRoomTeacherUpFile = () => {
 		url: "",
 		userId: store.user.userId
 	});
-	console.log("file:", file);
+	console.log(file);
+
+	async function handleSubmit(e) {
+		console.log("test");
+		e.preventDefault();
+		let req = await actions.publishFile(file);
+		if (req === "Success") {
+			actions.setMessage({
+				visible: true,
+				type: "success",
+				heading: "Success!",
+				errorMessage: "You added a new publish to music room"
+			});
+		} else {
+			actions.setMessage({
+				visible: true,
+				type: "danger",
+				heading: "Ooops!",
+				errorMessage: req.message
+			});
+		}
+	}
+
 	return (
-		<Form>
+		<Form onSubmit={e => handleSubmit(e)}>
 			<Form.Group controlId="formBasicEmail">
 				<Form.Label>Instrument</Form.Label>
 				<Form.Control
@@ -33,7 +55,7 @@ export const MusicRoomTeacherUpFile = () => {
 				/>
 				{/* <Form.Text className="text-muted">Well never share your email with anyone else.</Form.Text> */}
 			</Form.Group>
-			<Form.Group controlId="formBasicPassword">
+			{/* <Form.Group controlId="formBasicPassword">
 				<Form.Label>File Type</Form.Label>
 				<Form.Control
 					type="text"
@@ -42,8 +64,8 @@ export const MusicRoomTeacherUpFile = () => {
 					value={file.typeFile}
 					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
 				/>
-			</Form.Group>
-			<Form.Group controlId="formBasicPassword">
+			</Form.Group> */}
+			{/* <Form.Group controlId="formBasicPassword">
 				<Form.Label>Level</Form.Label>
 				<Form.Control
 					type="text"
@@ -52,7 +74,7 @@ export const MusicRoomTeacherUpFile = () => {
 					value={file.level}
 					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
 				/>
-			</Form.Group>
+			</Form.Group> */}
 			<Form.Group controlId="formBasicPassword">
 				<Form.Label>Language</Form.Label>
 				<Form.Control
@@ -73,8 +95,37 @@ export const MusicRoomTeacherUpFile = () => {
 					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
 				/>
 			</Form.Group>
+			<Form.Group controlId="formGridState">
+				<Form.Label>Level</Form.Label>
+				<Form.Control
+					as="select"
+					defaultValue="Choose..."
+					type="text"
+					placeholder=""
+					name="level"
+					value={file.level}
+					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
+					<option>Beginner</option>
+					<option>Intermediate</option>
+					<option>Advanced</option>
+				</Form.Control>
+			</Form.Group>
+			<Form.Group controlId="formGridState">
+				<Form.Label>File Type</Form.Label>
+				<Form.Control
+					as="select"
+					defaultValue="Choose..."
+					type="text"
+					placeholder=""
+					name="typeFile"
+					value={file.typeFile}
+					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
+					<option>Video</option>
+					<option>Article</option>
+				</Form.Control>
+			</Form.Group>
 			<Button variant="primary" type="submit">
-				Submit
+				Publish
 			</Button>
 		</Form>
 	);

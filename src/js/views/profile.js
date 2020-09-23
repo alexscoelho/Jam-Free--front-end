@@ -14,6 +14,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
+import InputGroup from "react-bootstrap/InputGroup";
 
 export const Profile = () => {
 	const { store, actions } = useContext(Context);
@@ -29,7 +30,10 @@ export const Profile = () => {
 	const [description, setDescription] = useState(store.profile.description);
 	const [userId, setUserId] = useState("");
 
+	const [isDisabled, setIsDisabled] = useState(true);
+
 	// let history = useHistory();
+	console.log("username:", username);
 
 	async function handleSubmit(e) {
 		// actions.checkToken();
@@ -105,13 +109,17 @@ export const Profile = () => {
 				</Col>
 				<Col xs="6">
 					<Form.Group controlId="formUsername">
-						<Form.Label>Username</Form.Label>
+						<Form.Label>
+							Username
+							<i className="fas fa-pencil-alt username-edit" onClick={() => setIsDisabled(!isDisabled)} />
+						</Form.Label>{" "}
 						<Form.Control
 							value={username}
 							required
 							type="text"
 							onChange={e => setUsername(e.target.value)}
 							placeholder="Enter username"
+							disabled={isDisabled}
 						/>
 					</Form.Group>
 				</Col>

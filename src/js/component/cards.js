@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 
 export const Cards = () => {
 	const { store, actions } = useContext(Context);
+
 	const makeCards = () => {
 		return store.teacher.map((item, index) => {
 			return (
@@ -39,6 +40,7 @@ export const Cards = () => {
 			);
 		});
 	};
+
 	return (
 		<div className="container h-75 align-items-center mb-3 overflow-auto cards-wrapper ">
 			{/* delete scrolling-wrapper row flex-row wrapper flex-nowrap pb-4 */}

@@ -65,15 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					language: "english"
 				}
 			],
-			profile: {
-				// name: "John",
-				// lastName: "Doe",
-				// userName: "Jdoe",
-				// instrument: "Guitar",
-				// level: "intermediate",
-				// language: "english",
-				// timeZone: "EST"
-			},
+			profile: {},
 
 			alertMessages: {
 				visible: false,
@@ -231,7 +223,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 				}
 			},
-
 			// edit profile
 			modifyUser: target_user => {
 				return fetch(`${baseUrl}/user/${getStore().user.userId}`, {
@@ -285,10 +276,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			// // Reset Password
-			// resetPassword: () => {
-			//     return fetch()
-			// },
+			// Publish file
+			publishFile: file => {
+				return fetch(`${baseUrl}/file`, {
+					method: "POST",
+					headers: {
+						"content-type": "application/json"
+					},
+					body: JSON.stringify(file)
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(resp => {
+						if (resp.status_code !== 200) throw resp;
+						return resp;
+					})
+					.catch(err => {
+						return err;
+					});
+			},
 
 			changeColor: (index, color) => {
 				//get the store
