@@ -3,6 +3,10 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/musicRoomStudent.scss";
+import profileImage from "../../img/profile.jpg";
+
+// react boostatrap
+import { Button, ListGroup, Dropdown, Form } from "react-bootstrap";
 
 export const MusicRoomStudent = () => {
 	const { store, actions } = useContext(Context); //
@@ -40,80 +44,87 @@ export const MusicRoomStudent = () => {
 					et dolore magna aliqua.{" "}
 				</h6>
 				<div className="video-container">
-					<form className="md-form">
-						<button className="topic-button">Filter by Topic</button>
-						<button className="topic-button">Filter by Level</button>
-						<button className="language-button">Filter by Language</button>
-
+					<Form className="md-form">
+						<Dropdown>
+							<Dropdown.Toggle id="dropdown-basic">Filter by</Dropdown.Toggle>
+							<Dropdown.Menu>
+								<Dropdown.Item href="#/action-1">Level</Dropdown.Item>
+								<Dropdown.Item href="#/action-2">Language</Dropdown.Item>
+								<Dropdown.Item href="#/action-3">Topic</Dropdown.Item>
+							</Dropdown.Menu>
+						</Dropdown>
 						<div>
 							{contacts.map((e, index) => {
 								return (
-									<li key={index} className="list-group-item">
-										<div className="row w-100">
-											<div className="col-12 col-sm-6 col-md-3 px-0">
-												<img
-													src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fsimple-acoustic-guitar-silhouette-symbol-design-vector-20936710&psig=AOvVaw21JKsG_oQszpqDCW6LFaNc&ust=1599218053894000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNCfldLtzOsCFQAAAAAdAAAAABAL"
-													alt="Guitar"
-													className="rounded-circle mx-auto d-block img-fluid"
-												/>
-											</div>
-											<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-												<div className=" float-right">
-													<button //changed
-														/*onClick={() =>
+									<ListGroup key={index}>
+										<ListGroup.Item>
+											<div className="row w-100">
+												<div className="col-12 col-sm-6 col-md-3 px-0">
+													<img
+														src={profileImage}
+														alt="Guitar"
+														className="rounded-circle mx-auto d-block img-fluid"
+													/>
+												</div>
+												<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
+													<div className=" float-right">
+														<button //changed
+															/*onClick={() =>
 															props.history.push("/edit", {
 																contact: e
 															})
 														}*/ className="btn">
-														<i className="fas fa-pencil-alt mr-3" />
-													</button>
-													<button
-														className="btn"
-														onClick={() => {
-															setModal(true);
-															// actions.deleteContact(e.id);
-														}}>
-														{/*// className="btn"
+															<i className="fas fa-pencil-alt mr-3" />
+														</button>
+														<button
+															className="btn"
+															onClick={() => {
+																setModal(true);
+																// actions.deleteContact(e.id);
+															}}>
+															{/*// className="btn"
                                                     // onClick={() => {
                                                     // 	actions.deleteContact(e.id);
                                                     // }}>}
                                                     {/*we change props.onDelete actions.deleteContact(e.id)*/}
-														<i className="fas fa-trash-alt" />
-													</button>
+															<i className="fas fa-trash-alt" />
+														</button>
+													</div>
+													<label className="name lead">{e.subject}</label>{" "}
+													{/*name, how is labeled at API*/}
+													<br />
+													<i className="text-muted mr-3" />
+													<span className="text-muted">{e.type}</span>{" "}
+													{/*type, how is labeled at API*/}
+													<br />
+													<span
+														className="text-muted mr-3"
+														data-toggle="tooltip"
+														title=""
+														data-original-title="(870) 288-4149"
+													/>
+													<span className="text-muted small">{e.filter}</span>{" "}
+													{/*phone, how is labeled at API*/}
+													<br />
 												</div>
-												<label className="name lead">{e.subject}</label>{" "}
-												{/*name, how is labeled at API*/}
-												<br />
-												<i className="text-muted mr-3" />
-												<span className="text-muted">{e.type}</span>{" "}
-												{/*type, how is labeled at API*/}
-												<br />
-												<span
-													className="text-muted mr-3"
-													data-toggle="tooltip"
-													title=""
-													data-original-title="(870) 288-4149"
-												/>
-												<span className="text-muted small">{e.filter}</span>{" "}
-												{/*phone, how is labeled at API*/}
-												<br />
 											</div>
-										</div>
-									</li>
+										</ListGroup.Item>
+									</ListGroup>
 								);
 							})}
 						</div>
 
 						<div className="file-field-video  d-flex justify-content-center">
 							<div className="btn btn-primary btn-sm float-left">
-								<span>Upload a Video </span>
-								<input type="file" />
+								<Button>Post a File</Button>
+								{/* <span>Post a File </span> */}
+								{/* <input type="file" /> */}
 							</div>
-							<div className="file-path-wrapper">
+							{/* <div className="file-path-wrapper">
 								<input className="file-path validate" type="text" placeholder="Upload your file" />
-							</div>
+							</div> */}
 						</div>
-					</form>
+					</Form>
 				</div>
 			</div>
 		</div>

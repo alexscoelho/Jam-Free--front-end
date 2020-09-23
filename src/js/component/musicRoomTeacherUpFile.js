@@ -44,67 +44,52 @@ export const MusicRoomTeacherUpFile = () => {
 
 	return (
 		<Form onSubmit={e => handleSubmit(e)}>
-			<Form.Group controlId="formBasicEmail">
+			<Form.Group controlId="formGridState">
 				<Form.Label>Instrument</Form.Label>
 				<Form.Control
+					required
+					as="select"
+					defaultValue=""
 					type="text"
 					placeholder=""
 					name="instrument"
 					value={file.instrument}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
-				/>
-				{/* <Form.Text className="text-muted">Well never share your email with anyone else.</Form.Text> */}
+					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
+					<option />
+					<option>Guitar</option>
+					<option>Piano</option>
+					<option>Drums</option>
+					<option>Violin</option>
+				</Form.Control>
 			</Form.Group>
-			{/* <Form.Group controlId="formBasicPassword">
-				<Form.Label>File Type</Form.Label>
-				<Form.Control
-					type="text"
-					placeholder=""
-					name="typeFile"
-					value={file.typeFile}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
-				/>
-			</Form.Group> */}
-			{/* <Form.Group controlId="formBasicPassword">
-				<Form.Label>Level</Form.Label>
-				<Form.Control
-					type="text"
-					placeholder=""
-					name="level"
-					value={file.level}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
-				/>
-			</Form.Group> */}
-			<Form.Group controlId="formBasicPassword">
+			<Form.Group controlId="formGridState">
 				<Form.Label>Language</Form.Label>
 				<Form.Control
+					required
+					as="select"
+					defaultValue=""
 					type="text"
 					placeholder=""
 					name="language"
 					value={file.language}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
-				/>
-			</Form.Group>
-			<Form.Group controlId="formBasicPassword">
-				<Form.Label>Url</Form.Label>
-				<Form.Control
-					type="text"
-					placeholder=""
-					name="url"
-					value={file.url}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
-				/>
+					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
+					<option />
+					<option>Spanish</option>
+					<option>English</option>
+				</Form.Control>
 			</Form.Group>
 			<Form.Group controlId="formGridState">
 				<Form.Label>Level</Form.Label>
 				<Form.Control
+					required
 					as="select"
-					defaultValue="Choose..."
+					defaultValue=""
 					type="text"
 					placeholder=""
 					name="level"
 					value={file.level}
 					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
+					<option />
 					<option>Beginner</option>
 					<option>Intermediate</option>
 					<option>Advanced</option>
@@ -113,16 +98,29 @@ export const MusicRoomTeacherUpFile = () => {
 			<Form.Group controlId="formGridState">
 				<Form.Label>File Type</Form.Label>
 				<Form.Control
+					required
 					as="select"
-					defaultValue="Choose..."
+					defaultValue=""
 					type="text"
 					placeholder=""
 					name="typeFile"
 					value={file.typeFile}
 					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
+					<option />
 					<option>Video</option>
 					<option>Article</option>
 				</Form.Control>
+			</Form.Group>
+			<Form.Group controlId="formBasicPassword">
+				<Form.Label>Url</Form.Label>
+				<Form.Control
+					required
+					type="text"
+					placeholder=""
+					name="url"
+					value={file.url}
+					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
+				/>
 			</Form.Group>
 			<Button variant="primary" type="submit">
 				Publish
