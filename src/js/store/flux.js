@@ -67,6 +67,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			profile: {},
 
+			files: [],
+
 			alertMessages: {
 				visible: false,
 				type: "",
@@ -294,6 +296,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => {
 						if (resp.status_code !== 200) throw resp;
 						return resp;
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
+			//Get Files
+			getFiles: () => {
+				return fetch(`${baseUrl}/files`, {
+					method: "GET",
+					headers: {
+						Authorization: `Bearer ${getStore().user.token}`
+					}
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => {
+						let store = getStore();
+						store.files = data[0];
+						setStore(store);
 					})
 					.catch(err => {
 						return err;

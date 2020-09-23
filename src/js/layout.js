@@ -17,6 +17,7 @@ import { Login } from "./views/login";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
 import { Donations } from "./views/donations";
+import { MusicRoomTeacherUpFile } from "./component/musicRoomTeacherUpFile";
 
 // import { Schedule } from "./views/schedule";
 import { About } from "./views/about";
@@ -80,6 +81,9 @@ const Layout = () => {
 						<Route exact path="/donations">
 							<Donations />
 						</Route>
+						{/* <Route path="/teacher/musicRoomTeacherUpFile">
+							<MusicRoomTeacherUpFile />
+						</Route> */}
 						<Route>
 							<h1>Not found!</h1>
 						</Route>

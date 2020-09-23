@@ -5,11 +5,12 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/musicRoomTeacherUpFile.scss";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
 // react boostatrap
 import { Form, Button, Nav, Col } from "react-bootstrap";
 
-export const MusicRoomTeacherUpFile = () => {
+export const MusicRoomTeacherUpFile = ({ check, setCheck }) => {
 	const { store, actions } = useContext(Context);
 	const [file, setFile] = useState({
 		instrument: "",
@@ -125,6 +126,18 @@ export const MusicRoomTeacherUpFile = () => {
 			<Button variant="primary" type="submit">
 				Publish
 			</Button>
+			<Button
+				onClick={() => {
+					setCheck(true);
+				}}
+				variant="primary">
+				Go Back
+			</Button>
 		</Form>
 	);
+};
+
+MusicRoomTeacherUpFile.propTypes = {
+	check: PropTypes.bool,
+	setCheck: PropTypes.func
 };

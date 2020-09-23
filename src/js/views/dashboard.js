@@ -9,7 +9,6 @@ import { MainProfile } from "../component/main-profile";
 import { Profile } from "../views/profile";
 import { Schedule } from "../views/schedule";
 import { MusicRoom } from "../views/music-room";
-import { MusicRoomStudent } from "../component/musicRoomStudent";
 // components
 import { LeftCol } from "../component/left-col";
 
@@ -30,7 +29,7 @@ export const Dashboard = () => {
 	let location = useLocation();
 	let { path, url } = useRouteMatch();
 
-	let role = account_type.toLowerCase();
+	let role = typeof account_type != undefined ? account_type.toLowerCase() : "";
 
 	console.log("account_type:", account_type);
 
