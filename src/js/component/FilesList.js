@@ -17,38 +17,22 @@ export const FilesList = () => {
 	let { account_type } = store.profile;
 	let role = account_type.toLowerCase();
 	const [check, setCheck] = useState(true);
-	// let contacts = [
-	// 	{
-	// 		subject: "How to tune Guitar",
-	// 		type: "Type: Video",
-	// 		filter: "Guitar"
-	// 	},
-	// 	{
-	// 		subject: "String notes on Guitar",
-	// 		type: "Type: Video",
-	// 		filter: "Guitar"
-	// 	},
-	// 	{
-	// 		subject: "Notes on Piano",
-	// 		type: "Type: Article",
-	// 		filter: "Piano"
-	// 	},
-	// 	{
-	// 		subject: "The Staff, Clefs and Ledger Lines",
-	// 		type: "Type: Article",
-	// 		filter: "Music Theory"
-	// 	}
-	// ];
+
 	useEffect(() => {
 		actions.getFiles();
 	}, []);
 
 	let teacherFiles = store.files.filter(file => {
-		console.log(`${file.user_id}`, store.user.userId);
+		// console.log(`${file.user_id}`, store.user.userId);
 		return `${file.userId}` == store.user.userId;
 	});
 
-	console.log(store.files);
+	const handleClick = fileId => {
+		actions.deleteFile(fileId);
+		actions.getFiles();
+	};
+
+	// console.log(store.files);
 	return (
 		<div className="container">
 			<div className="row">
@@ -88,42 +72,38 @@ export const FilesList = () => {
 															</div>
 															<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 																<div className=" float-right">
-																	<button //changed
-																		/*onClick={() =>
-															props.history.push("/edit", {
-																contact: e
-															})
-														}*/ className="btn">
+																	<span className="btn">
 																		<i className="fas fa-pencil-alt mr-3" />
-																	</button>
-																	<button
-																		className="btn"
-																		onClick={() => {
-																			setModal(true);
-																			// actions.deleteContact(e.id);
-																		}}>
-																		{/*// className="btn"
-                                                    // onClick={() => {
-                                                    // 	actions.deleteContact(e.id);
-                                                    // }}>}
-                                                    {/*we change props.onDelete actions.deleteContact(e.id)*/}
-																		<i className="fas fa-trash-alt" />
-																	</button>
+																	</span>
+																	<span className="btn">
+																		<i
+																			className="fas fa-trash-alt"
+																			onClick={() => handleClick(e.id)}
+																		/>
+																	</span>
 																</div>
-																<label className="name lead">{e.url}</label>{" "}
+																<label className="name lead">{e.title}</label>{" "}
+																<label className="name lead">{e.instrument}</label>{" "}
 																{/*name, how is labeled at API*/}
 																<br />
 																<i className="text-muted mr-3" />
-																<span className="text-muted">{e.typeFile}</span>{" "}
+																<span className="text-muted">{e.level}</span>
+																<span className="text-muted">{e.language}</span>{" "}
 																{/*type, how is labeled at API*/}
 																<br />
 																<span
 																	className="text-muted mr-3"
 																	data-toggle="tooltip"
 																	title=""
-																	data-original-title="(870) 288-4149"
+																	// data-original-title="(870) 288-4149"
 																/>
-																<span className="text-muted small">{e.instrument}</span>{" "}
+																<a
+																	className="text-dark"
+																	href={e.url}
+																	target="_blank"
+																	rel="noopener noreferrer">
+																	<i className="far fa-eye" />
+																</a>
 																{/*phone, how is labeled at API*/}
 																<br />
 															</div>

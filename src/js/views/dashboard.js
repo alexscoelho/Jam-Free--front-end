@@ -31,7 +31,7 @@ export const Dashboard = () => {
 
 	let role = typeof account_type != undefined ? account_type.toLowerCase() : "";
 
-	console.log("account_type:", account_type);
+	// console.log("account_type:", account_type);
 
 	// close left profile bar
 	const handleClick = () => {

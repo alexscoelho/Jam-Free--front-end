@@ -326,6 +326,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
+			// Delete a file
+			deleteFile: fileId => {
+				return fetch(`${baseUrl}/file/${fileId}`, {
+					method: "DELETE",
+					headers: {
+						Authorization: `Bearer ${getStore().user.token}`
+					}
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => {
+						return data;
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

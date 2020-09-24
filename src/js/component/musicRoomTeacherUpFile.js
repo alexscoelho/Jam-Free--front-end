@@ -13,6 +13,7 @@ import { Form, Button, Nav, Col } from "react-bootstrap";
 export const MusicRoomTeacherUpFile = ({ check, setCheck }) => {
 	const { store, actions } = useContext(Context);
 	const [file, setFile] = useState({
+		title: "",
 		instrument: "",
 		typeFile: "",
 		level: "",
@@ -20,13 +21,12 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck }) => {
 		url: "",
 		userId: store.user.userId
 	});
-	console.log(file);
 
 	async function handleSubmit(e) {
-		console.log("test");
 		e.preventDefault();
 		let req = await actions.publishFile(file);
-		if (req === "Success") {
+		console.log(req);
+		if (req[1] === 200) {
 			actions.setMessage({
 				visible: true,
 				type: "success",
@@ -45,6 +45,16 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck }) => {
 
 	return (
 		<Form onSubmit={e => handleSubmit(e)}>
+			<Form.Group>
+				<Form.Label>Title</Form.Label>
+				<Form.Control
+					type="text"
+					placeholder=""
+					name="title"
+					value={file.title}
+					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
+				/>
+			</Form.Group>
 			<Form.Group controlId="formGridState">
 				<Form.Label>Instrument</Form.Label>
 				<Form.Control

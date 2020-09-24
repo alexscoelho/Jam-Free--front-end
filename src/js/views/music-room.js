@@ -26,7 +26,7 @@ export const MusicRoom = () => {
 	let { role } = useParams();
 	let { profile } = store;
 
-	console.log(role, profile.account_type);
+	// console.log(role, profile.account_type);
 
 	const noAccess = (
 		<div>
