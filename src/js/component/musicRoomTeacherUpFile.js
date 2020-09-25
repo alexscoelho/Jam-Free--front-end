@@ -10,7 +10,9 @@ import PropTypes from "prop-types";
 // react boostatrap
 import { Form, Button, Nav, Col } from "react-bootstrap";
 
-export const MusicRoomTeacherUpFile = ({ check, setCheck }) => {
+export const MusicRoomTeacherUpFile = ({ check, setCheck, teacherFiles }) => {
+	console.log("teacherfiles:", teacherFiles);
+
 	const { store, actions } = useContext(Context);
 	const [file, setFile] = useState({
 		title: "",
@@ -41,6 +43,7 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck }) => {
 				errorMessage: req.message
 			});
 		}
+		actions.getFiles();
 	}
 
 	return (
@@ -149,5 +152,6 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck }) => {
 
 MusicRoomTeacherUpFile.propTypes = {
 	check: PropTypes.bool,
-	setCheck: PropTypes.func
+	setCheck: PropTypes.func,
+	teacherFiles: PropTypes.arr
 };

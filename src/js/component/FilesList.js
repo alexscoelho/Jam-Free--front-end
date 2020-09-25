@@ -18,21 +18,20 @@ export const FilesList = () => {
 	let role = account_type.toLowerCase();
 	const [check, setCheck] = useState(true);
 
-	useEffect(() => {
-		actions.getFiles();
-	}, []);
+	// useEffect(() => {
+	// 	actions.getFiles();
+	// }, []);
 
 	let teacherFiles = store.files.filter(file => {
 		// console.log(`${file.user_id}`, store.user.userId);
 		return `${file.userId}` == store.user.userId;
 	});
 
-	const handleClick = fileId => {
-		actions.deleteFile(fileId);
+	async function handleClick(fileId) {
+		await actions.deleteFile(fileId);
 		actions.getFiles();
-	};
+	}
 
-	// console.log(store.files);
 	return (
 		<div className="container">
 			<div className="row">
@@ -49,14 +48,16 @@ export const FilesList = () => {
 							</h6>
 							<div className="video-container">
 								<Form className="md-form">
-									<Dropdown>
-										<Dropdown.Toggle id="dropdown-basic">Filter by</Dropdown.Toggle>
-										<Dropdown.Menu>
-											<Dropdown.Item href="#/action-1">Level</Dropdown.Item>
-											<Dropdown.Item href="#/action-2">Language</Dropdown.Item>
-											<Dropdown.Item href="#/action-3">Topic</Dropdown.Item>
-										</Dropdown.Menu>
-									</Dropdown>
+									{role == "student" ? (
+										<Dropdown>
+											<Dropdown.Toggle id="dropdown-basic">Filter by</Dropdown.Toggle>
+											<Dropdown.Menu>
+												<Dropdown.Item href="#/action-1">Level</Dropdown.Item>
+												<Dropdown.Item href="#/action-2">Language</Dropdown.Item>
+												<Dropdown.Item href="#/action-3">Topic</Dropdown.Item>
+											</Dropdown.Menu>
+										</Dropdown>
+									) : null}
 									<div>
 										{teacherFiles.map((e, index) => {
 											return (
@@ -73,13 +74,17 @@ export const FilesList = () => {
 															<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 																<div className=" float-right">
 																	<span className="btn">
-																		<i className="fas fa-pencil-alt mr-3" />
-																	</span>
-																	<span className="btn">
 																		<i
-																			className="fas fa-trash-alt"
-																			onClick={() => handleClick(e.id)}
+																			className="fas fa-pencil-alt mr-3"
+																			onClick={() => {
+																				setCheck(false);
+																			}}
 																		/>
+																	</span>
+																	<span
+																		className="btn editing"
+																		onClick={() => handleClick(e.id)}>
+																		<i className="fas fa-trash-alt" />
 																	</span>
 																</div>
 																<label className="name lead">{e.title}</label>{" "}
@@ -138,7 +143,7 @@ export const FilesList = () => {
 					</div>
 				) : (
 					<div className="col">
-						<MusicRoomTeacherUpFile check={check} setCheck={setCheck} />
+						<MusicRoomTeacherUpFile check={check} setCheck={setCheck} teacherFiles={teacherFiles} />
 					</div>
 				)}
 			</div>

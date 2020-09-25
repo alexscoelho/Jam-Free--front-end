@@ -1,5 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io";
+	const apiHost = "https://developer.setmore.com/";
+	const apiCreateEvent = "api/v1/bookingapi/appointment/create";
+	const apiToken = "";
 
 	return {
 		// loggedIn: false,
@@ -69,6 +72,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			files: [],
 
+			appointments: [],
+
 			alertMessages: {
 				visible: false,
 				type: "",
@@ -76,6 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				errorMessage: ""
 			}
 		},
+
 		actions: {
 			setMessage: data => {
 				let store = getStore();
@@ -333,6 +339,56 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: {
 						Authorization: `Bearer ${getStore().user.token}`
 					}
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => {
+						return data;
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
+			// Modify a file
+
+			modifyFile: (fileId, targetFile) => {
+				return fetch(`${baseUrl}/file/${fileId}`, {
+					method: "PUT",
+					headers: {
+						"Content-type": "application/json",
+						Authorization: `Bearer ${getStore().user.token}`
+					},
+					body: JSON.stringify(targetFile)
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => {
+						return data;
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
+			// Create appointment
+
+			createAppointment: () => {
+				return fetch(`${apiHost}${apiCreateEvent}`, {
+					method: "POST",
+					headers: {
+						"Content-type": "application/json",
+						Authorization: `Bearer ${apiToken}`
+					},
+					body: JSON.stringify()
 				})
 					.then(resp => {
 						if (!resp.ok) {
