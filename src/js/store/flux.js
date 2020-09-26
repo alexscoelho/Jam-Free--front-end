@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io";
 	const apiHost = "https://developer.setmore.com/";
 	const apiCreateEvent = "api/v1/bookingapi/appointment/create";
+	const apiCreateCustomer = "api/v1/bookingapi/customer/create";
 	const access_token = process.env.SETMORE_ACCESS_KEY;
 
 	return {
@@ -82,6 +83,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			service_key: "s4a63f4ff8ecc12bbbae390ae3b08f6799a544edc",
 
 			profile: {},
+
+			customer: {},
 
 			files: [],
 
@@ -411,6 +414,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						return data;
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
+			// Create customer
+			createCustomer: customer => {
+				return fetch(`${apiHost}${apiCreateCustomer}`, {
+					method: "POST",
+					headers: {
+						"content-type": "application/json",
+						Authorization: `Bearer ${access_token}`
+					},
+					body: JSON.stringify(customer)
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => {
+						return resp;
 					})
 					.catch(err => {
 						return err;

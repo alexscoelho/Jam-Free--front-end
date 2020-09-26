@@ -40,6 +40,15 @@ export const SignUp = props => {
 				language: language
 			};
 
+			// setmore api customer
+			let customer = {
+				first_name: firstName,
+				last_name: lasttName,
+				email_id: email
+			};
+
+			actions.createCustomer(customer);
+
 			let req = await actions.createUser(user); // the is asynchronous, the fetch is in store
 			// call the message buffer
 			console.log("req", req);
