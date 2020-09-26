@@ -6,12 +6,12 @@ import "../../styles/musicRoomStudent.scss";
 import profileImage from "../../img/profile.jpg";
 import { Link, useRouteMatch, Route, Switch } from "react-router-dom";
 
-import { MusicRoomTeacherUpFile } from "../component/musicRoomTeacherUpFile";
+import { MusicRoomTeacherUpFile } from "./musicRoomTeacherUpFile";
 
 // react boostatrap
 import { Button, ListGroup, Dropdown, Form, Nav } from "react-bootstrap";
 
-export const FilesList = () => {
+export const FilesListStudent = () => {
 	const { store, actions } = useContext(Context);
 	let { path, url } = useRouteMatch();
 	let { account_type } = store.profile;
@@ -35,6 +35,7 @@ export const FilesList = () => {
 
 	return (
 		<div className="container">
+			<h1>TEST</h1>
 			<div className="row">
 				{check ? (
 					<div className="col">

@@ -17,7 +17,8 @@ import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 
 // components
-import { FilesList } from "../component/FilesList";
+import { FilesListTeacher } from "../component/FilesListTeacher";
+import { FilesListStudent } from "../component/FilesListStudent";
 // import { MusicRoomTeacherUpFile } from "../component/musicRoomTeacherUpFile";
 
 export const MusicRoom = () => {
@@ -44,11 +45,11 @@ export const MusicRoom = () => {
 	const getContent = () => {
 		// validation, type must come from store caanot be faked
 		if (role === "student" && profile.account_type.toLowerCase() === "student") {
-			return <FilesList />;
+			return <FilesListStudent />;
 		} else if (role === "student" && profile.account_type.toLowerCase() !== "student") {
 			return noAccess;
 		} else if (role === "teacher" && profile.account_type.toLowerCase() === "teacher") {
-			return <FilesList />;
+			return <FilesListTeacher />;
 		} else if (role === "teacher" && profile.account_type.toLowerCase() !== "teacher") {
 			return noAccess;
 		}
