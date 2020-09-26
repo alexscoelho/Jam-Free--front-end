@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 // react-components
@@ -14,6 +14,7 @@ import Col from "react-bootstrap/Col";
 
 export const SignUp = props => {
 	const { store, actions } = useContext(Context);
+	let history = useHistory();
 
 	const [firstName, setFirstName] = useState("");
 	const [lasttName, setLastName] = useState("");
@@ -31,14 +32,6 @@ export const SignUp = props => {
 		if (form.checkValidity() === true) {
 			e.preventDefault();
 			// e.stopPropagation();
-			let user = {
-				first_name: firstName,
-				last_name: lasttName,
-				email: email,
-				password: password,
-				account_type: accountType,
-				language: language
-			};
 
 			// setmore api customer
 			let customer = {
@@ -47,26 +40,39 @@ export const SignUp = props => {
 				email_id: email
 			};
 
-			actions.createCustomer(customer);
+			let createCustomer = await actions.createCustomer(customer);
+			console.log("customer", createCustomer);
+			if (createCustomer instanceof Error === false) {
+				let user = {
+					first_name: firstName,
+					last_name: lasttName,
+					email: email,
+					password: password,
+					account_type: accountType,
+					language: language,
+					customer_id: createCustomer.data.customer.key
+				};
 
-			let req = await actions.createUser(user); // the is asynchronous, the fetch is in store
-			// call the message buffer
-			console.log("req", req);
-			//to set message according to fetch
-			if (req[0] === "Success") {
-				actions.setMessage({
-					visible: true,
-					type: "success",
-					heading: "Success!",
-					errorMessage: "User Created, now you can login"
-				});
-			} else {
-				actions.setMessage({
-					visible: true,
-					type: "danger",
-					heading: "Oops!",
-					errorMessage: req.message
-				});
+				let req = await actions.createUser(user); // the is asynchronous, the fetch is in store
+				// call the message buffer
+				console.log("req", req);
+				//to set message according to fetch
+				if (req[0] === "Success") {
+					actions.setMessage({
+						visible: true,
+						type: "success",
+						heading: "Success!",
+						errorMessage: "User Created, now you can login"
+					});
+					history.push("/login");
+				} else {
+					actions.setMessage({
+						visible: true,
+						type: "danger",
+						heading: "Oops!",
+						errorMessage: req.message
+					});
+				}
 			}
 		}
 		// setValidated(true);
