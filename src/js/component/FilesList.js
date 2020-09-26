@@ -17,6 +17,7 @@ export const FilesList = () => {
 	let { account_type } = store.profile;
 	let role = account_type.toLowerCase();
 	const [check, setCheck] = useState(true);
+	const [fileAction, setFileAction] = useState("");
 
 	// useEffect(() => {
 	// 	actions.getFiles();
@@ -75,14 +76,15 @@ export const FilesList = () => {
 																<div className=" float-right">
 																	<span className="btn">
 																		<i
-																			className="fas fa-pencil-alt mr-3"
+																			className="fas fa-pencil-alt mr-3 editing"
 																			onClick={() => {
 																				setCheck(false);
+																				setFileAction("edit");
 																			}}
 																		/>
 																	</span>
 																	<span
-																		className="btn editing"
+																		className="btn"
 																		onClick={() => handleClick(e.id)}>
 																		<i className="fas fa-trash-alt" />
 																	</span>
@@ -126,6 +128,7 @@ export const FilesList = () => {
 												<Button
 													onClick={() => {
 														setCheck(false);
+														setFileAction("create");
 													}}>
 													Post File
 												</Button>
@@ -143,7 +146,12 @@ export const FilesList = () => {
 					</div>
 				) : (
 					<div className="col">
-						<MusicRoomTeacherUpFile check={check} setCheck={setCheck} teacherFiles={teacherFiles} />
+						<MusicRoomTeacherUpFile
+							check={check}
+							setCheck={setCheck}
+							teacherFiles={teacherFiles}
+							fileAction={fileAction}
+						/>
 					</div>
 				)}
 			</div>

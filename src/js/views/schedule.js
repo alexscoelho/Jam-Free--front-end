@@ -17,28 +17,37 @@ import Container from "react-bootstrap/Container";
 export const Schedule = () => {
 	// state for storing checking and storing available dates
 	const { store, actions } = useContext(Context);
-	const [date, checkDate] = useState(store.teacher[0].availability);
+	// const [date, checkDate] = useState(store.teacher[0].availability);
+
+	const [date, setDate] = useState();
+	const [startTime, setStartTime] = useState();
+	const [endTime, setEndTime] = useState();
+	let appointmentStartTime = `${date}T${startTime}Z`;
+	let appointmentEndTime = `${date}T${endTime}Z`;
+
 	let location = useLocation();
+
 	const handleSubmit = e => {
 		e.preventDefault();
-		checkDate(store.checkAvailabity);
+		let appointment = {
+			staff_key: store.teacher[0].staff_key,
+			service_key: store.service_key,
+			customer_key: store.student[0].customer_key,
+			start_time: appointmentStartTime,
+			end_time: appointmentEndTime,
+			comment: "Test comment",
+			label: "Test Label"
+		};
+		actions.createAppointment(appointment);
+
+		console.log("test:", appointment);
+
+		// checkDate(store.checkAvailabity);
 	};
 
 	// function to generate each item on the list (teachers)
 	const scheduler = () => {
 		return store.teacher.map((item, index) => {
-			// function to loop thru availability array in teacher object
-			// const datesAvailable = () => {
-			// 	return item.availability.map((dates, index) => {
-			// 		return (
-			// 			<Dropdown.Item key={index} href="#/action-1">
-			// 				<Form.Group controlId="formBasicCheckbox">
-			// 					<Form.Check type="checkbox" label={dates} />
-			// 				</Form.Group>
-			// 			</Dropdown.Item>
-			// 		);
-			// 	});
-			// };
 			return (
 				<ListGroup.Item key={index}>
 					<Dropdown>
@@ -46,10 +55,19 @@ export const Schedule = () => {
 							{item.name} - {item.instrument}
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
-							<Form onSubmit={handleSubmit}>
-								<input type="date" onChange={e => checkDate(e.target.value)} />
+							<Form onSubmit={e => handleSubmit(e)}>
+								<input value={date} type="date" onChange={e => setDate(e.target.value)} />
+								<div>
+									{" "}
+									Start Hour:
+									<input type="time" value={startTime} onChange={e => setStartTime(e.target.value)} />
+								</div>
+								<div>
+									{" "}
+									End Hour:
+									<input type="time" value={endTime} onChange={e => setEndTime(e.target.value)} />
+								</div>
 								<button type="submit">Check</button>
-								{/* <input type="submit" /> */}
 							</Form>
 							{/* {datesAvailable()} */}
 						</Dropdown.Menu>
@@ -61,6 +79,7 @@ export const Schedule = () => {
 	return (
 		<Container>
 			<ListGroup variant="flush">{scheduler()}</ListGroup>
+
 			{/* <p>{date}</p> */}
 		</Container>
 	);

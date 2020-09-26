@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io";
 	const apiHost = "https://developer.setmore.com/";
 	const apiCreateEvent = "api/v1/bookingapi/appointment/create";
-	const apiToken = "";
+	const access_token = process.env.SETMORE_ACCESS_KEY;
 
 	return {
 		// loggedIn: false,
@@ -28,46 +28,59 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			teacher: [
 				{
-					name: "John",
+					name: "Troy",
 					instrument: "Guitar",
 					level: "intermediate",
 					availability: [],
-					email: "eljohn@email.com",
-					language: "english"
+					email: "troy@lar.com",
+					language: "english",
+					staff_key: "r93ed1600991200226"
 				},
 				{
-					name: "Jose",
+					name: "Pepe",
 					instrument: "Drums",
 					level: "intermediate",
 					availability: [],
-					email: "eljohn@email.com",
-					language: "english"
-				},
+					email: "pepe2@hotmail.com",
+					language: "english",
+					staff_key: "re4c91601044219801"
+				}
+				// {
+				// 	name: "Alex",
+				// 	instrument: "Piano",
+				// 	level: "intermediate",
+				// 	availability: [],
+				// 	email: "eljohn@email.com",
+				// 	language: "english"
+				// },
+				// {
+				// 	name: "Pedro",
+				// 	instrument: "Maracas",
+				// 	level: "intermediate",
+				// 	availability: [],
+				// 	email: "eljohn@email.com",
+				// 	language: "english"
+				// },
+				// {
+				// 	name: "Farruco",
+				// 	instrument: "Pandereta",
+				// 	level: "intermediate",
+				// 	availability: [],
+				// 	email: "eljohn@email.com",
+				// 	language: "english"
+				// }
+			],
+
+			student: [
 				{
-					name: "Alex",
-					instrument: "Piano",
-					level: "intermediate",
-					availability: [],
-					email: "eljohn@email.com",
-					language: "english"
-				},
-				{
-					name: "Pedro",
-					instrument: "Maracas",
-					level: "intermediate",
-					availability: [],
-					email: "eljohn@email.com",
-					language: "english"
-				},
-				{
-					name: "Farruco",
-					instrument: "Pandereta",
-					level: "intermediate",
-					availability: [],
-					email: "eljohn@email.com",
-					language: "english"
+					first_name: "Alex",
+					email: "alexs@hotmail.com",
+					customer_key: "c3c7dfed24f37b7fbc33189a7544e2bc55c857f46"
 				}
 			],
+
+			service_key: "s4a63f4ff8ecc12bbbae390ae3b08f6799a544edc",
+
 			profile: {},
 
 			files: [],
@@ -120,11 +133,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.setItem("jammfree-userData", JSON.stringify(store.user));
 			},
 
-			// check availability
-			checkAvailabity: date => {
-				let store = getStore();
-				store.teacher.availability[0].includes(date);
-			},
+			// // check availability
+			// checkAvailabity: date => {
+			// 	let store = getStore();
+			// 	store.teacher.availability[0].includes(date);
+			// },
 
 			// sign in
 			createUser: user => {
@@ -381,14 +394,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Create appointment
 
-			createAppointment: () => {
+			createAppointment: appointment => {
 				return fetch(`${apiHost}${apiCreateEvent}`, {
 					method: "POST",
 					headers: {
 						"Content-type": "application/json",
-						Authorization: `Bearer ${apiToken}`
+						Authorization: `Bearer ${access_token}`
 					},
-					body: JSON.stringify()
+					body: JSON.stringify(appointment)
 				})
 					.then(resp => {
 						if (!resp.ok) {
