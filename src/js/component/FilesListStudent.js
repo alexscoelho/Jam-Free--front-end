@@ -19,19 +19,13 @@ export const FilesListStudent = () => {
 	const [check, setCheck] = useState(true);
 	const [fileAction, setFileAction] = useState("");
 
-	// useEffect(() => {
-	// 	actions.getFiles();
-	// }, []);
+	let studentFiles = store.files ? store.files : undefined; //se guardo todos los files in store en la variable
+	// console.log(studentFiles);
 
-	let teacherFiles = store.files.filter(file => {
-		// console.log(`${file.user_id}`, store.user.userId);
-		return `${file.userId}` == store.user.userId;
-	});
-
-	async function handleClick(fileId) {
-		await actions.deleteFile(fileId);
-		actions.getFiles();
-	}
+	const handleOnClick = e => {
+		// studentFiles.filter(e)
+		console.log(e.target.id); // muestra el valor d elo q se clickeo
+	};
 
 	return (
 		<div className="container">
@@ -54,72 +48,90 @@ export const FilesListStudent = () => {
 										<Dropdown>
 											<Dropdown.Toggle id="dropdown-basic">Filter by</Dropdown.Toggle>
 											<Dropdown.Menu>
-												<Dropdown.Item href="#/action-1">Level</Dropdown.Item>
-												<Dropdown.Item href="#/action-2">Language</Dropdown.Item>
-												<Dropdown.Item href="#/action-3">Topic</Dropdown.Item>
+												<Dropdown.Item
+													href="#/action-1"
+													id="level"
+													onClick={e => handleOnClick(e)}>
+													Level
+												</Dropdown.Item>
+												<Dropdown.Item
+													href="#/action-2"
+													id="Language"
+													onClick={e => handleOnClick(e)}>
+													Language
+												</Dropdown.Item>
+												<Dropdown.Item
+													href="#/action-3"
+													id="Instrument"
+													onClick={e => handleOnClick(e)}>
+													Instrument
+												</Dropdown.Item>
 											</Dropdown.Menu>
 										</Dropdown>
 									) : null}
 									<div>
-										{teacherFiles.map((e, index) => {
-											return (
-												<ListGroup key={index}>
-													<ListGroup.Item>
-														<div className="row w-100">
-															<div className="col-12 col-sm-6 col-md-3 px-0">
-																<img
-																	src={profileImage}
-																	alt="Guitar"
-																	className="rounded-circle mx-auto d-block img-fluid"
-																/>
-															</div>
-															<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-																<div className=" float-right">
-																	<span className="btn">
-																		<i
-																			className="fas fa-pencil-alt mr-3 editing"
-																			onClick={() => {
-																				setCheck(false);
-																				setFileAction("edit");
-																			}}
-																		/>
-																	</span>
-																	<span
-																		className="btn"
-																		onClick={() => handleClick(e.id)}>
-																		<i className="fas fa-trash-alt" />
-																	</span>
+										{studentFiles != undefined &&
+											studentFiles.map((e, index) => {
+												return (
+													<ListGroup key={index}>
+														<ListGroup.Item>
+															<div className="row w-100">
+																<div className="col-12 col-sm-6 col-md-3 px-0">
+																	<img
+																		src={profileImage}
+																		alt="Guitar"
+																		className="rounded-circle mx-auto d-block img-fluid"
+																	/>
 																</div>
-																<label className="name lead">{e.title}</label>{" "}
-																<label className="name lead">{e.instrument}</label>{" "}
-																{/*name, how is labeled at API*/}
-																<br />
-																<i className="text-muted mr-3" />
-																<span className="text-muted">{e.level}</span>
-																<span className="text-muted">{e.language}</span>{" "}
-																{/*type, how is labeled at API*/}
-																<br />
-																<span
-																	className="text-muted mr-3"
-																	data-toggle="tooltip"
-																	title=""
-																	// data-original-title="(870) 288-4149"
-																/>
-																<a
-																	className="text-dark"
-																	href={e.url}
-																	target="_blank"
-																	rel="noopener noreferrer">
-																	<i className="far fa-eye" />
-																</a>
-																{/*phone, how is labeled at API*/}
-																<br />
+																<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
+																	<div className=" float-right">
+																		{/* <span className="btn">
+																			<i
+																				className="fas fa-pencil-alt mr-3 editing"
+																				onClick={() => {
+																					setCheck(false);
+																					setFileAction("edit");
+																				}}
+																			/>
+																		</span> */}
+																		{/* <span
+																			className="btn"
+																			onClick={() => handleClick(e.id)}>
+																			<i className="fas fa-trash-alt" />
+																		</span> */}
+																	</div>
+																	<label className="name lead">{e.title}</label>{" "}
+																	<label className="name lead">{e.instrument}</label>{" "}
+																	{/*name, how is labeled at API*/}
+																	<br />
+																	<i className="text-muted mr-3" />
+																	<span className="text-muted">{e.level}</span>
+																	<span className="text-muted">
+																		{e.language}
+																	</span>{" "}
+																	{/*type, how is labeled at API*/}
+																	<br />
+																	<span
+																		className="text-muted mr-3"
+																		data-toggle="tooltip"
+																		title=""
+																		// data-original-title="(870) 288-4149"
+																	/>
+																	<a
+																		className="text-dark"
+																		href={e.url}
+																		target="_blank"
+																		rel="noopener noreferrer">
+																		<i className="far fa-eye" />
+																	</a>
+																	{/*phone, how is labeled at API*/}
+																	<br />
+																</div>
 															</div>
-														</div>
-													</ListGroup.Item>
-												</ListGroup>
-											);
-										})}
+														</ListGroup.Item>
+													</ListGroup>
+												);
+											})}
 									</div>
 									{role == "teacher" ? (
 										<div className="file-field-video  d-flex justify-content-center">
