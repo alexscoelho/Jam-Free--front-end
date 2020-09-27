@@ -27,12 +27,13 @@ export const Schedule = () => {
 
 	let location = useLocation();
 
-	const handleSubmit = e => {
+	const handleSubmit = (e, index) => {
 		e.preventDefault();
+
 		let appointment = {
-			staff_key: store.teacher[0].staff_key,
+			staff_key: store.teacher[index].staff_key,
 			service_key: store.service_key,
-			customer_key: store.student[0].customer_key,
+			customer_key: store.profile.customer_id,
 			start_time: appointmentStartTime,
 			end_time: appointmentEndTime,
 			comment: "Test comment",
@@ -55,7 +56,7 @@ export const Schedule = () => {
 							{item.name} - {item.instrument}
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
-							<Form onSubmit={e => handleSubmit(e)}>
+							<Form onSubmit={e => handleSubmit(e, index)}>
 								<input value={date} type="date" onChange={e => setDate(e.target.value)} />
 								<div>
 									{" "}

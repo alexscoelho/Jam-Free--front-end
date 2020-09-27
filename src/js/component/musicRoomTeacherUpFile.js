@@ -11,13 +11,13 @@ import PropTypes from "prop-types";
 import { Form, Button, Nav, Col } from "react-bootstrap";
 
 export const MusicRoomTeacherUpFile = ({ check, setCheck, teacherFiles, fileAction }) => {
-	// console.log("teacherfiles:", teacherFiles);
-	console.log("fileAction:", fileAction);
+	console.log("teacherfiles:", teacherFiles);
+	// console.log("fileAction:", fileAction);
 
 	const { store, actions } = useContext(Context);
 
 	const [file, setFile] = useState({
-		title: "",
+		title: fileAction === "edit" ? teacherFiles.title : "",
 		instrument: "",
 		typeFile: "",
 		level: "",

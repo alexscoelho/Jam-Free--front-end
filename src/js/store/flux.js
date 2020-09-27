@@ -2,11 +2,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io";
 	const apiHost = "https://developer.setmore.com/";
 	const apiCreateEvent = "api/v1/bookingapi/appointment/create";
-	const access_token = process.env.SETMORE_ACCESS_KEY;
+	const apiCreateCustomer = "api/v1/bookingapi/customer/create";
+	const apiGetCustomer = "api/v1/bookingapi/customer?email=";
+	const refresh_token = process.env.SETMORE_REFRESH_TOKEN;
 
 	return {
 		// loggedIn: false,
 		store: {
+			setmore: {
+				token: null
+			},
 			user: {
 				loggedIn: false,
 				userType: null,
@@ -82,6 +87,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			service_key: "s4a63f4ff8ecc12bbbae390ae3b08f6799a544edc",
 
 			profile: {},
+
+			customer: {},
 
 			files: [],
 
@@ -399,7 +406,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "POST",
 					headers: {
 						"Content-type": "application/json",
-						Authorization: `Bearer ${access_token}`
+						Authorization: `Bearer ${getStore().setmore.token}`
 					},
 					body: JSON.stringify(appointment)
 				})
@@ -416,6 +423,77 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return err;
 					});
 			},
+
+			// Create customer
+			createCustomer: customer => {
+				return fetch(`${apiHost}${apiCreateCustomer}`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${getStore().setmore.token}`
+					},
+					body: JSON.stringify(customer)
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => {
+						// let store = getStore();
+						// store.profile = data.customer.key;
+						// setStore(store);
+						return data;
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
+			// Generate Setmore token
+			getSetmoreToken: () => {
+				return fetch(`${apiHost}api/v1/o/oauth2/token?refreshToken=${refresh_token}`)
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(res => {
+						let store = getStore();
+						store.setmore.token = res.data.token.access_token;
+						setStore(store);
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
+			// Get customer detail
+			// getCustomer: () => {
+			// 	return fetch(`${apiHost}${apiGetCustomer}`, {
+			// 		method: "GET",
+			// 		headers: {
+			// 			"content-type": "application/json",
+			// 			Authorization: `Bearer ${getStore().user.token}`
+			// 		}
+			// 	})
+			// 		.then(resp => {
+			// 			if (!resp.ok) {
+			// 				throw new Error(resp.statusText);
+			// 			}
+			// 			return resp.json();
+			// 		})
+			// 		.then(data => {
+			// 			let store = getStore();
+			// 			store.customer = data.customer;
+			// 			setStore(store);
+			// 		})
+			// 		.catch(err => {
+			// 			return err;
+			// 		});
+			// },
 
 			changeColor: (index, color) => {
 				//get the store
