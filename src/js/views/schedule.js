@@ -27,7 +27,7 @@ export const Schedule = () => {
 
 	let location = useLocation();
 
-	const handleSubmit = (e, index) => {
+	async function handleSubmit(e, index) {
 		e.preventDefault();
 
 		let appointment = {
@@ -39,12 +39,27 @@ export const Schedule = () => {
 			comment: "Test comment",
 			label: "Test Label"
 		};
-		actions.createAppointment(appointment);
 
-		console.log("test:", appointment);
+		let req = await actions.createAppointment(appointment);
+
+		if (req.response === true) {
+			actions.setMessage({
+				visible: true,
+				type: "success",
+				heading: "Success!",
+				errorMessage: req.msg
+			});
+		} else {
+			actions.setMessage({
+				visible: true,
+				type: "danger",
+				heading: "Ooops!",
+				errorMessage: "Please try again later"
+			});
+		}
 
 		// checkDate(store.checkAvailabity);
-	};
+	}
 
 	// function to generate each item on the list (teachers)
 	const scheduler = () => {
@@ -57,18 +72,24 @@ export const Schedule = () => {
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
 							<Form onSubmit={e => handleSubmit(e, index)}>
-								<input value={date} type="date" onChange={e => setDate(e.target.value)} />
-								<div>
+								<div className="title-selector">
+									Date:
+									<input value={date} type="date" onChange={e => setDate(e.target.value)} />
+								</div>
+								<div className="title-selector">
 									{" "}
 									Start Hour:
 									<input type="time" value={startTime} onChange={e => setStartTime(e.target.value)} />
 								</div>
-								<div>
+								<div className="title-selector">
 									{" "}
 									End Hour:
 									<input type="time" value={endTime} onChange={e => setEndTime(e.target.value)} />
 								</div>
-								<button type="submit">Check</button>
+								{/* <button type="submit">Check</button> */}
+								<Button type="submit" block>
+									Check
+								</Button>
 							</Form>
 							{/* {datesAvailable()} */}
 						</Dropdown.Menu>

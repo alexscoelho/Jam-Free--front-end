@@ -33,7 +33,6 @@ export const Profile = () => {
 	const [isDisabled, setIsDisabled] = useState(true);
 
 	// let history = useHistory();
-	console.log("username:", username);
 
 	async function handleSubmit(e) {
 		// actions.checkToken();
@@ -42,6 +41,7 @@ export const Profile = () => {
 		const form = e.currentTarget;
 		if (form.checkValidity() === true) {
 			e.preventDefault();
+
 			let target_user = {
 				first_name: firstName,
 				last_name: lastName,
@@ -52,6 +52,11 @@ export const Profile = () => {
 				level: level,
 				description: description
 			};
+
+			if (isDisabled === true) {
+				delete target_user.username;
+			}
+
 			let req = await actions.modifyUser(target_user);
 			console.log("req:", req);
 			if (req[0] === "Success") {

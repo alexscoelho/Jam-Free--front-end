@@ -376,14 +376,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Modify a file
 
-			modifyFile: (fileId, targetFile) => {
+			modifyFile: (file, fileId) => {
 				return fetch(`${baseUrl}/file/${fileId}`, {
 					method: "PUT",
 					headers: {
 						"Content-type": "application/json",
 						Authorization: `Bearer ${getStore().user.token}`
 					},
-					body: JSON.stringify(targetFile)
+					body: JSON.stringify(file)
 				})
 					.then(resp => {
 						if (!resp.ok) {

@@ -19,6 +19,9 @@ export const FilesListTeacher = () => {
 	const [check, setCheck] = useState(true);
 	const [fileAction, setFileAction] = useState("");
 
+	const [targetFile, setTargetFile] = useState("");
+	console.log("targetfile:", targetFile);
+
 	// useEffect(() => {
 	// 	actions.getFiles();
 	// }, []);
@@ -80,6 +83,7 @@ export const FilesListTeacher = () => {
 																			onClick={() => {
 																				setCheck(false);
 																				setFileAction("edit");
+																				setTargetFile(index);
 																			}}
 																		/>
 																	</span>
@@ -149,7 +153,7 @@ export const FilesListTeacher = () => {
 						<MusicRoomTeacherUpFile
 							check={check}
 							setCheck={setCheck}
-							teacherFiles={teacherFiles}
+							singleFile={teacherFiles[targetFile]}
 							fileAction={fileAction}
 						/>
 					</div>

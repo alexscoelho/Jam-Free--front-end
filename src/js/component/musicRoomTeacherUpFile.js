@@ -5,46 +5,71 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/musicRoomTeacherUpFile.scss";
 import { Context } from "../store/appContext";
-import PropTypes from "prop-types";
+import PropTypes, { array } from "prop-types";
 
 // react boostatrap
 import { Form, Button, Nav, Col } from "react-bootstrap";
 
-export const MusicRoomTeacherUpFile = ({ check, setCheck, teacherFiles, fileAction }) => {
-	console.log("teacherfiles:", teacherFiles);
-	// console.log("fileAction:", fileAction);
-
+export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction }) => {
 	const { store, actions } = useContext(Context);
 
 	const [file, setFile] = useState({
-		title: fileAction === "edit" ? teacherFiles.title : "",
-		instrument: "",
-		typeFile: "",
-		level: "",
-		language: "",
-		url: "",
+		title: fileAction === "edit" ? singleFile.title : "",
+		instrument: fileAction === "edit" ? singleFile.instrument : "",
+		typeFile: fileAction === "edit" ? singleFile.typeFile : "",
+		level: fileAction === "edit" ? singleFile.level : "",
+		language: fileAction === "edit" ? singleFile.language : "",
+		url: fileAction === "edit" ? singleFile.url : "",
 		userId: store.user.userId
 	});
 
+	// console.log("singlefile:", singleFile.id);
+
 	async function handleSubmit(e) {
 		e.preventDefault();
-		let req = await actions.publishFile(file);
-		console.log(req);
-		if (req[1] === 200) {
-			actions.setMessage({
-				visible: true,
-				type: "success",
-				heading: "Success!",
-				errorMessage: "You added a new publish to music room"
-			});
+
+		// create a new file
+		if (fileAction === "create") {
+			let req = await actions.publishFile(file);
+
+			console.log(req);
+			if (req[1] === 200) {
+				actions.setMessage({
+					visible: true,
+					type: "success",
+					heading: "Success!",
+					errorMessage: "You added a new publish to music room"
+				});
+			} else {
+				actions.setMessage({
+					visible: true,
+					type: "danger",
+					heading: "Ooops!",
+					errorMessage: req.message
+				});
+			}
 		} else {
-			actions.setMessage({
-				visible: true,
-				type: "danger",
-				heading: "Ooops!",
-				errorMessage: req.message
-			});
+			// edit existing file
+			let req = await actions.modifyFile(file, singleFile.id);
+
+			console.log(req);
+			if (req[1] === 200) {
+				actions.setMessage({
+					visible: true,
+					type: "success",
+					heading: "Success!",
+					errorMessage: "File modified"
+				});
+			} else {
+				actions.setMessage({
+					visible: true,
+					type: "danger",
+					heading: "Ooops!",
+					errorMessage: req.message
+				});
+			}
 		}
+
 		actions.getFiles();
 	}
 
@@ -138,9 +163,15 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, teacherFiles, fileActi
 					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
 				/>
 			</Form.Group>
-			<Button variant="primary" type="submit">
-				Publish
-			</Button>
+			{fileAction === "create" ? (
+				<Button variant="primary" type="submit">
+					Publish
+				</Button>
+			) : (
+				<Button variant="primary" type="submit">
+					Save Changes
+				</Button>
+			)}
 			<Button
 				onClick={() => {
 					setCheck(true);
@@ -155,6 +186,6 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, teacherFiles, fileActi
 MusicRoomTeacherUpFile.propTypes = {
 	check: PropTypes.bool,
 	setCheck: PropTypes.func,
-	teacherFiles: PropTypes.arr,
+	singleFile: PropTypes.arr,
 	fileAction: PropTypes.string
 };
