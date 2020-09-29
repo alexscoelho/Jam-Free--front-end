@@ -2,13 +2,18 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+
 footer.footer.mt-auto.py-3.text-center{ 
-    border-top: 2px solid
+   border-top:  1px solid rgba(0, 0, 0, 0.125);
+    // border-top: 2px solid
 }
 
 .profile-left {
     @media screen and (min-width: 767px){
-        border-right: 1px solid; 
+        // border-right: 1px solid; 
+        border-right: 1px solid rgba(0, 0, 0, 0.125);
+        background-color: #fdfdfe;
+        
     }
     
     img{
@@ -101,4 +106,15 @@ footer i {
     color: #818182;
     background-color: #fdfdfe;
     border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.profile-right {
+    margin: 0 auto;
+}
+
+.profile-info-card {
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    color: #818182;
+    background-color: #fdfdfe;
 }

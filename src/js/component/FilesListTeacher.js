@@ -41,15 +41,15 @@ export const FilesListTeacher = () => {
 			<div className="row">
 				{check ? (
 					<div className="col">
-						<h1>Music Room</h1>
-						<br />
+						{/* <h1>Music Room</h1>
+						<br /> */}
 
 						<div className="container d-flex justify-content-center flex-column flex">
-							<h2>Files</h2>
+							{/* <h2>Files</h2>
 							<h6>
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 								incididunt ut labore et dolore magna aliqua.{" "}
-							</h6>
+							</h6> */}
 							<div className="video-container overflow-auto">
 								<Form className="md-form">
 									{role == "student" ? (
