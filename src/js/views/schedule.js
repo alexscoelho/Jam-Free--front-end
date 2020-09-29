@@ -65,7 +65,7 @@ export const Schedule = () => {
 	const scheduler = () => {
 		return store.teacher.map((item, index) => {
 			return (
-				<ListGroup.Item key={index}>
+				<ListGroup.Item key={index} action variant="light">
 					<Dropdown>
 						<Dropdown.Toggle variant="primary" id="dropdown-basic">
 							{item.name} - {item.instrument}
@@ -74,17 +74,27 @@ export const Schedule = () => {
 							<Form onSubmit={e => handleSubmit(e, index)}>
 								<div className="title-selector">
 									Date:
-									<input value={date} type="date" onChange={e => setDate(e.target.value)} />
+									<input value={date} type="date" onChange={e => setDate(e.target.value)} required />
 								</div>
 								<div className="title-selector">
 									{" "}
 									Start Hour:
-									<input type="time" value={startTime} onChange={e => setStartTime(e.target.value)} />
+									<input
+										type="time"
+										value={startTime}
+										onChange={e => setStartTime(e.target.value)}
+										required
+									/>
 								</div>
 								<div className="title-selector">
 									{" "}
 									End Hour:
-									<input type="time" value={endTime} onChange={e => setEndTime(e.target.value)} />
+									<input
+										type="time"
+										value={endTime}
+										onChange={e => setEndTime(e.target.value)}
+										required
+									/>
 								</div>
 								{/* <button type="submit">Check</button> */}
 								<Button type="submit" block>

@@ -164,11 +164,11 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 				/>
 			</Form.Group>
 			{fileAction === "create" ? (
-				<Button variant="primary" type="submit">
+				<Button variant="primary" type="submit" className="mr-2">
 					Publish
 				</Button>
 			) : (
-				<Button variant="primary" type="submit">
+				<Button variant="primary" type="submit" className="mr-2">
 					Save Changes
 				</Button>
 			)}

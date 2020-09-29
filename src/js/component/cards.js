@@ -31,7 +31,7 @@ export const Cards = () => {
 						text="dark">
 						<Card.Img variant="top" src={profileGirl} />
 						<Card.Body>
-							<Card.Title>{item.first_name}</Card.Title>
+							<Card.Title>{item.name}</Card.Title>
 							<Card.Text>{item.instrument}</Card.Text>
 							<Card.Text>{item.level}</Card.Text>
 						</Card.Body>

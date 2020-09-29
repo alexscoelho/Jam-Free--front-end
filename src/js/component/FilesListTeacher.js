@@ -50,7 +50,7 @@ export const FilesListTeacher = () => {
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 								incididunt ut labore et dolore magna aliqua.{" "}
 							</h6>
-							<div className="video-container">
+							<div className="video-container overflow-auto">
 								<Form className="md-form">
 									{role == "student" ? (
 										<Dropdown>
@@ -66,8 +66,14 @@ export const FilesListTeacher = () => {
 										{teacherFiles.map((e, index) => {
 											return (
 												<ListGroup key={index}>
-													<ListGroup.Item>
-														<div className="row w-100">
+													<ListGroup.Item
+														as="a"
+														action
+														variant="light"
+														href={e.url}
+														target="_blank"
+														rel="noopener noreferrer">
+														<div className="row w-100 ml-0">
 															<div className="col-12 col-sm-6 col-md-3 px-0">
 																<img
 																	src={profileImage}
@@ -75,47 +81,57 @@ export const FilesListTeacher = () => {
 																	className="rounded-circle mx-auto d-block img-fluid"
 																/>
 															</div>
-															<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
+															<div className="col-12 col-sm-6 col-md-9 text-center pr-0 text-sm-left">
 																<div className=" float-right">
-																	<span className="btn">
-																		<i
-																			className="fas fa-pencil-alt mr-3 editing"
-																			onClick={() => {
-																				setCheck(false);
-																				setFileAction("edit");
-																				setTargetFile(index);
-																			}}
-																		/>
-																	</span>
-																	<span
-																		className="btn"
-																		onClick={() => handleClick(e.id)}>
+																	<Button
+																		className="edit-buttonfile"
+																		onClick={e => {
+																			e.preventDefault();
+																			setCheck(false);
+																			setFileAction("edit");
+																			setTargetFile(index);
+																		}}>
+																		<i className="fas fa-pencil-alt mr-3 editing" />
+																	</Button>
+																	<Button
+																		onClick={() => {
+																			handleClick(e.id);
+																		}}>
 																		<i className="fas fa-trash-alt" />
-																	</span>
+																	</Button>
 																</div>
-																<label className="name lead">{e.title}</label>{" "}
-																<label className="name lead">{e.instrument}</label>{" "}
-																{/*name, how is labeled at API*/}
-																<br />
-																<i className="text-muted mr-3" />
-																<span className="text-muted">{e.level}</span>
-																<span className="text-muted">{e.language}</span>{" "}
-																{/*type, how is labeled at API*/}
-																<br />
-																<span
-																	className="text-muted mr-3"
-																	data-toggle="tooltip"
-																	title=""
-																	// data-original-title="(870) 288-4149"
-																/>
-																<a
-																	className="text-dark"
-																	href={e.url}
-																	target="_blank"
-																	rel="noopener noreferrer">
-																	<i className="far fa-eye" />
-																</a>
-																{/*phone, how is labeled at API*/}
+																<div className="list-info-wrapper">
+																	<label className="name lead d-flex">
+																		{e.title}
+																	</label>{" "}
+																	<br />
+																	<label className="name lead">
+																		{e.instrument}
+																	</label>{" "}
+																	{/*name, how is labeled at API*/}
+																	<br />
+																	<span className="text-muted">{e.level}</span>
+																	<br />
+																	<span className="text-muted">
+																		{e.language}
+																	</span>{" "}
+																	{/*type, how is labeled at API*/}
+																	<br />
+																	<span
+																		className="text-muted mr-3"
+																		data-toggle="tooltip"
+																		title=""
+																		// data-original-title="(870) 288-4149"
+																	/>
+																	{/* <a
+																		className="text-dark"
+																		href={e.url}
+																		target="_blank"
+																		rel="noopener noreferrer">
+																		<i className="far fa-eye" />
+																	</a> */}
+																	{/*phone, how is labeled at API*/}
+																</div>
 																<br />
 															</div>
 														</div>
@@ -126,19 +142,19 @@ export const FilesListTeacher = () => {
 									</div>
 									{role == "teacher" ? (
 										<div className="file-field-video  d-flex justify-content-center">
-											<div className="btn btn-primary btn-sm float-left">
-												{/* <Button>Post a File</Button> */}
+											{/* <div className="btn btn-primary btn-sm float-left"> */}
+											{/* <Button>Post a File</Button> */}
 
-												<Button
+											{/* <Button
 													onClick={() => {
 														setCheck(false);
 														setFileAction("create");
 													}}>
 													Post File
-												</Button>
-												{/* <span>Post a File </span> */}
-												{/* <input type="file" /> */}
-											</div>
+												</Button> */}
+											{/* <span>Post a File </span> */}
+											{/* <input type="file" /> */}
+											{/* </div> */}
 											{/* <div className="file-path-wrapper">
 								<input className="file-path validate" type="text" placeholder="Upload your file" />
 							</div> */}
@@ -146,6 +162,14 @@ export const FilesListTeacher = () => {
 									) : null}
 								</Form>
 							</div>
+							<Button
+								className="post-filebutton"
+								onClick={() => {
+									setCheck(false);
+									setFileAction("create");
+								}}>
+								Post File
+							</Button>
 						</div>
 					</div>
 				) : (

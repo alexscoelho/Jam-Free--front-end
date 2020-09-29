@@ -82,3 +82,23 @@ footer i {
 .title-selector input {
     margin: 5px
 }
+
+.video-container {
+    max-height: 600px
+}
+
+.post-filebutton {
+    width: 100px;
+    margin: 5px auto;
+}
+
+.edit-buttonfile {
+    width: 44px;
+    margin: 7px
+}
+
+.list-group-item-light.list-group-item-action.active {
+    color: #818182;
+    background-color: #fdfdfe;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
