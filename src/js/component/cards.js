@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import profileImage from "../../img/profile.jpg";
 import profileGirl from "../../img/girl.avatar.png";
+import { TypeAvatar } from "./typeAvatar";
 
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
@@ -29,7 +30,10 @@ export const Cards = () => {
 						style={{ width: "18rem" }}
 						bg="light"
 						text="dark">
-						<Card.Img variant="top" src={profileGirl} />
+						{/* <Card.Img variant="top" src={profileGirl} /> */}
+
+						<TypeAvatar type={item.instrument} />
+
 						<Card.Body>
 							<Card.Title>{item.name}</Card.Title>
 							<Card.Text>{item.instrument}</Card.Text>

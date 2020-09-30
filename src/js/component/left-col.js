@@ -5,13 +5,15 @@ import { Link, useLocation } from "react-router-dom";
 // react-bootstrap
 import Nav from "react-bootstrap/Nav";
 import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
+
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Button from "react-bootstrap/Button";
+
+import { TypeAvatar } from "./typeAvatar";
 
 export const LeftCol = props => {
 	let location = useLocation();
@@ -21,7 +23,7 @@ export const LeftCol = props => {
 
 		<Col xs={12} md={3} className="profile-left w-100 align-items-center">
 			<div className="profile-wrapper d-flex flex-column align-items-center">
-				<Image src="https://via.placeholder.com/150/0000FF/808080" roundedCircle />
+				<TypeAvatar />
 				<div className="profile-footer">
 					<h5>John Doe</h5>
 					<p>Pembroke Pines, FL</p>
