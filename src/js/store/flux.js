@@ -457,21 +457,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Generate Setmore token
 			getSetmoreToken: () => {
-				return fetch(`${apiHost}api/v1/o/oauth2/token?refreshToken=${refresh_token}`)
-					.then(resp => {
-						if (!resp.ok) {
-							throw new Error(resp.statusText);
-						}
-						return resp.json();
-					})
-					.then(res => {
-						let store = getStore();
-						store.setmore.token = res.data.token.access_token;
-						setStore(store);
-					})
-					.catch(err => {
-						return err;
-					});
+				if (getStore().setmore.token == null) {
+					return fetch(`${apiHost}api/v1/o/oauth2/token?refreshToken=${refresh_token}`)
+						.then(resp => {
+							if (!resp.ok) {
+								throw new Error(resp.statusText);
+							}
+							return resp.json();
+						})
+						.then(res => {
+							let store = getStore();
+							store.setmore.token = res.data.token.access_token;
+							setStore(store);
+						})
+						.catch(err => {
+							return err;
+						});
+				}
 			},
 
 			// Get appointments detail
@@ -480,7 +482,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "GET",
 					headers: {
 						"content-type": "application/json",
-						Authorization: `Bearer ${newToken}`
+						Authorization: `Bearer ${getStore().setmore.token}`
 					}
 				})
 					.then(resp => {
