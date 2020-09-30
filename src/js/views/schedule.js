@@ -6,6 +6,7 @@ import { Context } from "../store/appContext";
 
 // components
 import { LeftCol } from "../component/left-col";
+import { AppointsmentsDetails } from "../component/AppointmentsDetail";
 
 // react bootstrap
 import ListGroup from "react-bootstrap/ListGroup";
@@ -113,6 +114,7 @@ export const Schedule = () => {
 			<ListGroup variant="flush">{scheduler()}</ListGroup>
 
 			{/* <p>{date}</p> */}
+			<AppointsmentsDetails />
 		</Container>
 	);
 };

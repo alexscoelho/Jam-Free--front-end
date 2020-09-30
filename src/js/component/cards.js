@@ -30,9 +30,9 @@ export const Cards = () => {
 						style={{ width: "18rem" }}
 						bg="light"
 						text="dark">
-						{/* <Card.Img variant="top" src={profileGirl} /> */}
+						<Card.Img variant="top" src={profileGirl} />
 
-						<TypeAvatar type={item.instrument} />
+						{/* <TypeAvatar type={item.instrument} /> */}
 
 						<Card.Body>
 							<Card.Title>{item.name}</Card.Title>

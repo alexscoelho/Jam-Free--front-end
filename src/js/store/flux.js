@@ -3,8 +3,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const apiHost = "https://developer.setmore.com/";
 	const apiCreateEvent = "api/v1/bookingapi/appointment/create";
 	const apiCreateCustomer = "api/v1/bookingapi/customer/create";
-	const apiGetCustomer = "api/v1/bookingapi/customer?email=";
+	// const apiGetCustomer = "api/v1/bookingapi/customer?email=";
+	const apiGetAppointment =
+		"api/v1/bookingapi/appointments?startDate=30-09-2020&endDate=06-10-2020&customerDetails=true";
 	const refresh_token = process.env.SETMORE_REFRESH_TOKEN;
+	const newToken =
+		"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NldG1vcmUuZnVsbGF1dGguY29tIiwiaWF0IjoxNjAxNDc0MDM2LCJwcm9qX2lkIjoib2xkOnNldG1vcmUiLCJ0eXBlIjoidXNlciIsInN1YiI6Ijc0MzJlY2FiLTYyYzctNDQzZi04MTQ3LWM4OGRjNDdkODkwMiIsImV4cCI6MTYwMTQ4MTIzNiwianRpIjoiZTg2ZGFhbXVSczBGMWRRbiJ9.akA7swEj8ROT3888Wu7Y3D4nbiol5oVJqZpi1cFPOsQ";
 
 	return {
 		// loggedIn: false,
@@ -470,30 +474,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			// Get customer detail
-			// getCustomer: () => {
-			// 	return fetch(`${apiHost}${apiGetCustomer}`, {
-			// 		method: "GET",
-			// 		headers: {
-			// 			"content-type": "application/json",
-			// 			Authorization: `Bearer ${getStore().user.token}`
-			// 		}
-			// 	})
-			// 		.then(resp => {
-			// 			if (!resp.ok) {
-			// 				throw new Error(resp.statusText);
-			// 			}
-			// 			return resp.json();
-			// 		})
-			// 		.then(data => {
-			// 			let store = getStore();
-			// 			store.customer = data.customer;
-			// 			setStore(store);
-			// 		})
-			// 		.catch(err => {
-			// 			return err;
-			// 		});
-			// },
+			// Get appointments detail
+			getAppointments: () => {
+				return fetch(`${apiHost}${apiGetAppointment}`, {
+					method: "GET",
+					headers: {
+						"content-type": "application/json",
+						Authorization: `Bearer ${newToken}`
+					}
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(response => {
+						let store = getStore();
+						store.appointments = response.data.appointments;
+						setStore(store);
+					})
+					.catch(err => {
+						return err;
+					});
+			},
 
 			changeColor: (index, color) => {
 				//get the store
