@@ -14,6 +14,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export const Schedule = () => {
 	// state for storing checking and storing available dates
@@ -111,10 +113,19 @@ export const Schedule = () => {
 	};
 	return (
 		<Container>
-			<ListGroup variant="flush">{scheduler()}</ListGroup>
-
-			{/* <p>{date}</p> */}
-			<AppointsmentsDetails />
+			<Row>
+				<Col>
+					<h4>Set up an appointment</h4>
+					<ListGroup variant="flush">{scheduler()}</ListGroup>
+				</Col>
+			</Row>
+			<Row className="mt-4">
+				{/* <p>{date}</p> */}
+				<Col>
+					<h4>This week schedule</h4>
+					<AppointsmentsDetails />
+				</Col>
+			</Row>
 		</Container>
 	);
 };
