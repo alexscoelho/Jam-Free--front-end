@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Link, useRouteMatch, Route, Switch } from "react-router-dom";
 
 // react bootstrap
-import ListGroup from "react-bootstrap/ListGroup";
+import { ListGroup, Popover, OverlayTrigger, Container, Row, Col } from "react-bootstrap/";
 
 export const AppointsmentsDetails = () => {
 	const { store, actions } = useContext(Context);
@@ -24,13 +24,34 @@ export const AppointsmentsDetails = () => {
 		let currentTeacher = store.teacher.filter(teacher => {
 			return teacher.staff_key == e.staff_key;
 		});
-		console.log("currentTeacher:", currentTeacher);
+
+		const popover = (
+			<Popover id="popover-basic" rootClose="true">
+				<Popover.Title as="h3">Session details</Popover.Title>
+
+				<Popover.Content>
+					<div>Teacher email: {currentTeacher[0].email}</div>
+					<div>Time: {d.toTimeString()}</div>
+
+					{/* <Container>
+						<Row>
+							<Col></Col>
+						</Row>
+                        <Row>
+							<Col>Teacher email: {currentTeacher[0].email}</Col>
+						</Row>
+					</Container> */}
+				</Popover.Content>
+			</Popover>
+		);
+
 		return (
 			<ListGroup key={index}>
-				<ListGroup.Item>
-					You have an appointment on {d.toDateString()} at {d.getUTCHours()}:{d.getUTCMinutes()} with{" "}
-					{currentTeacher[0].name}
-				</ListGroup.Item>
+				<OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
+					<ListGroup.Item action>
+						You have an appointment on {d.toDateString()} with {currentTeacher[0].name}
+					</ListGroup.Item>
+				</OverlayTrigger>
 			</ListGroup>
 		);
 	});
