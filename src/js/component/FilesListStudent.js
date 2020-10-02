@@ -22,21 +22,28 @@ export const FilesListStudent = () => {
 	const [filterType, setFilterType] = useState("");
 	const [option, setOption] = useState("");
 
-	let studentFiles = store.files.filter(file => {
-		if (filterType === "") {
-			// all files
-			return file;
-		} else if (filterType === "Level") {
-			return;
-		}
-	}); //? store.files : undefined; //se guardo todos los files in store en la variable
+	// let studentFiles =
+	// 	store.files.filter(file => {
+	// 		if (filterType === "") {
+	// 			// all files
+	// 			return file;
+	// 		} else if (filterType === "Level") {
+	// 			return;
+	// 		}
+	//     })
+	//? store.files : undefined; //se guardo todos los files in store en la variable
 	// console.log(studentFiles);
 
 	const handleClickSelect = e => {
 		setOption(e.target.value);
-		console.log(option);
+		console.log(e.target.value);
 	};
-	console.log(filterType);
+
+	const handleFilterChange = value => {
+		setFilterType(value);
+		setOption("");
+	};
+
 	return (
 		<div className="container">
 			<div className="row">
@@ -61,106 +68,115 @@ export const FilesListStudent = () => {
 													<Dropdown.Item
 														id="level"
 														onClick={e => {
-															setFilterType("Level");
+															handleFilterChange("Level");
 														}}>
 														Level
 													</Dropdown.Item>
 													<Dropdown.Item
 														id="Language"
 														onClick={e => {
-															setFilterType("Language");
+															handleFilterChange("Language");
 														}}>
 														Language
 													</Dropdown.Item>
 													<Dropdown.Item
 														id="Instrument"
 														onClick={e => {
-															setFilterType("Instrument");
+															handleFilterChange("Instrument");
 														}}>
 														Instrument
 													</Dropdown.Item>
 												</Dropdown.Menu>
 											</Dropdown>
 											<div className="form-group">
-												{
+												{filterType !== "" ? (
 													<>
-														<label htmlFor="exampleFormControlSelect1">
-															{filterType === "Level"
-																? "Level"
-																: filterType === "Language"
-																	? "Language"
-																	: "Instrument"}
-														</label>
+														<label htmlFor="exampleFormControlSelect1">{filterType}</label>
 
 														{filterType === "Level" ? (
 															<select
+																value={filterType}
 																onChange={handleClickSelect}
 																className="form-control"
 																id="exampleFormControlSelect1">
-																<option value="Beginner">Beginner</option>
+																<option value="" selected>
+																	Select a value
+																</option>
 																<option value="Intermediate">Intermediate</option>
 																<option value="Advanced">Advanced</option>
 															</select>
 														) : filterType === "Language" ? (
 															<select
+																value={filterType}
+																onChange={handleClickSelect}
 																className="form-control"
 																id="exampleFormControlSelect1">
-																<option>English</option>
-																<option onClick={handleClickSelect}>Spanish</option>
+																<option value="" selected>
+																	Select a value
+																</option>
+																<option value="English">English</option>
+																<option value="Spanish">Spanish</option>
 															</select>
 														) : (
 															<select
+																value={filterType}
+																onChange={handleClickSelect}
 																className="form-control"
 																id="exampleFormControlSelect1">
-																<option onClick={handleClickSelect}>Guitar</option>
-																<option onClick={handleClickSelect}>Drums</option>
-																<option onClick={handleClickSelect}>Piano</option>
-																<option onClick={handleClickSelect}>Violin</option>
-																<option onClick={handleClickSelect}>Bass</option>
+																<option value="" selected>
+																	Select a value
+																</option>
+																<option value="Guitar">Guitar</option>
+																<option value="Drums">Drums</option>
+																<option value="Piano">Piano</option>
+																<option value="Violin">Violin</option>
+																<option value="Bass">Bass</option>
 															</select>
 														)}
 													</>
-												}
+												) : null}
 											</div>
 										</>
 									) : null}
 									<div>
 										{//studentFiles != undefined &&
-										studentFiles.map((e, index) => {
-											return (
-												<ListGroup key={index}>
-													<ListGroup.Item action variant="light" as="a">
-														<div className="row w-100 ml-0">
-															<div className="col-12 col-sm-6 col-md-3 px-0">
-																<TypeAvatar type={e.instrument} />
-															</div>
+										store.files
+											.filter(file => file[filterType.toLowerCase()] === option || option === "")
+											.map((e, index) => {
+												return (
+													<ListGroup key={index}>
+														<ListGroup.Item action variant="light" as="a">
+															<div className="row w-100 ml-0">
+																<div className="col-12 col-sm-6 col-md-3 px-0">
+																	<TypeAvatar type={e.instrument} />
+																</div>
 
-															<div className="col-12 col-sm-6 col-md-9 text-center pr-0 text-sm-left">
-																<div className=" float-right">
-																	{role == "teacher" ? (
-																		<Row className="align-items-center">
-																			<Col xs={6}>
-																				<Button
-																					onClick={e => {
-																						e.preventDefault();
-																						setCheck(false);
-																						setFileAction("edit");
-																						setTargetFile(index);
-																					}}>
-																					<i className="fas fa-pencil-alt" />
-																				</Button>
-																			</Col>
-																			<Col xs={6}>
-																				<Button
-																					onClick={() => {
-																						handleClick(e.id);
-																					}}>
-																					<i className="fas fa-trash-alt" />
-																				</Button>
-																			</Col>
-																		</Row>
-																	) : null}
-																	{/* <Row className="view-file-button">
+																<div className="col-12 col-sm-6 col-md-9 text-center pr-0 text-sm-left">
+																	<div className=" float-right">
+																		{role == "teacher" ? (
+																			<Row className="align-items-center">
+																				<Col xs={6}>
+																					<Button
+																						onClick={e => {
+																							e.preventDefault();
+																							setCheck(false);
+																							setFileAction("edit");
+																							setTargetFile(index);
+																						}}>
+																						<i className="fas fa-pencil-alt" />
+																					</Button>
+																				</Col>
+																				<Col xs={6}>
+																					<Button
+																						onClick={() => {
+																							handleClick(e.id);
+																						}}>
+																						<i className="fas fa-trash-alt" />
+																					</Button>
+																				</Col>
+																			</Row>
+																		) : null}
+																		{/* <Row className="view-file-button">
 																		<Col>
 																			<Button
 																				as="a"
@@ -171,55 +187,55 @@ export const FilesListStudent = () => {
 																			</Button>
 																		</Col>
 																	</Row> */}
-																</div>
-																<div className="list-info-wrapper">
-																	<label className="name lead d-flex">
-																		{e.title}
-																	</label>{" "}
-																	<br />
-																	<label className="name lead">
-																		{e.instrument}
-																	</label>{" "}
-																	{/*name, how is labeled at API*/}
-																	<br />
-																	<span className="text-muted">{e.level}</span>
-																	<br />
-																	<span className="text-muted">
-																		{e.language}
-																	</span>{" "}
-																	{/*type, how is labeled at API*/}
-																	<br />
-																	<div className="view-file-button">
-																		<Button
-																			as="a"
-																			href={e.url}
-																			target="_blank"
-																			className="view-file">
-																			View
-																		</Button>
 																	</div>
-																	<span
-																		className="text-muted mr-3"
-																		data-toggle="tooltip"
-																		title=""
-																		// data-original-title="(870) 288-4149"
-																	/>
-																	{/* <a
+																	<div className="list-info-wrapper">
+																		<label className="name lead d-flex">
+																			{e.title}
+																		</label>{" "}
+																		<br />
+																		<label className="name lead">
+																			{e.instrument}
+																		</label>{" "}
+																		{/*name, how is labeled at API*/}
+																		<br />
+																		<span className="text-muted">{e.level}</span>
+																		<br />
+																		<span className="text-muted">
+																			{e.language}
+																		</span>{" "}
+																		{/*type, how is labeled at API*/}
+																		<br />
+																		<div className="view-file-button">
+																			<Button
+																				as="a"
+																				href={e.url}
+																				target="_blank"
+																				className="view-file">
+																				View
+																			</Button>
+																		</div>
+																		<span
+																			className="text-muted mr-3"
+																			data-toggle="tooltip"
+																			title=""
+																			// data-original-title="(870) 288-4149"
+																		/>
+																		{/* <a
 																		className="text-dark"
 																		href={e.url}
 																		target="_blank"
 																		rel="noopener noreferrer">
 																		<i className="far fa-eye" />
 																	</a> */}
-																	{/*phone, how is labeled at API*/}
+																		{/*phone, how is labeled at API*/}
+																	</div>
+																	<br />
 																</div>
-																<br />
 															</div>
-														</div>
-													</ListGroup.Item>
-												</ListGroup>
-											);
-										})}
+														</ListGroup.Item>
+													</ListGroup>
+												);
+											})}
 									</div>
 									{role == "teacher" ? (
 										<div className="file-field-video  d-flex justify-content-center">

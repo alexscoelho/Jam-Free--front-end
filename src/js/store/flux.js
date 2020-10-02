@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	const baseUrl = "https://3000-ea03747c-a845-4d10-930a-ac4276478d8f.ws-us02.gitpod.io";
+	const baseUrl = "https://3000-ae3ee2e2-ba12-4f0a-a811-2e83d0aa2bc5.ws-us02.gitpod.io/";
 
 	const apiHost = "https://developer.setmore.com/";
 	const apiCreateEvent = "api/v1/bookingapi/appointment/create";
@@ -458,23 +458,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Generate Setmore token
 			getSetmoreToken: () => {
-				if (getStore().setmore.token == null) {
-					return fetch(`${apiHost}api/v1/o/oauth2/token?refreshToken=${refresh_token}`)
-						.then(resp => {
-							if (!resp.ok) {
-								throw new Error(resp.statusText);
-							}
-							return resp.json();
-						})
-						.then(res => {
-							let store = getStore();
-							store.setmore.token = res.data.token.access_token;
-							setStore(store);
-						})
-						.catch(err => {
-							return err;
-						});
-				}
+				// if (getStore().setmore.token == null) {
+				return fetch(`${apiHost}api/v1/o/oauth2/token?refreshToken=${refresh_token}`)
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(res => {
+						let store = getStore();
+						store.setmore.token = res.data.token.access_token;
+						setStore(store);
+					})
+					.catch(err => {
+						return err;
+					});
+				// }
 			},
 
 			// Get appointments detail

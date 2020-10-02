@@ -4,14 +4,20 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Link, useRouteMatch, Route, Switch } from "react-router-dom";
 
 // react bootstrap
-import { ListGroup, Popover, OverlayTrigger, Container, Row, Col } from "react-bootstrap/";
+import { ListGroup, Popover, OverlayTrigger, Container, Row, Col, Spinner } from "react-bootstrap/";
 
 export const AppointsmentsDetails = () => {
 	const { store, actions } = useContext(Context);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		actions.getAppointments();
+		fetchAppointments();
 	}, []);
+
+	async function fetchAppointments() {
+		await actions.getAppointments();
+		setLoading(false);
+	}
 
 	let customerAppointment = store.appointments.filter(appointment => {
 		return appointment.customer_key == store.profile.customer_id;
@@ -25,27 +31,38 @@ export const AppointsmentsDetails = () => {
 			return teacher.staff_key == e.staff_key;
 		});
 
+		// format hour
+		function formatAMPM(date) {
+			var hours = date.getHours();
+			var minutes = date.getMinutes();
+			var ampm = hours >= 12 ? "pm" : "am";
+			hours = hours % 12;
+			hours = hours ? hours : 12; // the hour '0' should be '12'
+			minutes = minutes < 10 ? "0" + minutes : minutes;
+			var strTime = hours + ":" + minutes + " " + ampm;
+			return strTime;
+		}
+
 		const popover = (
 			<Popover id="popover-basic" rootClose="true">
 				<Popover.Title as="h3">Session details</Popover.Title>
 
 				<Popover.Content>
-					<div>Teacher email: {currentTeacher[0].email}</div>
-					<div>Time: {d.toTimeString()}</div>
-
-					{/* <Container>
+					<Container>
 						<Row>
-							<Col></Col>
+							<Col className=" text-muted">Teacher</Col>
+							<Col>{currentTeacher[0].email}</Col>
 						</Row>
-                        <Row>
-							<Col>Teacher email: {currentTeacher[0].email}</Col>
+						<Row>
+							<Col className=" text-muted">Time</Col>
+							<Col>{formatAMPM(d)}</Col>
 						</Row>
-					</Container> */}
+					</Container>
 				</Popover.Content>
 			</Popover>
 		);
 
-		return (
+		return loading == false ? (
 			<ListGroup key={index}>
 				<OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
 					<ListGroup.Item action>
@@ -53,6 +70,8 @@ export const AppointsmentsDetails = () => {
 					</ListGroup.Item>
 				</OverlayTrigger>
 			</ListGroup>
+		) : (
+			<Spinner animation="grow" />
 		);
 	});
 };

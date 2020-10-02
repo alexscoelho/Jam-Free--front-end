@@ -123,6 +123,7 @@ export const Schedule = () => {
 				{/* <p>{date}</p> */}
 				<Col>
 					<h4>This week schedule</h4>
+
 					<AppointsmentsDetails />
 				</Col>
 			</Row>
