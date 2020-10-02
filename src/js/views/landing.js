@@ -27,7 +27,7 @@ export const Landing = () => {
 				</video>
 			</div>
 			<div className="cards-wrapper">
-				<h3 className="text-center pb-2">Meet the instructors</h3>
+				<h3 className="text-center pb-2 text-dark">Meet the instructors</h3>
 				<Cards />
 				{/* <Link to="/main/music-room">View all lessons</Link> */}
 				{/* <a className=" mb-3 d-block text-center text-dark" href="#">

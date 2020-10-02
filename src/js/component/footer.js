@@ -11,24 +11,24 @@ export const Footer = () => {
 	// let { username, usertype, loggedIn } = store.user;
 
 	return (
-		<footer className="footer mt-auto py-3 text-center ml-4 mr-4 bg-light">
+		<footer className="footer mt-auto py-3 text-center ml-4 mr-4  footer-style">
 			<Nav className="justify-content-center" activeKey="/home">
 				<Nav.Item>
-					<Nav.Link className="text-dark" href="/home">
+					<Nav.Link href="/home" className="footer-style">
 						<i className="fab fa-youtube" />
 					</Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Nav.Link className="text-dark" eventKey="link-1">
+					<Nav.Link className="footer-style" eventKey="link-1">
 						<i className="fab fa-instagram" />
 					</Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Nav.Link className="text-dark" eventKey="link-2">
+					<Nav.Link className="footer-style" eventKey="link-2">
 						<i className="fab fa-twitter" />
 					</Nav.Link>
 				</Nav.Item>
-				<Nav.Link className="text-dark" href="/about" eventKey="link-2">
+				<Nav.Link className="footer-style" href="/about" eventKey="link-2">
 					About
 				</Nav.Link>
 			</Nav>

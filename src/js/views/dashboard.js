@@ -114,7 +114,7 @@ export const Dashboard = () => {
 					{renderNav()}
 				</Nav>
 			</Row>
-			<Button variant="link" className="mb-2 d-none d-md-block" onClick={handleClick}>
+			<Button variant="link" className="mb-2 d-none d-md-block profile-arrow-color" onClick={handleClick}>
 				<i className={showLeftProfile ? "fas fa-arrow-left" : "fas fa-arrow-right"} />
 			</Button>
 		</Container>

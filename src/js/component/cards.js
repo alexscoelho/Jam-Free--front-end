@@ -26,10 +26,8 @@ export const Cards = () => {
 				// </div>
 				<CardDeck key={index}>
 					<Card
-						className="col-12 col-sm-4 m-auto pb-2 info-col"
-						style={{ width: "18rem" }}
-						bg="light"
-						text="dark">
+						className="col-12 col-sm-4 m-auto pb-2 info-col text-dark cards-styling"
+						style={{ width: "18rem" }}>
 						<Card.Img variant="top" src={profileGirl} />
 
 						{/* <TypeAvatar type={item.instrument} /> */}

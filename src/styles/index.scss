@@ -1,5 +1,63 @@
 body {
     font-family: 'Roboto', sans-serif;
+    color: #343a40 
+}
+
+a:hover, a:focus {
+    color: #FF4900
+}
+
+.navigation-bar{
+    background-color: #FF4900  
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #FFFAF8;
+    margin-right: 15px;
+}
+
+.navbar-light .navbar-brand {
+    color: #FFFAF8;
+    font-size: 25px;
+    margin-left: 15px;  
+}
+
+.navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+    color: #FFFBFA;
+    
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+     color: #FFFBFA;
+     
+}
+
+.btn-primary:hover {
+    color: #FFFBFA;
+    background-color: #FF7239;
+    border-color: #FFFBFA;
+}
+
+.show > .btn-primary.dropdown-toggle, .btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active:focus {
+    color: #FFFBFA;
+    background-color: #FF7239;
+    border-color: #FFFBFA;
+}
+
+
+.navbar-light .navbar-toggler {
+    border-color: #FFFAF8
+}
+
+
+.cards-styling {
+    background-color: #FFFAF8;
+    
+}
+
+.footer-style {
+    background-color: #FFFBFA;
+    color: #FF7239
 }
 
 
@@ -8,11 +66,31 @@ footer.footer.mt-auto.py-3.text-center{
     // border-top: 2px solid
 }
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #FFFBFA;
+    background-color: #FF4900;
+}
+
+a {
+    color: #FF7239;
+    
+}
+
+.btn-primary {
+    color: #FFFBFA;
+    background-color: #FF4900;
+    border-color: #FFFBFA;
+}
+
+.profile-arrow-color {
+    color: #FF4900;
+}
+
 .profile-left {
     @media screen and (min-width: 767px){
         // border-right: 1px solid; 
         border-right: 1px solid rgba(0, 0, 0, 0.125);
-        background-color: #fdfdfe;
+        background-color: #FFFAF8
         
     }
     
@@ -113,10 +191,10 @@ footer i {
 }
 
 .profile-info-card {
-    border: 1px solid lightgrey;
+    border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 25px;
-    color: #818182;
-    background-color: #fdfdfe;
+    
+    background-color: #FFFAF8;
 }
 
 .view-file-button {

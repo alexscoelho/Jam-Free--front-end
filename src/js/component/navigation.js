@@ -11,10 +11,8 @@ export const Navigation = () => {
 	let { username, userType, loggedIn, token } = store.user;
 
 	return (
-		<Navbar bg="light" expand="lg">
-			<Navbar.Brand className="text-muted" href="/">
-				Music School
-			</Navbar.Brand>
+		<Navbar expand="lg" className="navigation-bar">
+			<Navbar.Brand href="/">JammFree</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="ml-auto">

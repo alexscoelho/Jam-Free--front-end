@@ -8,8 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const apiGetAppointment =
 		"api/v1/bookingapi/appointments?startDate=30-09-2020&endDate=06-10-2020&customerDetails=true";
 	const refresh_token = process.env.SETMORE_REFRESH_TOKEN;
-	const newToken =
-		"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NldG1vcmUuZnVsbGF1dGguY29tIiwiaWF0IjoxNjAxNDc0MDM2LCJwcm9qX2lkIjoib2xkOnNldG1vcmUiLCJ0eXBlIjoidXNlciIsInN1YiI6Ijc0MzJlY2FiLTYyYzctNDQzZi04MTQ3LWM4OGRjNDdkODkwMiIsImV4cCI6MTYwMTQ4MTIzNiwianRpIjoiZTg2ZGFhbXVSczBGMWRRbiJ9.akA7swEj8ROT3888Wu7Y3D4nbiol5oVJqZpi1cFPOsQ";
+	// const newToken = process.env.SETMORE_ACCESS_KEY;
 
 	return {
 		// loggedIn: false,
