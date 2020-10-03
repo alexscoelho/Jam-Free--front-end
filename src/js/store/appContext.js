@@ -32,7 +32,7 @@ const injectContext = PassedComponent => {
 			 *
 			 **/
 			state.actions.checkToken();
-			state.actions.getSetmoreToken();
+			// state.actions.getSetmoreToken();
 			state.actions.getFiles();
 		}, []);
 

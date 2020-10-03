@@ -11,7 +11,7 @@ export const Footer = () => {
 	// let { username, usertype, loggedIn } = store.user;
 
 	return (
-		<footer className="footer mt-auto py-3 text-center ml-4 mr-4  footer-style">
+		<footer className="footer mt-auto py-3 text-center footer-style">
 			<Nav className="justify-content-center" activeKey="/home">
 				<Nav.Item>
 					<Nav.Link href="/home" className="footer-style">

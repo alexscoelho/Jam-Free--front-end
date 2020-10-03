@@ -32,6 +32,14 @@ a:hover, a:focus {
      
 }
 
+.subtitle {
+    color: #FF4900 
+}
+
+.sub-subtitle {
+    color: #FF7239;
+}
+
 .btn-primary:hover {
     color: #FFFBFA;
     background-color: #FF7239;
@@ -144,10 +152,25 @@ footer i {
     padding: 0.5rem 1rem;
 }
 
+.app-mission {
+    margin-top: 15vh
+}
+
+.app-options {
+    margin-top: 15vh;
+    margin-bottom: 10vh
+}
+
+.app-options-icons {
+    font-size: 30px;
+    color: #FF4900
+}
+
 .video-wrapper video {
-    width: 100%;
+    width: 70%;
     z-index: 10;
     object-fit: cover;
+
 }
 
 .reset-password{
