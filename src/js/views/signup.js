@@ -127,7 +127,7 @@ export const SignUp = props => {
 						/>
 					</Form.Group>
 
-					<Form.Row>
+					<Form.Row className="d-block d-lg-flex">
 						<Form.Group as={Col} controlId="formGridEmail">
 							<Form.Label>Language</Form.Label>
 							<Form.Control

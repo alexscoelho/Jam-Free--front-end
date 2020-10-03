@@ -59,7 +59,7 @@ export const FilesListStudent = () => {
 								incididunt ut labore et dolore magna aliqua.{" "}
 							</h6> */}
 							<div className="video-container overflow-auto">
-								<Form className="md-form">
+								<Form className="">
 									{role == "student" ? (
 										<>
 											<Dropdown>
@@ -88,7 +88,7 @@ export const FilesListStudent = () => {
 													</Dropdown.Item>
 												</Dropdown.Menu>
 											</Dropdown>
-											<div className="form-group">
+											<div className="form-group mt-2">
 												{filterType !== "" ? (
 													<>
 														<label htmlFor="exampleFormControlSelect1">{filterType}</label>

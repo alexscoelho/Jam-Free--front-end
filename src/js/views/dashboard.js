@@ -74,7 +74,7 @@ export const Dashboard = () => {
 			<Row className="h-100">
 				{/* conditionally show left profile */}
 				{showLeftProfile && (
-					<Col xs={12} md={3} className="py-3 profile-left w-100 align-items-center h-100">
+					<Col xs={12} md={3} className="py-3 profile-left w-100 align-items-center ">
 						<div className="profile-wrapper d-flex flex-column align-items-center">
 							<Image src={profileImage} roundedCircle />
 							<div className="profile-image-footer mt-2 mr-auto">
@@ -97,7 +97,12 @@ export const Dashboard = () => {
 							<i className={showLeftProfile ? "fas fa-arrow-left" : "fas fa-arrow-right"} />
 						</Button>
 					</Col>
-				)}
+				)}{" "}
+				{showLeftProfile == false ? (
+					<Button variant="link" className="mb-2 d-none d-md-block profile-arrow-color" onClick={handleClick}>
+						<i className={showLeftProfile ? "fas fa-arrow-left" : "fas fa-arrow-right"} />
+					</Button>
+				) : null}
 				{/* add here the paths for music room and others */}
 				<Col xs={12} md={6} className="profile-right py-3">
 					<Switch>

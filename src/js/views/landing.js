@@ -19,10 +19,10 @@ export const Landing = () => {
 		<div className="landing-wrapper">
 			<Container fluid>
 				<Row className="mx-auto justify-content-center app-mission container">
-					<Col xs={12} md={4}>
+					<Col xs={12} md={4} className="mb-2">
 						<h1>Your Journey starts now...</h1>
 					</Col>
-					<Col xs={12} md={4}>
+					<Col xs={12} md={4} className="mb-2">
 						<h5 className="subtitle">You will be learning to play like the best, by the best</h5>
 					</Col>
 					<Col xs={12} md={4}>

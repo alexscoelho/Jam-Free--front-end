@@ -64,7 +64,7 @@ export const AppointsmentsDetails = () => {
 
 		return loading == false ? (
 			<ListGroup key={index}>
-				<OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
+				<OverlayTrigger trigger="click" placement="bottom" overlay={popover} rootClose>
 					<ListGroup.Item action>
 						You have an appointment on {d.toDateString()} with {currentTeacher[0].name}
 					</ListGroup.Item>
