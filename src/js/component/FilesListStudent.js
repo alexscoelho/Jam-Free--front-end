@@ -34,6 +34,14 @@ export const FilesListStudent = () => {
 	//? store.files : undefined; //se guardo todos los files in store en la variable
 	// console.log(studentFiles);
 
+	// let fileTeacher = (users, file) =>
+	// 	users.filter(user => {
+	// 		if (user.id == file.userId) {
+	// 			return user.firstName;
+	// 		}
+	// 	});
+	console.log("user", store.user);
+
 	const handleClickSelect = e => {
 		setOption(e.target.value);
 		console.log(e.target.value);
@@ -42,6 +50,31 @@ export const FilesListStudent = () => {
 	const handleFilterChange = value => {
 		setFilterType(value);
 		setOption("");
+	};
+
+	// add to favorites
+	const handleClick = id => {
+		let singleFileObject = null;
+
+		// filter files array to match id with the id been mapped
+		let singleFile = store.files.filter(file => {
+			if (file.id === id) {
+				return file;
+			}
+		});
+
+		// deleting the array outside object
+		singleFileObject = singleFile[0];
+
+		// push object to favorites array if does not exist
+		if (!store.favorites.some(favorite => favorite.id === singleFileObject.id)) {
+			store.favorites.push(singleFileObject);
+		} else {
+			alert("This is on your favorites");
+		}
+
+		console.log("file", singleFileObject.id);
+		console.log("favorite", store.favorites);
 	};
 
 	return (
@@ -192,6 +225,15 @@ export const FilesListStudent = () => {
 																		<label className="name lead d-flex">
 																			{e.title}
 																		</label>{" "}
+																		<span
+																			onClick={() => {
+																				handleClick(e.id);
+																			}}
+																			className="float-right">
+																			<i className="far fa-heart" />
+																		</span>
+																		<br />
+																		<label>{"Teacher:"}</label>
 																		<br />
 																		<label className="name lead">
 																			{e.instrument}

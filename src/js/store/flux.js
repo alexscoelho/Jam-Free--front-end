@@ -98,6 +98,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			appointments: [],
 
+			favorites: [],
+
 			alertMessages: {
 				visible: false,
 				type: "",

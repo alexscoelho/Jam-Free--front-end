@@ -43,6 +43,15 @@ export const AppointsmentsDetails = () => {
 			return strTime;
 		}
 
+		// calculate appointment status
+		var todayDate = new Date();
+		var status = "";
+		if (todayDate < d) {
+			status = "Pending";
+		} else {
+			status = "Completed";
+		}
+
 		const popover = (
 			<Popover id="popover-basic" rootClose="true">
 				<Popover.Title as="h3">Session details</Popover.Title>
@@ -56,6 +65,10 @@ export const AppointsmentsDetails = () => {
 						<Row>
 							<Col className=" text-muted">Time</Col>
 							<Col>{formatAMPM(d)}</Col>
+						</Row>
+						<Row>
+							<Col className=" text-muted">Status</Col>
+							<Col>{status}</Col>
 						</Row>
 					</Container>
 				</Popover.Content>
