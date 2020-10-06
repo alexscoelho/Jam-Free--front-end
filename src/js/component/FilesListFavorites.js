@@ -12,7 +12,7 @@ import { MusicRoomTeacherUpFile } from "./musicRoomTeacherUpFile";
 // react boostatrap
 import { Button, ListGroup, Dropdown, Form, Nav, Row, Col } from "react-bootstrap";
 
-export const FilesListStudent = () => {
+export const FilesListFavorites = () => {
 	const { store, actions } = useContext(Context);
 	let { path, url } = useRouteMatch();
 	let { account_type } = store.profile;
@@ -21,27 +21,6 @@ export const FilesListStudent = () => {
 	const [fileAction, setFileAction] = useState("");
 	const [filterType, setFilterType] = useState("");
 	const [option, setOption] = useState("");
-	const [favorites, setFavorites] = useState(false);
-
-	// let studentFiles =
-	// 	store.files.filter(file => {
-	// 		if (filterType === "") {
-	// 			// all files
-	// 			return file;
-	// 		} else if (filterType === "Level") {
-	// 			return;
-	// 		}
-	//     })
-	//? store.files : undefined; //se guardo todos los files in store en la variable
-	// console.log(studentFiles);
-
-	// let fileTeacher = (users, file) =>
-	// 	users.filter(user => {
-	// 		if (user.id == file.userId) {
-	// 			return user.firstName;
-	// 		}
-	// 	});
-	console.log("user", store.user);
 
 	const handleClickSelect = e => {
 		setOption(e.target.value);
@@ -51,33 +30,6 @@ export const FilesListStudent = () => {
 	const handleFilterChange = value => {
 		setFilterType(value);
 		setOption("");
-	};
-
-	// add to favorites
-	const handleClick = id => {
-		setFavorites(!favorites);
-
-		let singleFileObject = null;
-
-		// filter files array to match id with the id been mapped
-		let singleFile = store.files.filter(file => {
-			if (file.id === id) {
-				return file;
-			}
-		});
-
-		// deleting the array outside object
-		singleFileObject = singleFile[0];
-
-		// push object to favorites array if does not exist
-		if (!store.favorites.some(favorite => favorite.id === singleFileObject.id)) {
-			store.favorites.push(singleFileObject);
-		} else {
-			alert("This is on your favorites");
-		}
-
-		console.log("file", singleFileObject.id);
-		console.log("favorite", store.favorites);
 	};
 
 	return (
@@ -96,7 +48,7 @@ export const FilesListStudent = () => {
 							</h6> */}
 							<div className="video-container overflow-auto">
 								<Form className="">
-									{role == "student" ? (
+									{store.favorites.length != 0 ? (
 										<>
 											<Dropdown>
 												<Dropdown.Toggle id="dropdown-basic">Filter by</Dropdown.Toggle>
@@ -173,10 +125,12 @@ export const FilesListStudent = () => {
 												) : null}
 											</div>
 										</>
-									) : null}
+									) : (
+										<p>No Favorite Lessons, you can add lesson to favorite in music room</p>
+									)}
 									<div>
 										{//studentFiles != undefined &&
-										store.files
+										store.favorites
 											.filter(file => file[filterType.toLowerCase()] === option || option === "")
 											.map((e, index) => {
 												return (
@@ -228,17 +182,13 @@ export const FilesListStudent = () => {
 																		<label className="name lead d-flex">
 																			{e.title}
 																		</label>{" "}
-																		<span
+																		{/* <span
 																			onClick={() => {
 																				handleClick(e.id);
 																			}}
 																			className="float-right">
-																			{favorites ? (
-																				<i className="far fa-heart" />
-																			) : (
-																				<i className="fas fa-heart" />
-																			)}
-																		</span>
+																			<i className="far fa-heart" />
+																		</span> */}
 																		<br />
 																		<label>{"Teacher:"}</label>
 																		<br />

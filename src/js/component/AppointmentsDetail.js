@@ -4,11 +4,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Link, useRouteMatch, Route, Switch } from "react-router-dom";
 
 // react bootstrap
-import { ListGroup, Popover, OverlayTrigger, Container, Row, Col, Spinner } from "react-bootstrap/";
+import { ListGroup, Popover, OverlayTrigger, Container, Row, Col, Spinner, Button } from "react-bootstrap/";
 
 export const AppointsmentsDetails = () => {
 	const { store, actions } = useContext(Context);
 	const [loading, setLoading] = useState(true);
+	let { account_type } = store.profile;
+	let role = account_type.toLowerCase();
 
 	useEffect(() => {
 		fetchAppointments();
@@ -23,10 +25,21 @@ export const AppointsmentsDetails = () => {
 		return appointment.customer_key == store.profile.customer_id;
 	});
 
-	console.log("customerAppointment:", customerAppointment);
+	// Close a list item
+	// const [list, setList] = useState(customerAppointment);
+	// const handleRemove = index => {
+	// 	setList(newList);
+	// 	console.log(index);
+
+	// 	console.log(newList);
+	// };
+
+	// console.log("customerAppointment:", customerAppointment);
 
 	return customerAppointment.map((e, index) => {
 		var d = new Date(e.start_time);
+
+		// current teacher
 		let currentTeacher = store.teacher.filter(teacher => {
 			return teacher.staff_key == e.staff_key;
 		});
@@ -79,7 +92,11 @@ export const AppointsmentsDetails = () => {
 			<ListGroup key={index}>
 				<OverlayTrigger trigger="click" placement="bottom" overlay={popover} rootClose>
 					<ListGroup.Item action>
-						You have an appointment on {d.toDateString()} with {currentTeacher[0].name}
+						You have an appointment on {d.toDateString()} with{" "}
+						{role == "student" ? currentTeacher[0].name : e.customer.first_name}
+						{/* <span onClick={() => handleRemove(index)} className="float-right">
+							X
+						</span> */}
 					</ListGroup.Item>
 				</OverlayTrigger>
 			</ListGroup>
