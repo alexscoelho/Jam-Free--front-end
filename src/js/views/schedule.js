@@ -21,6 +21,8 @@ export const Schedule = () => {
 	// state for storing checking and storing available dates
 	const { store, actions } = useContext(Context);
 	// const [date, checkDate] = useState(store.teacher[0].availability);
+	let { account_type } = store.profile;
+	let role = account_type.toLowerCase();
 
 	const [date, setDate] = useState();
 	const [startTime, setStartTime] = useState();
@@ -113,12 +115,14 @@ export const Schedule = () => {
 	};
 	return (
 		<Container>
-			<Row>
-				<Col>
-					<h4>Set up an appointment</h4>
-					<ListGroup variant="flush">{scheduler()}</ListGroup>
-				</Col>
-			</Row>
+			{role == "student" && (
+				<Row>
+					<Col>
+						<h4>Set up an appointment</h4>
+						<ListGroup variant="flush">{scheduler()}</ListGroup>
+					</Col>
+				</Row>
+			)}
 			<Row className="mt-4">
 				{/* <p>{date}</p> */}
 				<Col>

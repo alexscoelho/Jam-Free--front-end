@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const apiHost = "https://developer.setmore.com/";
 	const apiCreateEvent = "api/v1/bookingapi/appointment/create";
 	const apiCreateCustomer = "api/v1/bookingapi/customer/create";
+	const apiGetTeachers = "/api/v1/bookingapi/staffs";
 	// const apiGetCustomer = "api/v1/bookingapi/customer?email=";
 	const apiGetAppointment =
 		"api/v1/bookingapi/appointments?startDate=06-10-2020&endDate=15-10-2020&customerDetails=true";
@@ -99,6 +100,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			appointments: [],
 
 			favorites: [],
+
+			staffs: [],
 
 			alertMessages: {
 				visible: false,
@@ -497,6 +500,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let store = getStore();
 						store.appointments = response.data.appointments;
 						setStore(store);
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
+			// Get teachers list
+			getTeachers: () => {
+				return fetch(`${apiHost}${apiGetTeachers}`, {
+					method: "GET",
+					headers: {
+						"content-type": "application/json",
+						Authorization: `Bearer ${getStore().setmore.token}`
+					}
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(response => {
+						setStore({ staffs: response.data.staffs });
 					})
 					.catch(err => {
 						return err;

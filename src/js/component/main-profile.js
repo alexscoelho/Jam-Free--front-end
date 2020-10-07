@@ -19,6 +19,8 @@ import Nav from "react-bootstrap/Nav";
 export const MainProfile = () => {
 	const { store, actions } = useContext(Context);
 	let location = useLocation();
+	let { account_type } = store.profile;
+	let role = account_type.toLowerCase();
 
 	const [showFavorites, setShowFavorites] = useState(false);
 
@@ -67,9 +69,11 @@ export const MainProfile = () => {
 					</Col>
 				</Row>
 			</Container>
-			<Button onClick={() => setShowFavorites(!showFavorites)} className="mt-2">
-				Favorites{" "}
-			</Button>
+			{role === "student" ? (
+				<Button onClick={() => setShowFavorites(!showFavorites)} className="mt-2">
+					Favorites{" "}
+				</Button>
+			) : null}
 			{showFavorites ? <FilesListFavorites /> : null}
 		</>
 	);
