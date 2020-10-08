@@ -7,6 +7,7 @@ import { TypeAvatar } from "./typeAvatar";
 import { Link, useRouteMatch, Route, Switch } from "react-router-dom";
 
 import { MusicRoomTeacherUpFile } from "./musicRoomTeacherUpFile";
+import { FileCard } from "./FileCard";
 
 // react boostatrap
 import { Button, ListGroup, Dropdown, Form, Nav, Col, Row } from "react-bootstrap";
