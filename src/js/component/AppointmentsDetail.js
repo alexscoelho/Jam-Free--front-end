@@ -43,9 +43,18 @@ export const AppointsmentsDetails = () => {
 
 	let data = isTeacher ? teacherConnectedAppointments : customerAppointment;
 
+	// Close a list item
+	const [list, setList] = useState(data);
+	const handleRemove = (e, key) => {
+		const newList = list.filter(item => {
+			return item.key !== key;
+		});
+		setList(newList);
+	};
+
 	return (
-		data &&
-		data.map((e, index) => {
+		list &&
+		list.map((e, index) => {
 			var d = new Date(e.start_time);
 
 			// current teacher
@@ -105,9 +114,9 @@ export const AppointsmentsDetails = () => {
 						<ListGroup.Item action>
 							You have an appointment on {d.toDateString()} with{" "}
 							{role == "student" ? currentTeacher[0].name : e.customer.first_name}
-							{/* <span onClick={() => handleRemove(index)} className="float-right">
-							X
-						</span> */}
+							<span onClick={() => handleRemove(e.key)} className="float-right">
+								x
+							</span>
 						</ListGroup.Item>
 					</OverlayTrigger>
 				</ListGroup>
