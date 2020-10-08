@@ -11,6 +11,7 @@ import { MusicRoomTeacherUpFile } from "./musicRoomTeacherUpFile";
 
 // react boostatrap
 import { Button, ListGroup, Dropdown, Form, Nav, Row, Col } from "react-bootstrap";
+import { FileCard } from "./FileCard";
 
 export const FilesListStudent = () => {
 	const { store, actions } = useContext(Context);
@@ -23,24 +24,6 @@ export const FilesListStudent = () => {
 	const [option, setOption] = useState("");
 	const [favorites, setFavorites] = useState(false);
 
-	// let studentFiles =
-	// 	store.files.filter(file => {
-	// 		if (filterType === "") {
-	// 			// all files
-	// 			return file;
-	// 		} else if (filterType === "Level") {
-	// 			return;
-	// 		}
-	//     })
-	//? store.files : undefined; //se guardo todos los files in store en la variable
-	// console.log(studentFiles);
-
-	// let fileTeacher = (users, file) =>
-	// 	users.filter(user => {
-	// 		if (user.id == file.userId) {
-	// 			return user.firstName;
-	// 		}
-	// 	});
 	console.log("user", store.user);
 
 	const handleClickSelect = e => {
@@ -51,33 +34,6 @@ export const FilesListStudent = () => {
 	const handleFilterChange = value => {
 		setFilterType(value);
 		setOption("");
-	};
-
-	// add to favorites
-	const handleClick = id => {
-		setFavorites(!favorites);
-
-		let singleFileObject = null;
-
-		// filter files array to match id with the id been mapped
-		let singleFile = store.files.filter(file => {
-			if (file.id === id) {
-				return file;
-			}
-		});
-
-		// deleting the array outside object
-		singleFileObject = singleFile[0];
-
-		// push object to favorites array if does not exist
-		if (!store.favorites.some(favorite => favorite.id === singleFileObject.id)) {
-			store.favorites.push(singleFileObject);
-		} else {
-			alert("This is on your favorites");
-		}
-
-		console.log("file", singleFileObject.id);
-		console.log("favorite", store.favorites);
 	};
 
 	return (
@@ -179,111 +135,7 @@ export const FilesListStudent = () => {
 										store.files
 											.filter(file => file[filterType.toLowerCase()] === option || option === "")
 											.map((e, index) => {
-												return (
-													<ListGroup key={index}>
-														<ListGroup.Item action variant="light" as="a">
-															<div className="row w-100 ml-0">
-																<div className="col-12 col-sm-6 col-md-3 px-0">
-																	<TypeAvatar type={e.instrument} />
-																</div>
-
-																<div className="col-12 col-sm-6 col-md-9 text-center pr-0 text-sm-left">
-																	<div className=" float-right">
-																		{role == "teacher" ? (
-																			<Row className="align-items-center">
-																				<Col xs={6}>
-																					<Button
-																						onClick={e => {
-																							e.preventDefault();
-																							setCheck(false);
-																							setFileAction("edit");
-																							setTargetFile(index);
-																						}}>
-																						<i className="fas fa-pencil-alt" />
-																					</Button>
-																				</Col>
-																				<Col xs={6}>
-																					<Button
-																						onClick={() => {
-																							handleClick(e.id);
-																						}}>
-																						<i className="fas fa-trash-alt" />
-																					</Button>
-																				</Col>
-																			</Row>
-																		) : null}
-																		{/* <Row className="view-file-button">
-																		<Col>
-																			<Button
-																				as="a"
-																				href={e.url}
-																				target="_blank"
-																				className="view-file">
-																				View
-																			</Button>
-																		</Col>
-																	</Row> */}
-																	</div>
-																	<div className="list-info-wrapper">
-																		<label className="name lead d-flex">
-																			{e.title}
-																		</label>{" "}
-																		<span
-																			onClick={() => {
-																				handleClick(e.id);
-																			}}
-																			className="float-right">
-																			{favorites ? (
-																				<i className="far fa-heart" />
-																			) : (
-																				<i className="fas fa-heart" />
-																			)}
-																		</span>
-																		<br />
-																		<label>{"Teacher:"}</label>
-																		<br />
-																		<label className="name lead">
-																			{e.instrument}
-																		</label>{" "}
-																		{/*name, how is labeled at API*/}
-																		<br />
-																		<span className="text-muted">{e.level}</span>
-																		<br />
-																		<span className="text-muted">
-																			{e.language}
-																		</span>{" "}
-																		{/*type, how is labeled at API*/}
-																		<br />
-																		<div className="view-file-button">
-																			<Button
-																				as="a"
-																				href={e.url}
-																				target="_blank"
-																				className="view-file">
-																				View
-																			</Button>
-																		</div>
-																		<span
-																			className="text-muted mr-3"
-																			data-toggle="tooltip"
-																			title=""
-																			// data-original-title="(870) 288-4149"
-																		/>
-																		{/* <a
-																		className="text-dark"
-																		href={e.url}
-																		target="_blank"
-																		rel="noopener noreferrer">
-																		<i className="far fa-eye" />
-																	</a> */}
-																		{/*phone, how is labeled at API*/}
-																	</div>
-																	<br />
-																</div>
-															</div>
-														</ListGroup.Item>
-													</ListGroup>
-												);
+												return <FileCard key={index} index={index} e={e} role={role} />;
 											})}
 									</div>
 									{role == "teacher" ? (
