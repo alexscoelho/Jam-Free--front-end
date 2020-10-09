@@ -34,7 +34,7 @@ export const Login = () => {
 	};
 
 	return (
-		<div className="container pb-4 pt-4">
+		<div className="container pb-4 pt-4 m-auto">
 			<ResetPassword show={show} closeModal={handleClose} />
 			<div className="login-question w-50 m-auto">
 				<h2>Login</h2>

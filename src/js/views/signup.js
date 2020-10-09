@@ -79,7 +79,7 @@ export const SignUp = props => {
 	}
 
 	return (
-		<div className="container pb-4 pt-4">
+		<div className="container pb-4 pt-4 m-auto">
 			<div className=" w-50 m-auto">
 				<h2>Sign up</h2>
 				<div className="d-flex">

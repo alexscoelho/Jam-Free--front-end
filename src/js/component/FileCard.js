@@ -37,12 +37,24 @@ export const FileCard = ({ e, index, role }) => {
 		// push object to favorites array if does not exist
 		if (!store.favorites.some(favorite => favorite.id === singleFileObject.id)) {
 			store.favorites.push(singleFileObject);
-			console.log(store.favorites);
+			// console.log(store.favorites);
+			actions.setMessage({
+				visible: true,
+				type: "success",
+				heading: "Success!",
+				errorMessage: "You added a favorite, go to your profile to se it"
+			});
 		} else {
 			let filterFavorites = store.favorites.filter(favorite => {
 				return favorite.id != e.id;
 			});
 			store.favorites = filterFavorites;
+			actions.setMessage({
+				visible: true,
+				type: "danger",
+				heading: "Success!",
+				errorMessage: "Favorite deleted"
+			});
 			console.log(store.favorites, "eliminado ", id);
 		}
 
@@ -90,7 +102,11 @@ export const FileCard = ({ e, index, role }) => {
 									handleClick(e.id);
 								}}
 								className="float-right">
-								{favorites ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
+								{favorites ? (
+									<i className="fas fa-bookmark favorite" />
+								) : (
+									<i className="far fa-bookmark favorite" />
+								)}
 							</span>
 							<br />
 							<label>{"Teacher:"}</label>

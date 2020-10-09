@@ -32,7 +32,7 @@ export const Cards = () => {
 
 						{/* <TypeAvatar type={item.instrument} /> */}
 
-						<Card.Body>
+						<Card.Body className="text-center">
 							<Card.Title>{item.name}</Card.Title>
 							<Card.Text>{item.instrument}</Card.Text>
 							<Card.Text>{item.level}</Card.Text>

@@ -75,7 +75,7 @@ export const Dashboard = () => {
 				{/* conditionally show left profile */}
 				{showLeftProfile && (
 					<Col xs={12} md={3} className="py-3 profile-left w-100 align-items-center ">
-						<div className="profile-wrapper d-flex flex-column align-items-center">
+						<div className="profile-wrapper d-flex flex-column align-items-center mt-4">
 							<Image src={profileImage} roundedCircle />
 							<div className="profile-image-footer mt-2 mr-auto">
 								<Link className="link-profile" to={`${path}`}>
@@ -104,7 +104,7 @@ export const Dashboard = () => {
 					</Button>
 				) : null}
 				{/* add here the paths for music room and others */}
-				<Col xs={12} md={6} className="profile-right py-3">
+				<Col xs={12} md={6} className="profile-right py-3 mt-4">
 					<Switch>
 						<Route exact path={`${path}`}>
 							<MainProfile />

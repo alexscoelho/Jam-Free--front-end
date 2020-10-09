@@ -22,7 +22,7 @@ export const LeftCol = props => {
 		// only for lg screen
 
 		<Col xs={12} md={3} className="profile-left w-100 align-items-center">
-			<div className="profile-wrapper d-flex flex-column align-items-center">
+			<div className="profile-wrapper d-flex flex-column align-items-center ">
 				<TypeAvatar />
 				<div className="profile-footer">
 					<h5>John Doe</h5>

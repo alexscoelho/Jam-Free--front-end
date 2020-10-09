@@ -4,6 +4,9 @@ import "../../styles/home.scss";
 import { Link, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
 
+// styles
+import "../../styles/schedule.scss";
+
 // components
 import { LeftCol } from "../component/left-col";
 import { AppointsmentsDetails } from "../component/AppointmentsDetail";
@@ -114,7 +117,7 @@ export const Schedule = () => {
 		});
 	};
 	return (
-		<Container>
+		<Container className="appointments-container">
 			{role == "student" && (
 				<Row>
 					<Col>
@@ -125,7 +128,7 @@ export const Schedule = () => {
 			)}
 			<Row className="mt-4">
 				{/* <p>{date}</p> */}
-				<Col>
+				<Col className="mt-4">
 					<h4>This week schedule</h4>
 
 					<AppointsmentsDetails />

@@ -45,7 +45,7 @@ export const AppointsmentsDetails = () => {
 
 	// Close a list item
 	const [list, setList] = useState(data);
-	const handleRemove = (e, key) => {
+	const handleRemove = key => {
 		const newList = list.filter(item => {
 			return item.key !== key;
 		});

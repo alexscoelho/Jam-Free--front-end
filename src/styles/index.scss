@@ -159,7 +159,8 @@ footer i {
 }
 
 .app-mission {
-    margin-top: 15vh
+    margin-top: 15vh;
+    z-index: 20;
 }
 
 .app-options {
@@ -168,12 +169,12 @@ footer i {
 }
 
 .app-options-icons {
-    font-size: 30px;
+    font-size: 60px;
     color: #FF4900
 }
 
 .video-wrapper video {
-    width: 70%;
+    width: 100%;
     z-index: 10;
     object-fit: cover;
 
@@ -236,6 +237,11 @@ footer i {
     border: none
 }
 
+.favorite {
+    font-size: 30px;
+    color: #FF4900;
+}
+
 // students files 
 // .student-files{
 //     background-color: #FFFAF8; 
@@ -248,3 +254,9 @@ footer i {
 // .appointment-details ::before{
 //     box-sizing: content-box;
 // }
+
+// homepage 
+
+.col-12.col-sm-4.m-auto.pb-2.info-col.text-dark.cards-styling.card {
+    border: none;
+}
