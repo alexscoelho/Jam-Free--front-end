@@ -8,6 +8,7 @@ import { Context } from "../store/appContext";
 import { LeftCol } from "../component/left-col";
 
 // react bootstrap
+import { Image, Video, Transformation, CloudinaryContext } from "cloudinary-react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -28,6 +29,7 @@ export const Profile = () => {
 	const [language, setLanguage] = useState(store.profile.language);
 	const [level, setLevel] = useState(store.profile.level);
 	const [description, setDescription] = useState(store.profile.description);
+	const [profilePicture, setProfilePicture] = useState(null);
 	const [userId, setUserId] = useState("");
 
 	const [isDisabled, setIsDisabled] = useState(true);
@@ -50,7 +52,8 @@ export const Profile = () => {
 				instrument: instrument,
 				language: language,
 				level: level,
-				description: description
+				description: description,
+				profile_picture: profilePicture
 			};
 
 			if (isDisabled === true) {
@@ -77,13 +80,24 @@ export const Profile = () => {
 		}
 	}
 
-	// const fillProfile = () => {
-	// 	return store.profiles.map((item, index) => {
-	// 		return (
+	// uploading image
+	// const uploadImage = async e => {
+	// 	const files = e.target.files;
+	// 	const data = new FormData();
 
-	// 		);
+	// 	data.append("file", files[0]);
+	// 	data.append("upload_preset", "txwwx7dx");
+	// 	data.append("public_id", store.profile.id);
+
+	// 	const resp = await fetch("https://api.cloudinary.com/v1_1/alexsonc/image/upload", {
+	// 		method: "POST",
+	// 		body: data
 	// 	});
+	// 	const file = await resp.json();
+	// 	console.log("file:", file);
+	// 	// setProfilePicture(files);
 	// };
+
 	return (
 		// user main page, use LeftCol
 		<Form onSubmit={e => handleSubmit(e)}>
@@ -135,7 +149,7 @@ export const Profile = () => {
 							value={instrument}
 							required
 							type="text"
-							onChange={e => setInstrument(e.target.value)}
+							onChange={e => uploa}
 							placeholder="Enter instrument you play"
 						/>
 					</Form.Group>
@@ -164,36 +178,15 @@ export const Profile = () => {
 						/>
 					</Form.Group>
 				</Col>
-				{/* <Col xs="6">
-                    <Form.Group controlId="formProfile">
-                        <Form.Label>Timezone</Form.Label>
-                        <Form.Control type="text" value={item.timeZone} />
-                    </Form.Group>
-                </Col> */}
-				{/* <Col xs="6">
-					<Form.Group controlId="formPassword">
-						<Form.Label>Password</Form.Label>
-						<Form.Control
-							value={password}
-							required
-							type="password"
-							onChange={e => setPassword(e.target.value)}
-							placeholder="Enter your password"
+				<Col xs="6">
+					<Form.Group>
+						<Form.File
+							id="formProfileImage"
+							label="Profile picture"
+							onChange={e => setProfilePicture(e.target.files[0])}
 						/>
 					</Form.Group>
 				</Col>
-				<Col xs="6">
-					<Form.Group controlId="formUserId">
-						<Form.Label>User ID</Form.Label>
-						<Form.Control
-							value={userId}
-							required
-							type="number"
-							onChange={e => setUserId(e.target.value)}
-							placeholder="Enter your user ID"
-						/>
-					</Form.Group>
-				</Col> */}
 				<Col xs="12">
 					<Form.Group controlId="formProfile">
 						<Form.Label>About me</Form.Label>

@@ -9,13 +9,13 @@ import violin from "../../img/violin-avatar.jpg";
 
 export const TypeAvatar = props => {
 	const [url, setUrl] = useState("");
-	const { type } = props;
+	const { type, src } = props;
 
 	useEffect(
 		() => {
 			getAvatar();
 		},
-		[type]
+		[type, src]
 	);
 
 	const getAvatar = () => {
@@ -32,6 +32,9 @@ export const TypeAvatar = props => {
 			case "violin":
 				setUrl(violin);
 				break;
+			case "avatar":
+				setUrl(src);
+				break;
 			default:
 				setUrl(profileImage);
 				break;
@@ -46,5 +49,6 @@ TypeAvatar.defaultProps = {
 };
 
 TypeAvatar.propTypes = {
-	type: PropTypes.string
+	type: PropTypes.string,
+	src: PropTypes.string
 };

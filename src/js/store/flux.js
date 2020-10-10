@@ -262,28 +262,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			// edit profile
 			modifyUser: target_user => {
-				return fetch(`${baseUrl}/user/${getStore().user.userId}`, {
-					method: "PUT",
+				let formData = new FormData();
+
+				for (var key in target_user) {
+					formData.append(key, target_user[key]);
+				}
+
+				console.log("formData", formData, target_user, formData.get("profile_picture"));
+				return fetch(`${baseUrl}user/${getStore().user.userId}`, {
+					method: "POST",
 					headers: {
-						"Content-type": "application/json",
 						Authorization: `Bearer ${getStore().user.token}`
 					},
-					body: JSON.stringify(target_user)
+					body: formData
 				})
 					.then(async resp => {
-						if (resp.status >= 500) {
-							throw new Error("there was an error");
-						}
-
-						const data = await resp.json();
-						if (resp.status >= 400) {
+						if (!resp.ok) {
 							throw new Error(data.message);
 						}
-						return data;
+
+						return resp.json();
 					})
 					.then(data => {
-						return data;
 						console.log("Success:", data);
+						return data;
 					})
 					.catch(err => {
 						return err;

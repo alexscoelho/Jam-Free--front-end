@@ -23,7 +23,7 @@ export const LeftCol = props => {
 
 		<Col xs={12} md={3} className="profile-left w-100 align-items-center">
 			<div className="profile-wrapper d-flex flex-column align-items-center ">
-				<TypeAvatar />
+				{/* <TypeAvatar type="avatar" src={}/> */}
 				<div className="profile-footer">
 					<h5>John Doe</h5>
 					<p>Pembroke Pines, FL</p>

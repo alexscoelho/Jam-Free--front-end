@@ -3,12 +3,13 @@ import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Link, useLocation, Route, Switch, useRouteMatch } from "react-router-dom";
 import { Context } from "../store/appContext";
-import profileImage from "../../img/profile.jpg";
 
+import { TypeAvatar } from "../component/typeAvatar";
 import { MainProfile } from "../component/main-profile";
 import { Profile } from "../views/profile";
 import { Schedule } from "../views/schedule";
 import { MusicRoom } from "../views/music-room";
+
 // components
 import { LeftCol } from "../component/left-col";
 
@@ -25,7 +26,7 @@ export const Dashboard = () => {
 	const [showLeftProfile, setShowLeftProfile] = useState(true);
 	const { store, actions } = useContext(Context);
 	let { loggedIn } = store.user;
-	let { account_type, username, level } = store.profile;
+	let { account_type, username, level, profile_picture } = store.profile;
 	let location = useLocation();
 	let { path, url } = useRouteMatch();
 
@@ -76,7 +77,9 @@ export const Dashboard = () => {
 				{showLeftProfile && (
 					<Col xs={12} md={3} className="py-3 profile-left w-100 align-items-center ">
 						<div className="profile-wrapper d-flex flex-column align-items-center mt-4">
-							<Image src={profileImage} roundedCircle />
+							<TypeAvatar type="avatar" src={profile_picture} />
+							{/* <Image src={profileImage} roundedCircle /> */}
+							{/* <Image cloudName="alexsonc" publicId="drums-avatar.jpg" /> */}
 							<div className="profile-image-footer mt-2 mr-auto">
 								<Link className="link-profile" to={`${path}`}>
 									<h5 className="profile-field text-dark">{store.profile.first_name}</h5>
