@@ -222,6 +222,13 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 					<option>Article</option>
 				</Form.Control>
 			</Form.Group>
+			<Form.Group>
+				<Form.File
+					id="formUploadFile"
+					label="Upload File"
+					// onChange={e => setProfilePicture(e.target.files[0])}
+				/>
+			</Form.Group>
 			<Form.Group controlId="formBasicPassword">
 				<Form.Label>Url</Form.Label>
 				<Form.Control
