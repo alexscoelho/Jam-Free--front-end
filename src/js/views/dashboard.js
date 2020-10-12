@@ -77,7 +77,12 @@ export const Dashboard = () => {
 				{showLeftProfile && (
 					<Col xs={12} md={3} className="py-3 profile-left w-100 align-items-center ">
 						<div className="profile-wrapper d-flex flex-column align-items-center mt-4">
-							<TypeAvatar type="avatar" src={profile_picture} />
+							{profile_picture !== null ? (
+								<TypeAvatar type="avatar" src={profile_picture} />
+							) : (
+								<TypeAvatar type="" />
+							)}
+
 							{/* <Image src={profileImage} roundedCircle /> */}
 							{/* <Image cloudName="alexsonc" publicId="drums-avatar.jpg" /> */}
 							<div className="profile-image-footer mt-2 mr-auto">

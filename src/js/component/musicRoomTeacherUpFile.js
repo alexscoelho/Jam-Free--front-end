@@ -1,14 +1,59 @@
 //import react into the bundle
 import React, { useContext, useState } from "react";
+import Select from "react-select";
 import ReactDOM from "react-dom";
 //include bootstrap npm library into the bundle
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/musicRoomTeacherUpFile.scss";
 import { Context } from "../store/appContext";
 import PropTypes, { array } from "prop-types";
+import guitar from "../../img/guitar-avatar.jpg";
+import piano from "../../img/piano-avatar.jpg";
+import drums from "../../img/drums-avatar.jpg";
+import violin from "../../img/violin-avatar.jpg";
 
 // react boostatrap
 import { Form, Button, Nav, Col } from "react-bootstrap";
+
+// custom select
+const options = [
+	{
+		value: "guitar",
+		label: (
+			<div>
+				<img src={guitar} height="30px" width="30px" />
+				Guitar{" "}
+			</div>
+		)
+	},
+	{
+		value: "piano",
+		label: (
+			<div>
+				<img src={piano} height="30px" width="30px" />
+				Piano{" "}
+			</div>
+		)
+	},
+	{
+		value: "drums",
+		label: (
+			<div>
+				<img src={drums} height="30px" width="30px" />
+				Drums{" "}
+			</div>
+		)
+	},
+	{
+		value: "violin",
+		label: (
+			<div>
+				<img src={violin} height="30px" width="30px" />
+				Violin{" "}
+			</div>
+		)
+	}
+];
 
 export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction }) => {
 	const { store, actions } = useContext(Context);
@@ -23,11 +68,20 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 		userId: store.user.userId
 	});
 
-	// console.log("singlefile:", singleFile.id);
+	// for range slider
+	var instrumentLevel;
+	if (file.level < 30) {
+		instrumentLevel = "Beginner";
+	} else if (file.level > 30 && file.level < 60) {
+		instrumentLevel = "Intermediate";
+	} else {
+		instrumentLevel = "Advanced";
+	}
 
 	async function handleSubmit(e) {
 		e.preventDefault();
 
+		file.level = instrumentLevel;
 		// create a new file
 		if (fileAction === "create") {
 			let req = await actions.publishFile(file);
@@ -85,9 +139,14 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
 				/>
 			</Form.Group>
-			<Form.Group controlId="formGridState">
+			<Form.Group>
+				<Form.Label>Instrument</Form.Label>
+				<Select options={options} onChange={e => setFile({ ...file, instrument: e.value })} />
+			</Form.Group>
+			{/* <Form.Group controlId="formGridState">
 				<Form.Label>Instrument</Form.Label>
 				<Form.Control
+					custom
 					required
 					as="select"
 					defaultValue=""
@@ -102,7 +161,7 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 					<option>Drums</option>
 					<option>Violin</option>
 				</Form.Control>
-			</Form.Group>
+			</Form.Group> */}
 			<Form.Group controlId="formGridState">
 				<Form.Label>Language</Form.Label>
 				<Form.Control
@@ -119,7 +178,18 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 					<option>English</option>
 				</Form.Control>
 			</Form.Group>
-			<Form.Group controlId="formGridState">
+			<Form.Group controlId="formBasicRange">
+				<Form.Label>Level</Form.Label>
+				<Form.Control
+					type="range"
+					name="level"
+					value={file.level}
+					// onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
+					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
+				/>
+				<p>{instrumentLevel}</p>
+			</Form.Group>
+			{/* <Form.Group controlId="formGridState">
 				<Form.Label>Level</Form.Label>
 				<Form.Control
 					required
@@ -135,7 +205,7 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 					<option>Intermediate</option>
 					<option>Advanced</option>
 				</Form.Control>
-			</Form.Group>
+			</Form.Group> */}
 			<Form.Group controlId="formGridState">
 				<Form.Label>File Type</Form.Label>
 				<Form.Control

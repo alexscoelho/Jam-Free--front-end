@@ -149,7 +149,7 @@ export const Profile = () => {
 							value={instrument}
 							required
 							type="text"
-							onChange={e => uploa}
+							onChange={e => setInstrument(e.target.value)}
 							placeholder="Enter instrument you play"
 						/>
 					</Form.Group>

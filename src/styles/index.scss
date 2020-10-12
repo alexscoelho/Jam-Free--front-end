@@ -41,6 +41,11 @@ a:hover, a:focus {
     color: #FF7239;
 }
 
+// button height
+button.btn.btn-primary {
+    height: 45px;
+}
+
 .btn-primary:hover {
     color: #FFFBFA;
     background-color: #FF7239;
