@@ -9,6 +9,7 @@ import { MainProfile } from "../component/main-profile";
 import { Profile } from "../views/profile";
 import { Schedule } from "../views/schedule";
 import { MusicRoom } from "../views/music-room";
+import { ViewFile } from "../component/ViewFile";
 
 // components
 import { LeftCol } from "../component/left-col";
@@ -124,8 +125,11 @@ export const Dashboard = () => {
 							<Schedule />
 						</Route>
 						{/* usertype is variable, from store depending on user */}
-						<Route path={`${path}/music-room/:role`}>
+						<Route exact path={`${path}/music-room/:role`}>
 							<MusicRoom />
+						</Route>
+						<Route exact path={`${path}/music-room/:role/file/:singleId`}>
+							<ViewFile />
 						</Route>
 					</Switch>
 				</Col>

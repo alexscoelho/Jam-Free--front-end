@@ -21,6 +21,7 @@ import { MusicRoomTeacherUpFile } from "./component/musicRoomTeacherUpFile";
 
 // import { Schedule } from "./views/schedule";
 import { About } from "./views/about";
+import { ViewFile } from "./component/ViewFile";
 
 //create your first component
 const Layout = () => {
@@ -81,9 +82,6 @@ const Layout = () => {
 						<Route exact path="/donations">
 							<Donations />
 						</Route>
-						{/* <Route path="/teacher/musicRoomTeacherUpFile">
-							<MusicRoomTeacherUpFile />
-						</Route> */}
 						<Route>
 							<h1>Not found!</h1>
 						</Route>

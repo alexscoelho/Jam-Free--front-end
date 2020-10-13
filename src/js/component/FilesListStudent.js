@@ -25,6 +25,7 @@ export const FilesListStudent = () => {
 	const [favorites, setFavorites] = useState(false);
 
 	console.log("user", store.user);
+	console.log("files:", store.files);
 
 	const handleClickSelect = e => {
 		setOption(e.target.value);

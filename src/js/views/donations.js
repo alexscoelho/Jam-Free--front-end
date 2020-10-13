@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 import guitarImage from "../../img/guitar.jpg";
 
 // components
@@ -10,8 +11,11 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Carousel from "react-bootstrap/Carousel";
 import Form from "react-bootstrap/Form";
+import { ViewFile } from "../component/ViewFile";
 
 export const Donations = () => {
+	const { store, actions } = useContext(Context);
+	console.log(store.files);
 	return (
 		<div>
 			<div>

@@ -317,12 +317,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Publish file
 			publishFile: file => {
+				let formData = new FormData();
+				for (var key in file) {
+					formData.append(key, file[key]);
+				}
+				console.log("formData", formData, file, formData.get("fileUpload"));
+
 				return fetch(`${baseUrl}/file`, {
 					method: "POST",
-					headers: {
-						"content-type": "application/json"
-					},
-					body: JSON.stringify(file)
+					// headers: {
+					// 	"content-type": "application/json"
+					// },
+					body: formData
 				})
 					.then(resp => {
 						if (!resp.ok) {

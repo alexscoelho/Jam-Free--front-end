@@ -65,6 +65,7 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 		level: fileAction === "edit" ? singleFile.level : "",
 		language: fileAction === "edit" ? singleFile.language : "",
 		url: fileAction === "edit" ? singleFile.url : "",
+		file_upload: fileAction === "edit" ? singleFile.file_upload : "",
 		userId: store.user.userId
 	});
 
@@ -128,22 +129,24 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 	}
 
 	return (
-		<Form onSubmit={e => handleSubmit(e)}>
-			<Form.Group>
-				<Form.Label>Title</Form.Label>
-				<Form.Control
-					type="text"
-					placeholder=""
-					name="title"
-					value={file.title}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Instrument</Form.Label>
-				<Select options={options} onChange={e => setFile({ ...file, instrument: e.value })} />
-			</Form.Group>
-			{/* <Form.Group controlId="formGridState">
+		<React.Fragment>
+			{fileAction !== "edit" ? <h2>Create a new lesson</h2> : <h2>Edit lesson</h2>}
+			<Form onSubmit={e => handleSubmit(e)}>
+				<Form.Group>
+					<Form.Label>Title</Form.Label>
+					<Form.Control
+						type="text"
+						placeholder=""
+						name="title"
+						value={file.title}
+						onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
+					/>
+				</Form.Group>
+				<Form.Group>
+					<Form.Label>Instrument</Form.Label>
+					<Select options={options} onChange={e => setFile({ ...file, instrument: e.value })} />
+				</Form.Group>
+				{/* <Form.Group controlId="formGridState">
 				<Form.Label>Instrument</Form.Label>
 				<Form.Control
 					custom
@@ -162,34 +165,34 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 					<option>Violin</option>
 				</Form.Control>
 			</Form.Group> */}
-			<Form.Group controlId="formGridState">
-				<Form.Label>Language</Form.Label>
-				<Form.Control
-					required
-					as="select"
-					defaultValue=""
-					type="text"
-					placeholder=""
-					name="language"
-					value={file.language}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
-					<option />
-					<option>Spanish</option>
-					<option>English</option>
-				</Form.Control>
-			</Form.Group>
-			<Form.Group controlId="formBasicRange">
-				<Form.Label>Level</Form.Label>
-				<Form.Control
-					type="range"
-					name="level"
-					value={file.level}
-					// onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
-				/>
-				<p>{instrumentLevel}</p>
-			</Form.Group>
-			{/* <Form.Group controlId="formGridState">
+				<Form.Group controlId="formGridState">
+					<Form.Label>Language</Form.Label>
+					<Form.Control
+						required
+						as="select"
+						defaultValue=""
+						type="text"
+						placeholder=""
+						name="language"
+						value={file.language}
+						onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
+						<option />
+						<option>Spanish</option>
+						<option>English</option>
+					</Form.Control>
+				</Form.Group>
+				<Form.Group controlId="formBasicRange">
+					<Form.Label>Level</Form.Label>
+					<Form.Control
+						type="range"
+						name="level"
+						value={file.level}
+						// onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
+						onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
+					/>
+					<p>{instrumentLevel}</p>
+				</Form.Group>
+				{/* <Form.Group controlId="formGridState">
 				<Form.Label>Level</Form.Label>
 				<Form.Control
 					required
@@ -206,57 +209,58 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 					<option>Advanced</option>
 				</Form.Control>
 			</Form.Group> */}
-			<Form.Group controlId="formGridState">
-				<Form.Label>File Type</Form.Label>
-				<Form.Control
-					required
-					as="select"
-					defaultValue=""
-					type="text"
-					placeholder=""
-					name="typeFile"
-					value={file.typeFile}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
-					<option />
-					<option>Video</option>
-					<option>Article</option>
-				</Form.Control>
-			</Form.Group>
-			<Form.Group>
-				<Form.File
-					id="formUploadFile"
-					label="Upload File"
-					// onChange={e => setProfilePicture(e.target.files[0])}
-				/>
-			</Form.Group>
-			<Form.Group controlId="formBasicPassword">
-				<Form.Label>Url</Form.Label>
-				<Form.Control
-					required
-					type="text"
-					placeholder=""
-					name="url"
-					value={file.url}
-					onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
-				/>
-			</Form.Group>
-			{fileAction === "create" ? (
-				<Button variant="primary" type="submit" className="mr-2">
-					Publish
+				<Form.Group controlId="formGridState">
+					<Form.Label>File Type</Form.Label>
+					<Form.Control
+						required
+						as="select"
+						defaultValue=""
+						type="text"
+						placeholder=""
+						name="typeFile"
+						value={file.typeFile}
+						onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}>
+						<option />
+						<option>Video</option>
+						<option>Image</option>
+					</Form.Control>
+				</Form.Group>
+				<Form.Group>
+					<Form.File
+						id="formUploadFile"
+						label="Upload file"
+						name="file_upload"
+						onChange={e => setFile({ ...file, [e.target.name]: e.target.files[0] })}
+					/>
+				</Form.Group>
+				<Form.Group controlId="formBasicPassword">
+					<Form.Label>Url</Form.Label>
+					<Form.Control
+						type="text"
+						placeholder=""
+						name="url"
+						value={file.url}
+						onChange={e => setFile({ ...file, [e.target.name]: e.target.value })}
+					/>
+				</Form.Group>
+				{fileAction === "create" ? (
+					<Button variant="primary" type="submit" className="mr-2">
+						Publish
+					</Button>
+				) : (
+					<Button variant="primary" type="submit" className="mr-2">
+						Save Changes
+					</Button>
+				)}
+				<Button
+					onClick={() => {
+						setCheck(true);
+					}}
+					variant="primary">
+					Go Back
 				</Button>
-			) : (
-				<Button variant="primary" type="submit" className="mr-2">
-					Save Changes
-				</Button>
-			)}
-			<Button
-				onClick={() => {
-					setCheck(true);
-				}}
-				variant="primary">
-				Go Back
-			</Button>
-		</Form>
+			</Form>
+		</React.Fragment>
 	);
 };
 

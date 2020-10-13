@@ -185,7 +185,7 @@ export const FilesListTeacher = () => {
 									setCheck(false);
 									setFileAction("create");
 								}}>
-								Post File
+								Create
 							</Button>
 						</div>
 					</div>

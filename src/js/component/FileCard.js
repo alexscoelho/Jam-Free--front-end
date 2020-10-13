@@ -14,6 +14,8 @@ import PropTypes from "prop-types";
 
 export const FileCard = ({ e, index, role }) => {
 	const { store, actions } = useContext(Context);
+
+	let { path, url } = useRouteMatch();
 	let checkFavorites = store.favorites.filter(favorite => {
 		return favorite.id === e.id;
 	});
@@ -117,11 +119,17 @@ export const FileCard = ({ e, index, role }) => {
 							<br />
 							<span className="text-muted">{e.language}</span> {/*type, how is labeled at API*/}
 							<br />
-							<div className="view-file-button">
-								<Button as="a" href={e.url} target="_blank" className="view-file">
-									View
-								</Button>
-							</div>
+							{store.files[index].url !== "" ? (
+								<div className="view-file-button">
+									<Button as="a" href={e.url} target="_blank" className="view-file">
+										View Video
+									</Button>
+								</div>
+							) : (
+								<Link to={`/main/music-room/${role}/file/${index}`}>
+									<Button>View Image</Button>
+								</Link>
+							)}
 							<span
 								className="text-muted mr-3"
 								data-toggle="tooltip"

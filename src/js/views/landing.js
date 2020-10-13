@@ -8,6 +8,7 @@ import { Context } from "../store/appContext";
 
 // components
 import { Cards } from "../component/cards";
+import { ViewFile } from "../component/ViewFile";
 import Image from "react-bootstrap/Image";
 import Nav from "react-bootstrap/Nav";
 import { Container, Row, Col, Button } from "react-bootstrap";
