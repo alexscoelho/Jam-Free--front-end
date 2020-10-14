@@ -12,8 +12,10 @@ import { MusicRoomTeacherUpFile } from "./musicRoomTeacherUpFile";
 import { Button, ListGroup, Dropdown, Form, Nav, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-export const FileCard = ({ e, index, role }) => {
+export const FileCard = ({ e, index, role, lessons, lessonId }) => {
 	const { store, actions } = useContext(Context);
+
+	// let lessons = store.files || store.favorites;
 
 	let { path, url } = useRouteMatch();
 	let checkFavorites = store.favorites.filter(favorite => {
@@ -119,15 +121,15 @@ export const FileCard = ({ e, index, role }) => {
 							<br />
 							<span className="text-muted">{e.language}</span> {/*type, how is labeled at API*/}
 							<br />
-							{store.files[index].url !== "" ? (
+							{lessons[index].url !== "" ? (
 								<div className="view-file-button">
-									<Button as="a" href={e.url} target="_blank" className="view-file">
+									<Button as="a" href={e.url} target="_blank" className="view-file action-button">
 										View Video
 									</Button>
 								</div>
 							) : (
 								<Link to={`/main/music-room/${role}/file/${index}`}>
-									<Button>View Image</Button>
+									<Button className="action-button">View Image</Button>
 								</Link>
 							)}
 							<span
@@ -148,5 +150,7 @@ export const FileCard = ({ e, index, role }) => {
 FileCard.propTypes = {
 	e: PropTypes.any,
 	index: PropTypes.any,
-	role: PropTypes.any
+	role: PropTypes.any,
+	lessons: PropTypes.any,
+	lessonId: PropTypes.any
 };

@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 export const ViewFile = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+
 	console.log("params:", params);
 	return (
 		<Container>

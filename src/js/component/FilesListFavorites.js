@@ -8,6 +8,7 @@ import { TypeAvatar } from "./typeAvatar";
 import { Link, useRouteMatch, Route, Switch } from "react-router-dom";
 
 import { MusicRoomTeacherUpFile } from "./musicRoomTeacherUpFile";
+import { FileCard } from "./FileCard";
 
 // react boostatrap
 import { Button, ListGroup, Dropdown, Form, Nav, Row, Col } from "react-bootstrap";
@@ -32,6 +33,7 @@ export const FilesListFavorites = () => {
 		setOption("");
 	};
 
+	console.log("favorites:", store.favorites);
 	return (
 		<div className="container">
 			<div className="row">
@@ -134,105 +136,14 @@ export const FilesListFavorites = () => {
 											.filter(file => file[filterType.toLowerCase()] === option || option === "")
 											.map((e, index) => {
 												return (
-													<ListGroup key={index}>
-														<ListGroup.Item action variant="light" as="a">
-															<div className="row w-100 ml-0">
-																<div className="col-12 col-sm-6 col-md-3 px-0">
-																	<TypeAvatar type={e.instrument} />
-																</div>
-
-																<div className="col-12 col-sm-6 col-md-9 text-center pr-0 text-sm-left">
-																	<div className=" float-right">
-																		{role == "teacher" ? (
-																			<Row className="align-items-center">
-																				<Col xs={6}>
-																					<Button
-																						onClick={e => {
-																							e.preventDefault();
-																							setCheck(false);
-																							setFileAction("edit");
-																							setTargetFile(index);
-																						}}>
-																						<i className="fas fa-pencil-alt" />
-																					</Button>
-																				</Col>
-																				<Col xs={6}>
-																					<Button
-																						onClick={() => {
-																							handleClick(e.id);
-																						}}>
-																						<i className="fas fa-trash-alt" />
-																					</Button>
-																				</Col>
-																			</Row>
-																		) : null}
-																		{/* <Row className="view-file-button">
-																		<Col>
-																			<Button
-																				as="a"
-																				href={e.url}
-																				target="_blank"
-																				className="view-file">
-																				View
-																			</Button>
-																		</Col>
-																	</Row> */}
-																	</div>
-																	<div className="list-info-wrapper">
-																		<label className="name lead d-flex">
-																			{e.title}
-																		</label>{" "}
-																		{/* <span
-																			onClick={() => {
-																				handleClick(e.id);
-																			}}
-																			className="float-right">
-																			<i className="far fa-heart" />
-																		</span> */}
-																		<br />
-																		<label>{"Teacher:"}</label>
-																		<br />
-																		<label className="name lead">
-																			{e.instrument}
-																		</label>{" "}
-																		{/*name, how is labeled at API*/}
-																		<br />
-																		<span className="text-muted">{e.level}</span>
-																		<br />
-																		<span className="text-muted">
-																			{e.language}
-																		</span>{" "}
-																		{/*type, how is labeled at API*/}
-																		<br />
-																		<div className="view-file-button">
-																			<Button
-																				as="a"
-																				href={e.url}
-																				target="_blank"
-																				className="view-file">
-																				View
-																			</Button>
-																		</div>
-																		<span
-																			className="text-muted mr-3"
-																			data-toggle="tooltip"
-																			title=""
-																			// data-original-title="(870) 288-4149"
-																		/>
-																		{/* <a
-																		className="text-dark"
-																		href={e.url}
-																		target="_blank"
-																		rel="noopener noreferrer">
-																		<i className="far fa-eye" />
-																	</a> */}
-																		{/*phone, how is labeled at API*/}
-																	</div>
-																	<br />
-																</div>
-															</div>
-														</ListGroup.Item>
-													</ListGroup>
+													<FileCard
+														key={index}
+														index={index}
+														e={e}
+														role={role}
+														lessons={store.favorites}
+														lessonId={e.id}
+													/>
 												);
 											})}
 									</div>

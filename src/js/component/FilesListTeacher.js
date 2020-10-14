@@ -39,6 +39,7 @@ export const FilesListTeacher = () => {
 
 	return (
 		<div className="container">
+			{check && <h4 className="musicroom-title">Your published lessons</h4>}
 			<div className="row">
 				{check ? (
 					<div className="col">
@@ -180,12 +181,12 @@ export const FilesListTeacher = () => {
 								</Form>
 							</div>
 							<Button
-								className="post-filebutton"
+								className="post-filebutton action-button"
 								onClick={() => {
 									setCheck(false);
 									setFileAction("create");
 								}}>
-								Create
+								Create lesson
 							</Button>
 						</div>
 					</div>

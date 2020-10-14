@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const apiGetTeachers = "/api/v1/bookingapi/staffs";
 	// const apiGetCustomer = "api/v1/bookingapi/customer?email=";
 	const apiGetAppointment =
-		"api/v1/bookingapi/appointments?startDate=06-10-2020&endDate=15-10-2020&customerDetails=true";
+		"api/v1/bookingapi/appointments?startDate=13-10-2020&endDate=25-10-2020&customerDetails=true";
 	const refresh_token = process.env.SETMORE_REFRESH_TOKEN;
 	// const newToken = process.env.SETMORE_ACCESS_KEY;
 

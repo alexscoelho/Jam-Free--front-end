@@ -69,12 +69,13 @@ export const MainProfile = () => {
 					</Col>
 				</Row>
 			</Container>
-			{role === "student" ? (
+			{/* {role === "student" ? (
 				<Button onClick={() => setShowFavorites(!showFavorites)} className="mt-2">
-					Favorites{" "}
+					Stored Lessons{" "}
 				</Button>
 			) : null}
-			{showFavorites ? <FilesListFavorites /> : null}
+			{showFavorites ? <FilesListFavorites /> : null} */}
+			{role === "student" && <FilesListFavorites />}
 		</>
 	);
 };

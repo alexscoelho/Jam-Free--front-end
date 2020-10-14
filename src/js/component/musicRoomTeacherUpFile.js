@@ -130,7 +130,7 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 
 	return (
 		<React.Fragment>
-			{fileAction !== "edit" ? <h2>Create a new lesson</h2> : <h2>Edit lesson</h2>}
+			{fileAction !== "edit" ? <h4>Create a new lesson</h4> : <h4>Edit lesson</h4>}
 			<Form onSubmit={e => handleSubmit(e)}>
 				<Form.Group>
 					<Form.Label>Title</Form.Label>
@@ -244,11 +244,11 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 					/>
 				</Form.Group>
 				{fileAction === "create" ? (
-					<Button variant="primary" type="submit" className="mr-2">
+					<Button variant="primary" type="submit" className="mr-2 action-button">
 						Publish
 					</Button>
 				) : (
-					<Button variant="primary" type="submit" className="mr-2">
+					<Button variant="primary" type="submit" className="mr-2 action-button">
 						Save Changes
 					</Button>
 				)}

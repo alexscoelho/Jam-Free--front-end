@@ -39,6 +39,7 @@ export const FilesListStudent = () => {
 
 	return (
 		<div className="container">
+			{check && <h4 className="musicroom-title">Search for lessons</h4>}
 			<div className="row">
 				{check ? (
 					<div className="col">
@@ -136,7 +137,16 @@ export const FilesListStudent = () => {
 										store.files
 											.filter(file => file[filterType.toLowerCase()] === option || option === "")
 											.map((e, index) => {
-												return <FileCard key={index} index={index} e={e} role={role} />;
+												return (
+													<FileCard
+														key={index}
+														index={index}
+														e={e}
+														role={role}
+														lessons={store.files}
+														lessonId={e.id}
+													/>
+												);
 											})}
 									</div>
 									{role == "teacher" ? (
