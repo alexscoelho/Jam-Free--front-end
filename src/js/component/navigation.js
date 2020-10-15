@@ -11,7 +11,7 @@ export const Navigation = () => {
 	let { username, userType, loggedIn, token } = store.user;
 
 	return (
-		<Navbar expand="lg" className="navigation-bar">
+		<Navbar expand="lg" className="navigation-bar fixed-top">
 			<Navbar.Brand href="/">JammFree</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">

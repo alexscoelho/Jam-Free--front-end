@@ -56,7 +56,7 @@ const Layout = () => {
 			) : null}
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navigation />
+					<Navigation className="fixed-top" />
 					<Switch>
 						<Route exact path="/">
 							<Landing />
