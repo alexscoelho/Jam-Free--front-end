@@ -9,10 +9,16 @@ export const ViewFile = () => {
 	const params = useParams();
 
 	console.log("params:", params);
+	// console.log("filessss", store.files[params.singleId]);
+
+	let filteredFile = store.files.filter(file => {
+		return file.id == params.singleId;
+	});
+	console.log("filetered:", filteredFile);
 	return (
 		<Container>
-			{store.files[params.singleId].file_upload !== null ? (
-				<Image src={store.files[params.singleId].file_upload} />
+			{filteredFile[0].file_upload !== null ? (
+				<Image src={filteredFile[0].file_upload} />
 			) : (
 				<div>No image found</div>
 			)}

@@ -126,7 +126,25 @@ export const FilesListTeacher = () => {
 																	</span>{" "}
 																	{/*type, how is labeled at API*/}
 																	<br />
-																	<div className="view-file-button">
+																	<div className="d-flex">
+																		<div className="view-file-button">
+																			<Button
+																				as="a"
+																				href={e.url}
+																				target="_blank"
+																				className="view-file ">
+																				Video
+																			</Button>
+																		</div>
+																		{/* ) : ( */}
+																		<Link
+																			to={`/main/music-room/${role}/file/${
+																				e.id
+																			}`}>
+																			<Button className="ml-2">Image</Button>
+																		</Link>
+																	</div>
+																	{/* <div className="view-file-button">
 																		<Button
 																			as="a"
 																			href={e.url}
@@ -134,7 +152,7 @@ export const FilesListTeacher = () => {
 																			className="view-file">
 																			View
 																		</Button>
-																	</div>
+																	</div> */}
 																	<span
 																		className="text-muted mr-3"
 																		data-toggle="tooltip"

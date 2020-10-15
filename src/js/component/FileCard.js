@@ -35,6 +35,11 @@ export const FileCard = ({ e, index, role, lessons, lessonId }) => {
 			}
 		});
 
+		// get lesson teacher
+		// useEffect(()=> {
+		//     actions.getProfile()
+		// },[])
+
 		// deleting the array outside object
 		singleFileObject = singleFile[0];
 
@@ -113,7 +118,7 @@ export const FileCard = ({ e, index, role, lessons, lessonId }) => {
 								)}
 							</span>
 							<br />
-							<label>{"Teacher:"}</label>
+							<label>{`Teacher:${e.id}`}</label>
 							<br />
 							<label className="name lead">{e.instrument}</label> {/*name, how is labeled at API*/}
 							<br />
@@ -121,17 +126,19 @@ export const FileCard = ({ e, index, role, lessons, lessonId }) => {
 							<br />
 							<span className="text-muted">{e.language}</span> {/*type, how is labeled at API*/}
 							<br />
-							{lessons[index].url !== "" ? (
+							{/* {lessons[index].url !== "" ? ( */}
+							<div className="d-flex">
 								<div className="view-file-button">
-									<Button as="a" href={e.url} target="_blank" className="view-file action-button">
-										View Video
+									<Button as="a" href={e.url} target="_blank" className="view-file ">
+										Video
 									</Button>
 								</div>
-							) : (
-								<Link to={`/main/music-room/${role}/file/${index}`}>
-									<Button className="action-button">View Image</Button>
+								{/* ) : ( */}
+								<Link to={`/main/music-room/${role}/file/${e.id}`}>
+									<Button className="ml-2">Image</Button>
 								</Link>
-							)}
+							</div>
+							{/* )} */}
 							<span
 								className="text-muted mr-3"
 								data-toggle="tooltip"
