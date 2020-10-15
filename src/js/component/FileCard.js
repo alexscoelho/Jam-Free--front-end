@@ -15,7 +15,10 @@ import PropTypes from "prop-types";
 export const FileCard = ({ e, index, role, lessons, lessonId }) => {
 	const { store, actions } = useContext(Context);
 
-	// let lessons = store.files || store.favorites;
+	// get lesson teacher
+	// useEffect(() => {
+	// 	actions.getTeacher(e.userId);
+	// }, []);
 
 	let { path, url } = useRouteMatch();
 	let checkFavorites = store.favorites.filter(favorite => {
@@ -34,11 +37,6 @@ export const FileCard = ({ e, index, role, lessons, lessonId }) => {
 				return file;
 			}
 		});
-
-		// get lesson teacher
-		// useEffect(()=> {
-		//     actions.getProfile()
-		// },[])
 
 		// deleting the array outside object
 		singleFileObject = singleFile[0];
@@ -70,6 +68,7 @@ export const FileCard = ({ e, index, role, lessons, lessonId }) => {
 		console.log("file", singleFileObject.id);
 		console.log("favorite", store.favorites);
 	};
+
 	return (
 		<ListGroup key={index}>
 			<ListGroup.Item action variant="light" as="a">
@@ -118,8 +117,8 @@ export const FileCard = ({ e, index, role, lessons, lessonId }) => {
 								)}
 							</span>
 							<br />
-							<label>{`Teacher:${e.id}`}</label>
-							<br />
+							{/* <label>{`Teacher: ${store.teacherProfile[index]}`}</label>
+							<br /> */}
 							<label className="name lead">{e.instrument}</label> {/*name, how is labeled at API*/}
 							<br />
 							<span className="text-muted">{e.level}</span>
@@ -133,12 +132,11 @@ export const FileCard = ({ e, index, role, lessons, lessonId }) => {
 										Video
 									</Button>
 								</div>
-								{/* ) : ( */}
+
 								<Link to={`/main/music-room/${role}/file/${e.id}`}>
 									<Button className="ml-2">Image</Button>
 								</Link>
 							</div>
-							{/* )} */}
 							<span
 								className="text-muted mr-3"
 								data-toggle="tooltip"

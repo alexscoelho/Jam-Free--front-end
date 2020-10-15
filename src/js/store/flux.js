@@ -103,6 +103,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			staffs: [],
 
+			teacherProfile: [],
+
 			alertMessages: {
 				visible: false,
 				type: "",
@@ -308,6 +310,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						let store = getStore();
 						store.profile = data[0];
+						setStore(store);
+					})
+					.catch(err => {
+						return err;
+					});
+			},
+
+			//get teacher profile
+			getTeacher: userId => {
+				return fetch(`${baseUrl}/user/${userId}`, {
+					method: "GET",
+					headers: {
+						Authorization: `Bearer ${getStore().user.token}`
+					}
+				})
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => {
+						let store = getStore();
+						store.teacherProfile.push(data[0].first_name);
 						setStore(store);
 					})
 					.catch(err => {

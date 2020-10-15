@@ -209,7 +209,7 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 					<option>Advanced</option>
 				</Form.Control>
 			</Form.Group> */}
-				<Form.Group controlId="formGridState">
+				{/* <Form.Group controlId="formGridState">
 					<Form.Label>File Type</Form.Label>
 					<Form.Control
 						required
@@ -224,11 +224,11 @@ export const MusicRoomTeacherUpFile = ({ check, setCheck, singleFile, fileAction
 						<option>Video</option>
 						<option>Image</option>
 					</Form.Control>
-				</Form.Group>
+				</Form.Group> */}
 				<Form.Group>
 					<Form.File
 						id="formUploadFile"
-						label="Upload file"
+						label="Upload image"
 						name="file_upload"
 						onChange={e => setFile({ ...file, [e.target.name]: e.target.files[0] })}
 					/>
